@@ -5,14 +5,14 @@ using System.IO;
 
 namespace Traffic_Accounting
 {
-    public class TrafficStatCache
+    public class CachedTrafficHistory
     {
         public int CacheSize = 7;
 
-        private List<TrafficStatDay> TrafficCache = new List<TrafficStatDay>();
+        private List<TrafficHistory> TrafficHistoryCache = new List<TrafficHistory>();
         private string CacheFileName = "cache.xml";
 
-        public TrafficStatCache()
+        public CachedTrafficHistory()
         {
             loadCache();
         }
@@ -22,10 +22,10 @@ namespace Traffic_Accounting
         /// </summary>
         public int searchDay(DateTime date)
         {
-            return TrafficCache.FindIndex(
-                delegate(TrafficStatDay day)
+            return TrafficHistoryCache.FindIndex(
+                delegate(TrafficHistory day)
                 {
-                    return day.Day.DayOfYear == date.DayOfYear;
+                    return day.DateTime.DayOfYear == date.DayOfYear;
                 }
                 );
         }
@@ -33,41 +33,41 @@ namespace Traffic_Accounting
         /// <summary>
         /// retrieve item from cache
         /// </summary>
-        public TrafficStatDay getDay(DateTime date)
+        public TrafficHistory getDay(DateTime date)
         {
-            return TrafficCache[searchDay(date)];
+            return TrafficHistoryCache[searchDay(date)];
         }
 
         /// <summary>
         /// add item to cache
         /// </summary>
-        public void updateCache(TrafficStatDay StatDay)
+        public void updateCache(TrafficHistory StatDay)
         {
-            if (searchDay(StatDay.Day) == -1)
+            if (searchDay(StatDay.DateTime) == -1)
             {
                 // add new cache item
-                TrafficCache.Add(StatDay);
+                TrafficHistoryCache.Add(StatDay);
             }
             else
             {
                 // update existing
-                TrafficCache[searchDay(StatDay.Day)] = StatDay;
+                TrafficHistoryCache[searchDay(StatDay.DateTime)] = StatDay;
             }
             saveCache();
         }
 
         public void loadCache()
         {
-            List<TrafficStatDay> loaded = DeserializeClass<List<TrafficStatDay>>(CacheFileName);
+            List<TrafficHistory> loaded = DeserializeClass<List<TrafficHistory>>(CacheFileName);
             if (loaded != null)
             {
-                TrafficCache = loaded;
+                TrafficHistoryCache = loaded;
             }
         }
 
         public void saveCache()
         {
-            SerializeClass<List<TrafficStatDay>>(TrafficCache, CacheFileName);
+            SerializeClass<List<TrafficHistory>>(TrafficHistoryCache, CacheFileName);
         }
 
         public bool SerializeClass<T>(T Class, string fullPathToFile)

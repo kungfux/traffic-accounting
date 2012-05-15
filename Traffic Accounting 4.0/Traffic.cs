@@ -5,18 +5,23 @@ namespace Traffic_Accounting
 {
     public class Traffic
     {
-        //public string DailyStatUrl = "http://fw-br/squid/daily/[yyyy_MM_dd].html";
-        public string DailyStatUrl = "http://192.168.1.5/[yyyy_MM_dd].html";
-        public string DailyStatPattern = "<TR><TD ALIGN=LEFT>([a-zA-Z.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
+        public string DailyStatUrl = "http://fw-br/squid/daily/[yyyy_MM_dd].html";
+        //public string DailyStatUrl = "http://192.168.1.5/[yyyy_MM_dd].html";
+        public string DailyStatPattern = @"<TR><TD ALIGN=LEFT>([\S.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
         public string WeeklyStatUrl;
         public string DailyPattern;
         public DayOfWeek FirstDayOfTheWeek = DayOfWeek.Monday;
         public bool UseCache = true;
         public bool RoundUp = true;
         public bool UseFilter = false;
+        public bool LastOperationCompletedSuccessfully
+        { 
+            get; 
+            private set; 
+        }
 
         private HttpRequest HttpRequest = new HttpRequest();
-        private TrafficStatCache StatCache = new TrafficStatCache();
+        private CachedTrafficHistory StatCache = new CachedTrafficHistory();
         private TrafficFilter TrafficFilter = new TrafficFilter();
 
         private enum TrafficEnumeration
@@ -27,46 +32,72 @@ namespace Traffic_Accounting
             GB = 8
         }
 
-        public TrafficStatDay getByDay(DateTime date)
+        public TrafficHistory getByDay(DateTime date)
         {
+            LastOperationCompletedSuccessfully = true;
+
             if (UseCache && StatCache.searchDay(date) != -1)
             {
+                // check is results already exists in cache
                 return StatCache.getDay(date);
             }
+
             string html = HttpRequest.readUrl(prepareStatUrl(date, DailyStatUrl), true);
-            TrafficStatDay stat = new TrafficStatDay();
-            stat.Day = date;
-            Regex regex = new Regex(DailyStatPattern);
-            Match m = regex.Match(html);
-            while (m.Success)
+            if (HttpRequest.LastOperationCompletedSuccessfully)
             {
-                if (!UseFilter || UseFilter && !TrafficFilter.isInList(m.Groups[1].Value))
+                // if there are no errors during reading statistic
+                TrafficHistory stat = new TrafficHistory();
+                stat.DateTime = date;
+                Regex regex = new Regex(DailyStatPattern);
+                Match m = regex.Match(html);
+                while (m.Success)
                 {
-                    stat.WebSites.Add(m.Groups[1].Value);
-                    stat.SpentTraffic.Add(Convert.ToInt32(m.Groups[2].Value));
-                    stat.TotalSpentTraffic += Convert.ToInt32(m.Groups[2].Value);
+                    stat.WebSite.Add(m.Groups[1].Value);
+                    stat.UsedTraffic.Add(Convert.ToInt32(m.Groups[2].Value));
+                    if (!UseFilter || UseFilter && !TrafficFilter.isInList(m.Groups[1].Value))
+                    {
+                        // add value to total amount only in case
+                        // filtering is disabled or site is not present in filter
+                        stat.TotalUsedTraffic += Convert.ToInt32(m.Groups[2].Value);
+                    }
+                    m = m.NextMatch();
                 }
-                m = m.NextMatch();
+                if (UseCache)
+                {
+                    StatCache.updateCache(stat);
+                }
+                return stat;
             }
-            if (UseCache)
+            else
             {
-                StatCache.updateCache(stat);
+                LastOperationCompletedSuccessfully = false;
+                return new TrafficHistory();
             }
-            return stat;
         }
 
-        public TrafficStatWeek getByWeek(DateTime date)
+        public MergedTrafficHistory getByWeek(DateTime date)
         {
-            TrafficStatWeek stat = new TrafficStatWeek();
+            LastOperationCompletedSuccessfully = true;
+            MergedTrafficHistory stat = new MergedTrafficHistory();
             for (int a = 0; a <= 7; a++)
             {
                 if (date.DayOfWeek == FirstDayOfTheWeek)
                 {
                     a = 7;
                 }
-                TrafficStatDay day = getByDay(date);
-                stat.TrafficStatOneDay.Add(day);
-                stat.TotalSpentTraffic += day.TotalSpentTraffic;
+                // skip request for today's date
+                // 'coz there is no statistic for active day
+                if (date.DayOfYear != DateTime.Now.DayOfYear)
+                {
+                    TrafficHistory day = getByDay(date);
+                    if (!LastOperationCompletedSuccessfully)
+                    {
+                        // if error occur
+                        break;
+                    }
+                    stat.TrafficHistory.Add(day);
+                    stat.TotalUsedTraffic += day.TotalUsedTraffic;
+                }
                 date = date.AddDays(-1);
             }
             return stat;
@@ -77,10 +108,15 @@ namespace Traffic_Accounting
         /// </summary>
         public long[] convertBytes(long bytes)
         {
+            return convertBytes(bytes, 1, 8);
+        }
+
+        public long[] convertBytes(long bytes, int minEnum, int maxEnum)
+        {
             int value = 1024;
             if (!RoundUp) value = 10240; // 10 KB
             int enumeration = 1;
-            while (bytes > value)
+            while ((bytes > value && enumeration < maxEnum) || enumeration < minEnum)
             {
                 bytes = bytes / 1024;
                 enumeration = enumeration * 2;

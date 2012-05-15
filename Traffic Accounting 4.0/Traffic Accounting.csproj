@@ -53,9 +53,9 @@
     </Compile>
     <Compile Include="Traffic.cs" />
     <Compile Include="TrafficFilter.cs" />
-    <Compile Include="TrafficStatCache.cs" />
-    <Compile Include="TrafficStatDay.cs" />
-    <Compile Include="TrafficStatWeek.cs" />
+    <Compile Include="CachedTrafficHistory.cs" />
+    <Compile Include="TrafficHistory.cs" />
+    <Compile Include="MergedTrafficHistory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -10,32 +10,30 @@ namespace Traffic_Accounting
             InitializeComponent();
         }
 
-        Traffic t = new Traffic();
-
-        private void TA_Load(object sender, System.EventArgs e)
-        {
-            
-        }
+        private Traffic t = new Traffic();
+        private DateTime dtLastChecked = DateTime.Now.AddDays(-1);
 
         private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             this.Close();
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void timerCheckElapsed_Tick(object sender, EventArgs e)
         {
-            TrafficStatDay d = t.getByDay(dateTimePicker1.Value);
-            string s = "";
-            for (int a = 0; a != d.WebSites.Count; a++)
+            if (dtLastChecked.DayOfYear < DateTime.Now.DayOfYear)
             {
-                s += d.WebSites[a] + " " + d.SpentTraffic[a] + "\r\n";
+                long b = t.convertBytes(t.getByWeek(DateTime.Now).TotalUsedTraffic, 4, 4)[0];
+                if (t.LastOperationCompletedSuccessfully)
+                {
+                    notifyIcon.Icon = new SystemTray().getIcon(100 - Convert.ToInt32(b));
+                    dtLastChecked = DateTime.Now;
+                }
             }
-            s += d.TotalSpentTraffic;
-            MessageBox.Show(s);
-            //MessageBox.Show(t.getByWeek(dateTimePicker1.Value).TotalSpentTraffic.ToString());
-            long b = t.convertBytes(t.getByWeek(dateTimePicker1.Value).TotalSpentTraffic)[0];
-            int c = Convert.ToInt32(b);
-            notifyIcon.Icon = new SystemTray().getIcon(c);
+        }
+
+        private void TA_Load(object sender, EventArgs e)
+        {
+            timerCheckElapsed_Tick(this, null);
         }
     }
 }

@@ -11,13 +11,19 @@ namespace Traffic_Accounting
         public string Method = "POST";
         public Encoding CodePage = Encoding.GetEncoding("KOI8R");
         public string ContentType = "text/html";
-        //public string CutTop = "<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>";
-        public string CutTop = "<A NAME=10.98.58.43><H2><A HREF=#TOC>iofuks (10.98.58.43)</A></H2>";
+        public string CutTop = "<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>";
+        //public string CutTop = "<A NAME=10.98.58.43><H2><A HREF=#TOC>iofuks (10.98.58.43)</A></H2>";
         public string CutBottom = "</TABLE>";
+        public bool LastOperationCompletedSuccessfully
+        {
+            get;
+            private set;
+        }
 
 
         public string readUrl(string url, bool performCutting)
         {
+            LastOperationCompletedSuccessfully = true;
             string Response = "";
 
             try
@@ -46,7 +52,7 @@ namespace Traffic_Accounting
             catch (WebException ex)
             {
                 // TODO: Report about problem correcly
-                // MessageBox.Show(ex.Message);
+                LastOperationCompletedSuccessfully = false;
             }
             return Response;
         }
@@ -55,16 +61,16 @@ namespace Traffic_Accounting
         {
             int a = 0;
             a = sourceHtml.IndexOf(prepareCut(CutTop));
-            if (a == 0)
+            if (a < 0)
             {
-                // alert for error
+                // TODO: alert for error
             }
             sourceHtml = sourceHtml.Remove(0, a);
             a = 0;
             a = sourceHtml.IndexOf(prepareCut(CutBottom));
-            if (a == 0)
+            if (a < 0)
             {
-                // alert for error
+                // TODO: alert for error
             }
             sourceHtml = sourceHtml.Remove(a, sourceHtml.Length - a);
             return sourceHtml;
@@ -76,7 +82,7 @@ namespace Traffic_Accounting
         private string prepareCut(string cutPattern)
         {
             cutPattern = cutPattern.Replace("[IP]", getLocalIP());
-            cutPattern = cutPattern.Replace("[MACHINE]", Environment.MachineName);
+            cutPattern = cutPattern.Replace("[MACHINE]", Environment.MachineName.ToLower());
             return cutPattern;
         }
 
