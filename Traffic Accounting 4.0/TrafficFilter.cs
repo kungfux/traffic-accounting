@@ -2,7 +2,7 @@
 
 namespace Traffic_Accounting
 {
-    public class TrafficFilter
+    internal class TrafficFilter
     {
         // list of sites which should be skipped
         // from counting of total amount of traffic

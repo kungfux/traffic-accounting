@@ -6,50 +6,33 @@ using System.Windows.Forms;
 
 namespace Traffic_Accounting
 {
-    public class HttpRequest
+    internal class HttpRequest
     {
-        // for testing
-        //public string CutTop = "<A NAME=10.98.58.43><H2><A HREF=#TOC>iofuks (10.98.58.43)</A></H2>";
-        //
-        private string Method = "POST";
-        private Encoding CodePage = Encoding.GetEncoding("utf-8");
-        private string ContentType = "text/html";
-        private string CutTop = "<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>";
-        private string CutBottom = "</TABLE>";
         public bool LastOperationCompletedSuccessfully
         {
             get;
             private set;
         }
 
-        public HttpRequest()
-        {
-            ClientParams p = new ClientParams();
-            Method = p.Parameters.HttpMethod;
-            CodePage = Encoding.GetEncoding(p.Parameters.HttpCodePage);
-            CutTop = p.Parameters.HttpCut1;
-            CutBottom = p.Parameters.HttpCut2;
-        }
-
-
         public string readUrl(string url, bool performCutting)
         {
             LastOperationCompletedSuccessfully = true;
             string Response = "";
 
+
             try
             {
-                byte[] buffer = CodePage.GetBytes(url);
+                byte[] buffer = Encoding.UTF8.GetBytes(url);
                 HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(url);
-                myRequest.Method = Method;
-                myRequest.ContentType = ContentType;
+                myRequest.Method = "POST";
+                myRequest.ContentType = "text/html";
                 myRequest.ContentLength = buffer.Length;
                 Stream newStream = myRequest.GetRequestStream();
                 newStream.Write(buffer, 0, buffer.Length);
                 newStream.Close();
                 HttpWebResponse myHttpWebResponse = (HttpWebResponse)myRequest.GetResponse();
                 Stream streamResponse = myHttpWebResponse.GetResponseStream();
-                StreamReader streamRead = new StreamReader(streamResponse, CodePage, true);
+                StreamReader streamRead = new StreamReader(streamResponse, Encoding.UTF8, true);
                 Response = streamRead.ReadToEnd();
                 streamRead.Close();
                 streamResponse.Close();
@@ -71,20 +54,26 @@ namespace Traffic_Accounting
         private string cutHtml(string sourceHtml)
         {
             int a = 0;
-            a = sourceHtml.IndexOf(prepareCut(CutTop));
+            a = sourceHtml.IndexOf(prepareCut(ClientParams.Parameters.HttpCut1));
             if (a < 0)
             {
                 // TODO: alert for error
+                // For now: if a < 0 then page does not contain 
+                // any useful info and can be cleared
+                return "";
             }
             else
             {
                 sourceHtml = sourceHtml.Remove(0, a);
             }
             a = 0;
-            a = sourceHtml.IndexOf(prepareCut(CutBottom));
+            a = sourceHtml.IndexOf(prepareCut(ClientParams.Parameters.HttpCut2));
             if (a < 0)
             {
                 // TODO: alert for error
+                // For now: if a < 0 then page does not contain 
+                // any useful info and can be cleared
+                return "";
             }
             else
             {

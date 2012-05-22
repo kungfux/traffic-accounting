@@ -3,48 +3,29 @@ using System;
 
 namespace Traffic_Accounting
 {
-    public class SystemTray
+    internal class SystemTray
     {
-        private Color IconBackColor = Color.Transparent;
-        private Color IconFontColor = Color.White;
-        private bool UseDigitsColorRanges = false;
-        private bool UseBackColorRanges = true;
-        private byte[] ColorRanges = new byte[3] { 0, 20, 50 };
-        private bool UseCircle = true;
-        private bool DisplayDigits = true;
-        private int a = Color.White.ToArgb();
-
-        public SystemTray()
-        {
-            ClientParams p = new ClientParams();
-            IconBackColor = Color.FromArgb(p.Parameters.TrayIconBackColor);
-            IconFontColor = Color.FromArgb(p.Parameters.TrayIconFontColor);
-            UseDigitsColorRanges = p.Parameters.TrayDigitsColorRangesEnabled;
-            UseBackColorRanges = p.Parameters.TrayBackColorRangesEnabled;
-            ColorRanges = p.Parameters.TrayTrafficRanges;
-            UseCircle = p.Parameters.TrayDrawCircleInsteadOfSquare;
-            DisplayDigits = p.Parameters.TrayDisplayDigits;
-        }
-
         /// <summary>
         /// draw icon with numbers
         /// </summary>
         public Icon getIcon(int value)
         {
+            Color IconFontColor = Color.FromArgb(ClientParams.Parameters.TrayIconFontColor);
+            Color IconBackColor = Color.FromArgb(ClientParams.Parameters.TrayIconBackColor);
             // Calculate font size.
             // If we will draw 1 digit - size can be big,
             // but if we will draw 2 digit - we should use smaller font size.
             // One more limit: we can draw only 1 and 2 digits, no more
-            if (value > 99) value = 99;
-            if (value < -99) value = -99;
+            if (value > 999) value = 999;
+            if (value < -999) value = -999;
             Font font = new Font("Calibri", 17, FontStyle.Bold);
 
             // Change fore color according to traffic ranges
-            if (UseDigitsColorRanges)
+            if (ClientParams.Parameters.TrayDigitsColorRangesEnabled)
             {
                 IconFontColor = getRangesColor(value);
             }
-            if (UseBackColorRanges)
+            if (ClientParams.Parameters.TrayBackColorRangesEnabled)
             {
                 IconBackColor = getRangesColor(value);
             }
@@ -54,7 +35,7 @@ namespace Traffic_Accounting
             SolidBrush backBrush = new SolidBrush(IconBackColor);
             SolidBrush foreBrush = new SolidBrush(IconFontColor);
             RectangleF canvas = new RectangleF(0, 0, 32, 32);
-            if (!UseCircle)
+            if (!ClientParams.Parameters.TrayDrawCircleInsteadOfSquare)
             {
                 graphic.FillRectangle(backBrush, canvas);
             }
@@ -62,7 +43,7 @@ namespace Traffic_Accounting
             {
                 graphic.FillEllipse(backBrush, canvas);
             }
-            if (DisplayDigits)
+            if (ClientParams.Parameters.TrayDisplayDigits)
             {
                 SizeF size = graphic.MeasureString(string.Format("{0:00}", Math.Abs(value)), font);
                 graphic.DrawString(string.Format("{0:00}", Math.Abs(value)), font, foreBrush, (32 - size.Width)/2, (32 - size.Height) / 2);
@@ -79,9 +60,9 @@ namespace Traffic_Accounting
         private int getRangesColorRepsentation(int value)
         {
             // { 0, 20, 50}
-            for (int a = ColorRanges.Length - 1; a >= 0; a--)
+            for (int a = ClientParams.Parameters.TrayTrafficRanges.Length - 1; a >= 0; a--)
             {
-                if (value > ColorRanges[a])
+                if (value > ClientParams.Parameters.TrayTrafficRanges[a])
                 {
                     return ++a;
                 }

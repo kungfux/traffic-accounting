@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
 using System.Xml.Serialization;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Traffic_Accounting
 {
-    public class CachedTrafficHistory
+    internal class CachedTrafficHistory
     {
-        // public items
-        public int CacheSize = 7;
         // private items
         private List<TrafficHistory> TrafficHistoryCache = new List<TrafficHistory>();
         private const string CacheFileName = "cache.xml";
@@ -49,6 +48,13 @@ namespace Traffic_Accounting
                 // update existing
                 TrafficHistoryCache[searchDay(StatDay.DateTime)] = StatDay;
             }
+            // sort stat by day
+            TrafficHistoryCache.Sort(
+                delegate(TrafficHistory day1, TrafficHistory day2)
+                {
+                    return day1.DateTime.CompareTo(day2.DateTime);
+                });
+            // save dump
             saveCache();
         }
 
@@ -112,7 +118,7 @@ namespace Traffic_Accounting
             TrafficHistoryCache.RemoveAll(
                 delegate(TrafficHistory history)
                 {
-                    return history.DateTime.DayOfYear < DateTime.Now.AddDays(0 - CacheSize).DayOfYear;
+                    return history.DateTime.DayOfYear < DateTime.Now.AddDays(0 - ClientParams.Parameters.TrafficCacheSize).DayOfYear;
                 });
         }
     }
