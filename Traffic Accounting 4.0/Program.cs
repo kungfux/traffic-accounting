@@ -16,6 +16,9 @@ namespace Traffic_Accounting
                 bool Running = !mutex.WaitOne(0, false);
                 if (!Running)
                 {
+                    ClientParams p = new ClientParams();
+                    p.LoadClientParams();
+
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new TA());

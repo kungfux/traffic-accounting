@@ -7,19 +7,19 @@ namespace Traffic_Accounting
 {
     public class CachedTrafficHistory
     {
+        // public items
         public int CacheSize = 7;
-
+        // private items
         private List<TrafficHistory> TrafficHistoryCache = new List<TrafficHistory>();
-        private string CacheFileName = "cache.xml";
-
+        private const string CacheFileName = "cache.xml";
+        // constructor
+        // load cache
         public CachedTrafficHistory()
         {
             loadCache();
         }
 
-        /// <summary>
-        /// search is date is present in cache
-        /// </summary>
+        // search is date is present in cache
         public int searchDay(DateTime date)
         {
             return TrafficHistoryCache.FindIndex(
@@ -30,17 +30,13 @@ namespace Traffic_Accounting
                 );
         }
 
-        /// <summary>
-        /// retrieve item from cache
-        /// </summary>
+        // retrieve item from cache
         public TrafficHistory getDay(DateTime date)
         {
             return TrafficHistoryCache[searchDay(date)];
         }
 
-        /// <summary>
-        /// add item to cache
-        /// </summary>
+        // add item to cache
         public void updateCache(TrafficHistory StatDay)
         {
             if (searchDay(StatDay.DateTime) == -1)
@@ -56,6 +52,7 @@ namespace Traffic_Accounting
             saveCache();
         }
 
+        // load cache from fs
         public void loadCache()
         {
             List<TrafficHistory> loaded = DeserializeClass<List<TrafficHistory>>(CacheFileName);
@@ -65,12 +62,15 @@ namespace Traffic_Accounting
             }
         }
 
+        // save cache to fs
         public void saveCache()
         {
+            ClearOutLimitedCache();
             SerializeClass<List<TrafficHistory>>(TrafficHistoryCache, CacheFileName);
         }
 
-        public bool SerializeClass<T>(T Class, string fullPathToFile)
+        // method for serializaion
+        private bool SerializeClass<T>(T Class, string fullPathToFile)
         {
             try
             {
@@ -80,12 +80,13 @@ namespace Traffic_Accounting
                 sw.Close();
                 return true;
             }
-            catch (IOException ex) 
+            catch (IOException) 
             { 
                 return false; 
             }
         }
 
+        // method for deserialization
         public T DeserializeClass<T>(string fullPathToFile)
         {
             T result = default(T);
@@ -96,13 +97,23 @@ namespace Traffic_Accounting
                 result = (T)xs.Deserialize(sr);
                 sr.Close();
             }
-            catch (IOException ex) 
+            catch (IOException) 
             { 
             }
-            catch (InvalidOperationException ex) 
+            catch (InvalidOperationException) 
             {
             }
             return result;
+        }
+
+        // remove old items from cache
+        private void ClearOutLimitedCache()
+        {
+            TrafficHistoryCache.RemoveAll(
+                delegate(TrafficHistory history)
+                {
+                    return history.DateTime.DayOfYear < DateTime.Now.AddDays(0 - CacheSize).DayOfYear;
+                });
         }
     }
 }

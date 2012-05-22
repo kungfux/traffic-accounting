@@ -33,6 +33,7 @@ namespace Traffic_Accounting
 
         private void TA_Load(object sender, EventArgs e)
         {
+            this.Visible = false;
             timerCheckElapsed_Tick(this, null);
         }
     }

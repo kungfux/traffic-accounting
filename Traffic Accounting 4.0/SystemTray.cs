@@ -1,16 +1,30 @@
 ﻿using System.Drawing;
+using System;
 
 namespace Traffic_Accounting
 {
     public class SystemTray
     {
-        public Color IconBackColor = Color.Transparent;
-        public Color IconFontColor = Color.White;
-        public bool UseDigitsColorRanges = false;
-        public bool UseBackColorRanges = true;
-        public int[] ColorRanges = new int[2] { 20, 50 };
-        public bool UseCircle = true;
-        public bool DisplayDigits = true;
+        private Color IconBackColor = Color.Transparent;
+        private Color IconFontColor = Color.White;
+        private bool UseDigitsColorRanges = false;
+        private bool UseBackColorRanges = true;
+        private byte[] ColorRanges = new byte[3] { 0, 20, 50 };
+        private bool UseCircle = true;
+        private bool DisplayDigits = true;
+        private int a = Color.White.ToArgb();
+
+        public SystemTray()
+        {
+            ClientParams p = new ClientParams();
+            IconBackColor = Color.FromArgb(p.Parameters.TrayIconBackColor);
+            IconFontColor = Color.FromArgb(p.Parameters.TrayIconFontColor);
+            UseDigitsColorRanges = p.Parameters.TrayDigitsColorRangesEnabled;
+            UseBackColorRanges = p.Parameters.TrayBackColorRangesEnabled;
+            ColorRanges = p.Parameters.TrayTrafficRanges;
+            UseCircle = p.Parameters.TrayDrawCircleInsteadOfSquare;
+            DisplayDigits = p.Parameters.TrayDisplayDigits;
+        }
 
         /// <summary>
         /// draw icon with numbers
@@ -22,8 +36,8 @@ namespace Traffic_Accounting
             // but if we will draw 2 digit - we should use smaller font size.
             // One more limit: we can draw only 1 and 2 digits, no more
             if (value > 99) value = 99;
-            if (value < 0) value = 0;
-            Font font = new Font("Calibri", 18);
+            if (value < -99) value = -99;
+            Font font = new Font("Calibri", 17, FontStyle.Bold);
 
             // Change fore color according to traffic ranges
             if (UseDigitsColorRanges)
@@ -50,46 +64,51 @@ namespace Traffic_Accounting
             }
             if (DisplayDigits)
             {
-                graphic.DrawString(string.Format("{0:00}", value), font, foreBrush, 0.6f, 1.5f);
+                SizeF size = graphic.MeasureString(string.Format("{0:00}", Math.Abs(value)), font);
+                graphic.DrawString(string.Format("{0:00}", Math.Abs(value)), font, foreBrush, (32 - size.Width)/2, (32 - size.Height) / 2);
             }
             return Icon.FromHandle(bitmap.GetHicon());
         }
 
         /// <summary>
-        /// 0 - critical (red)
-        /// 1 - warning (yellow)
-        /// 2 - normal
+        /// 0 - absurd (black)
+        /// 1 - critical (red)
+        /// 2 - warning (yellow)
+        /// 3 - normal
         /// </summary>
         private int getRangesColorRepsentation(int value)
         {
-            if (value > ColorRanges[1])
+            // { 0, 20, 50}
+            for (int a = ColorRanges.Length - 1; a >= 0; a--)
             {
-                return 2;
-            }
-            else
-            {
-                if (value > ColorRanges[0])
+                if (value > ColorRanges[a])
                 {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
+                    return ++a;
                 }
             }
+            return 0;
         }
 
+        /// <summary>
+        /// 0 - absurd (black)
+        /// 1 - critical (red)
+        /// 2 - warning (yellow)
+        /// 3 - normal
+        /// </summary>
         private Color getRangesColor(int value)
         {
             switch (getRangesColorRepsentation(value))
             {
-                case 1:
-                    return Color.Goldenrod;
                 case 0:
-                    return Color.Maroon;;
-                default:
+                    return Color.Black;
+                case 1:
+                    return Color.Maroon; 
+                case 2:
+                    return Color.Goldenrod;
+                case 3:
                     return Color.DarkGreen;
             }
+            return Color.Transparent;
         }
     }
 }

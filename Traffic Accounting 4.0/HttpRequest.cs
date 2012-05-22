@@ -8,16 +8,27 @@ namespace Traffic_Accounting
 {
     public class HttpRequest
     {
-        public string Method = "POST";
-        public Encoding CodePage = Encoding.GetEncoding("KOI8R");
-        public string ContentType = "text/html";
-        public string CutTop = "<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>";
+        // for testing
         //public string CutTop = "<A NAME=10.98.58.43><H2><A HREF=#TOC>iofuks (10.98.58.43)</A></H2>";
-        public string CutBottom = "</TABLE>";
+        //
+        private string Method = "POST";
+        private Encoding CodePage = Encoding.GetEncoding("utf-8");
+        private string ContentType = "text/html";
+        private string CutTop = "<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>";
+        private string CutBottom = "</TABLE>";
         public bool LastOperationCompletedSuccessfully
         {
             get;
             private set;
+        }
+
+        public HttpRequest()
+        {
+            ClientParams p = new ClientParams();
+            Method = p.Parameters.HttpMethod;
+            CodePage = Encoding.GetEncoding(p.Parameters.HttpCodePage);
+            CutTop = p.Parameters.HttpCut1;
+            CutBottom = p.Parameters.HttpCut2;
         }
 
 
@@ -30,7 +41,7 @@ namespace Traffic_Accounting
             {
                 byte[] buffer = CodePage.GetBytes(url);
                 HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(url);
-                myRequest.Method = Method.ToString();
+                myRequest.Method = Method;
                 myRequest.ContentType = ContentType;
                 myRequest.ContentLength = buffer.Length;
                 Stream newStream = myRequest.GetRequestStream();
@@ -49,7 +60,7 @@ namespace Traffic_Accounting
                 }
                 return Response;
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 // TODO: Report about problem correcly
                 LastOperationCompletedSuccessfully = false;
@@ -65,14 +76,20 @@ namespace Traffic_Accounting
             {
                 // TODO: alert for error
             }
-            sourceHtml = sourceHtml.Remove(0, a);
+            else
+            {
+                sourceHtml = sourceHtml.Remove(0, a);
+            }
             a = 0;
             a = sourceHtml.IndexOf(prepareCut(CutBottom));
             if (a < 0)
             {
                 // TODO: alert for error
             }
-            sourceHtml = sourceHtml.Remove(a, sourceHtml.Length - a);
+            else
+            {
+                sourceHtml = sourceHtml.Remove(a, sourceHtml.Length - a);
+            }
             return sourceHtml;
         }
 

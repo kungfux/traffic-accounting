@@ -5,15 +5,15 @@ namespace Traffic_Accounting
 {
     public class Traffic
     {
-        public string DailyStatUrl = "http://fw-br/squid/daily/[yyyy_MM_dd].html";
+        // for testing
         //public string DailyStatUrl = "http://192.168.1.5/[yyyy_MM_dd].html";
-        public string DailyStatPattern = @"<TR><TD ALIGN=LEFT>([\S.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
-        public string WeeklyStatUrl;
-        public string DailyPattern;
-        public DayOfWeek FirstDayOfTheWeek = DayOfWeek.Monday;
-        public bool UseCache = true;
-        public bool RoundUp = true;
-        public bool UseFilter = false;
+        //
+        private string DailyStatUrl = "http://fw-br/squid/daily/[yyyy_MM_dd].html";
+        private string DailyStatPattern = @"<TR><TD ALIGN=LEFT>([\S.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
+        private DayOfWeek FirstDayOfTheWeek = DayOfWeek.Monday;
+        private bool UseCache = true;
+        private bool RoundUp = false;
+        private bool UseFilter = false;
         public bool LastOperationCompletedSuccessfully
         { 
             get; 
@@ -23,6 +23,18 @@ namespace Traffic_Accounting
         private HttpRequest HttpRequest = new HttpRequest();
         private CachedTrafficHistory StatCache = new CachedTrafficHistory();
         private TrafficFilter TrafficFilter = new TrafficFilter();
+
+        public Traffic()
+        {
+            ClientParams p = new ClientParams();
+            DailyStatUrl = p.Parameters.TrafficStatUrl;
+            DailyStatPattern = p.Parameters.TrafficStatPattern;
+            FirstDayOfTheWeek = p.Parameters.FirstDayOfTheWeek;
+            UseCache = p.Parameters.TrafficCacheEnabled;
+            UseFilter = p.Parameters.TrafficFilterEnabled;
+            StatCache.CacheSize = p.Parameters.TrafficCacheSize;
+            TrafficFilter.addFormattedList(p.Parameters.TrafficSeparatedFilterList);
+        }
 
         private enum TrafficEnumeration
         {
@@ -116,12 +128,13 @@ namespace Traffic_Accounting
             int value = 1024;
             if (!RoundUp) value = 10240; // 10 KB
             int enumeration = 1;
-            while ((bytes > value && enumeration < maxEnum) || enumeration < minEnum)
+            double traffic = bytes;
+            while ((traffic > value && enumeration < maxEnum) || enumeration < minEnum)
             {
-                bytes = bytes / 1024;
+                traffic = traffic / 1024;
                 enumeration = enumeration * 2;
             }
-            return new long[] { bytes, enumeration };
+            return new long[] { (long)Math.Round(traffic,0), enumeration };
         }
 
         /// <summary>

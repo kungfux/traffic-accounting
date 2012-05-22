@@ -8,6 +8,7 @@ namespace Traffic_Accounting
         // from counting of total amount of traffic
         private List<string> FilterList = new List<string>();
 
+        // add website to filter
         public void addItem(string site)
         {
             if (FilterList.FindIndex(
@@ -21,6 +22,18 @@ namespace Traffic_Accounting
             }
         }
 
+        // remove website from filter
+        public void removeItem(string site)
+        {
+            FilterList.RemoveAll(
+                delegate(string item)
+                {
+                    return item == site;
+                }
+            );
+        }
+
+        // check is website in filter
         public bool isInList(string site)
         {
             return FilterList.FindIndex(
@@ -31,6 +44,8 @@ namespace Traffic_Accounting
             ) >= 0;
         }
 
+        // return filter's list in separated list 
+        // website1|website2|website3...
         public string getFormattedList()
         {
             string result = "";
@@ -41,6 +56,8 @@ namespace Traffic_Accounting
             return result;
         }
 
+        // add websites from separated list
+        // to filter
         public void addFormattedList(string list)
         {
             if (list.Length > 0)
