@@ -109,7 +109,7 @@ namespace Traffic_Accounting
         private void toolStripDay_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             this.UseWaitCursor = true;
-            groupBox1.Text = " Statistic for " + e.ClickedItem.Text + " ";
+            label1.Text = " Statistic for " + e.ClickedItem.Text + " ";
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(ListStat);
             int i = toolStripDropDownDay.DropDownItems.IndexOf(e.ClickedItem);
@@ -128,7 +128,7 @@ namespace Traffic_Accounting
         private void toolStripDropDownButton2_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             this.UseWaitCursor = true;
-            groupBox1.Text = " Statistic for " + e.ClickedItem.Text + " ";
+            label1.Text = " Statistic for " + e.ClickedItem.Text + " ";
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(ListStat);
             int i = toolStripDropDownWeek.DropDownItems.IndexOf(e.ClickedItem);

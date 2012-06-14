@@ -121,7 +121,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAXXSURBVFhHrVftU9RlFKVxnGaccRw/ENWkH8ScipICRoGE
+        YQUAAAAJcEhZcwAADr0AAA69AUf7kK0AAAXXSURBVFhHrVftU9RlFKVxnGaccRw/ENWkH8ScipICRoGE
         DXZBeV1edtldQCAZkJcVARVQlFgUEhHBFcUFIXnTgDBxiChtiNQPNdVMU4196u9QUU73PLvb7CJgtH44
         w+Xec85zf8/+nrvP+gF4aTn4+fmtTUpOnUhK0UP+Iln+pqSmITUtA/pMI9IMWQqMmWONHHJdmgl6rLiG
         Z1HIL1uyc2G25MBkzlZ/E5NScPv2HdjtXei62I2Ll3tQUVuHMJ0Or28PVmDMHGvkkEsNtZ5e9OYaXmsu
@@ -150,14 +150,18 @@
 </value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Traffic Accounting 4.0
+    <value>Traffic Accounting 4.0.0.21
+BETA version
 built on
-May 22, 2012
+June 12, 2012
 
 Copyright © 2010-2012 Fuks Alexander
 
-This program is free software; you are free to redistribute it and/or modify.
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 Fuks Alexander, hereby disclaims all copyright
 interest in the program "Traffic Accounting"

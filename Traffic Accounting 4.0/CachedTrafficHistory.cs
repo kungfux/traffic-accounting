@@ -10,7 +10,7 @@ namespace Traffic_Accounting
     {
         // private items
         private List<TrafficHistory> TrafficHistoryCache = new List<TrafficHistory>();
-        private const string CacheFileName = "cache.xml";
+        private readonly string CacheFileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Traffic Accounting\\cache.xml";
         // constructor
         // load cache
         public CachedTrafficHistory()
@@ -19,26 +19,46 @@ namespace Traffic_Accounting
         }
 
         // search is date is present in cache
-        public int searchDay(DateTime date)
+        // else search week
+        public int searchDay(DateTime date, bool OnlySingleDays)
         {
-            return TrafficHistoryCache.FindIndex(
-                delegate(TrafficHistory day)
-                {
-                    return day.DateTime.DayOfYear == date.DayOfYear;
-                }
-                );
+            if (OnlySingleDays)
+            {
+                return TrafficHistoryCache.FindIndex(
+                    delegate(TrafficHistory day)
+                    {
+                        return day.WeekNumber == -1 && day.DateTime.DayOfYear == date.DayOfYear;
+                    }
+                    );
+            }
+            else
+            {
+                int weekNumber = getWeekNumber(date);
+                return TrafficHistoryCache.FindIndex(
+                    delegate(TrafficHistory day)
+                    {
+                        return day.WeekNumber == weekNumber;
+                    }
+                    );
+            }
         }
 
-        // retrieve item from cache
+        // retrieve day item from cache
         public TrafficHistory getDay(DateTime date)
         {
-            return TrafficHistoryCache[searchDay(date)];
+            return TrafficHistoryCache[searchDay(date, true)];
+        }
+
+        // retrieve week item from cache
+        public TrafficHistory getWeek(DateTime date)
+        {
+            return TrafficHistoryCache[searchDay(date, false)];
         }
 
         // add item to cache
         public void updateCache(TrafficHistory StatDay)
         {
-            if (searchDay(StatDay.DateTime) == -1)
+            if (searchDay(StatDay.DateTime, true) == -1)
             {
                 // add new cache item
                 TrafficHistoryCache.Add(StatDay);
@@ -46,7 +66,7 @@ namespace Traffic_Accounting
             else
             {
                 // update existing
-                TrafficHistoryCache[searchDay(StatDay.DateTime)] = StatDay;
+                TrafficHistoryCache[searchDay(StatDay.DateTime, true)] = StatDay;
             }
             // sort stat by day
             TrafficHistoryCache.Sort(
@@ -118,8 +138,32 @@ namespace Traffic_Accounting
             TrafficHistoryCache.RemoveAll(
                 delegate(TrafficHistory history)
                 {
-                    return history.DateTime.DayOfYear < DateTime.Now.AddDays(0 - ClientParams.Parameters.TrafficCacheSize).DayOfYear;
+                    return 
+                        (history.WeekNumber == -1 && history.DateTime.DayOfYear < DateTime.Now.AddDays(0 - ClientParams.Parameters.TrafficCacheSize).DayOfYear) ||
+                        (history.WeekNumber != -1 && history.WeekNumber < getWeekNumber(DateTime.Now.AddDays(-7)));
                 });
+        }
+
+        /// <summary>
+        /// calculate week number
+        /// </summary>
+        private int getWeekNumber(DateTime date)
+        {
+            int weeks = 1;
+            DateTime s = new DateTime(DateTime.Today.Year, 1, 1);
+            while (s < date)
+            {
+                if (s.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    weeks++;
+                    s = s.AddDays(7);
+                }
+                else
+                {
+                    s = s.AddDays(1);
+                }
+            }
+            return weeks;
         }
     }
 }

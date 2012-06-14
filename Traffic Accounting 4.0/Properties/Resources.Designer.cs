@@ -59,5 +59,33 @@ namespace Traffic_Accounting.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Icon _1336866125_traffic_lights_red {
+            get {
+                object obj = ResourceManager.GetObject("_1336866125_traffic_lights_red", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon _1336866141_traffic_lights_yellow {
+            get {
+                object obj = ResourceManager.GetObject("_1336866141_traffic_lights_yellow", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon _1336866150_traffic_lights_green {
+            get {
+                object obj = ResourceManager.GetObject("_1336866150_traffic_lights_green", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon _1336866323_traffic_lights {
+            get {
+                object obj = ResourceManager.GetObject("_1336866323_traffic_lights", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

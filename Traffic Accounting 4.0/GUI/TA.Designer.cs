@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TA));
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timerCheckElapsed = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownDay = new System.Windows.Forms.ToolStripDropDownButton();
             this.mondayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +43,8 @@
             this.currentWeekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.previousWeekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripConfiguration = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAboutButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -56,57 +53,26 @@
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.banInHostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.notifyIconContextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // notifyIcon
-            // 
-            this.notifyIcon.ContextMenuStrip = this.notifyIconContextMenuStrip;
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "Traffic Accounting 4.0";
-            this.notifyIcon.Visible = true;
-            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
-            // 
-            // notifyIconContextMenuStrip
-            // 
-            this.notifyIconContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
-            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(124, 48);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // timerCheckElapsed
-            // 
-            this.timerCheckElapsed.Enabled = true;
-            this.timerCheckElapsed.Interval = 3600000;
-            this.timerCheckElapsed.Tick += new System.EventHandler(this.timerCheckElapsed_Tick);
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownDay,
             this.toolStripDropDownWeek,
             this.toolStripSeparator1,
+            this.toolStripConfiguration,
+            this.toolStripSeparator2,
             this.toolStripAboutButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -187,24 +153,39 @@
             this.toolStripDropDownWeek.Name = "toolStripDropDownWeek";
             this.toolStripDropDownWeek.Size = new System.Drawing.Size(63, 22);
             this.toolStripDropDownWeek.Text = "Week";
-            this.toolStripDropDownWeek.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripDropDownButton2_DropDownItemClicked);
             // 
             // currentWeekToolStripMenuItem
             // 
             this.currentWeekToolStripMenuItem.Name = "currentWeekToolStripMenuItem";
             this.currentWeekToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.currentWeekToolStripMenuItem.Text = "Current week";
+            this.currentWeekToolStripMenuItem.Click += new System.EventHandler(this.currentWeekToolStripMenuItem_Click);
             // 
             // previousWeekToolStripMenuItem
             // 
             this.previousWeekToolStripMenuItem.Name = "previousWeekToolStripMenuItem";
             this.previousWeekToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.previousWeekToolStripMenuItem.Text = "Previous week";
+            this.previousWeekToolStripMenuItem.Click += new System.EventHandler(this.previousWeekToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripConfiguration
+            // 
+            this.toolStripConfiguration.Image = ((System.Drawing.Image)(resources.GetObject("toolStripConfiguration.Image")));
+            this.toolStripConfiguration.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripConfiguration.Name = "toolStripConfiguration";
+            this.toolStripConfiguration.Size = new System.Drawing.Size(55, 22);
+            this.toolStripConfiguration.Text = "Setup";
+            this.toolStripConfiguration.Click += new System.EventHandler(this.toolStripConfiguration_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripAboutButton
             // 
@@ -218,6 +199,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 343);
@@ -247,25 +229,22 @@
             // 
             // listView1
             // 
-            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
+            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.HotTracking = true;
-            this.listView1.HoverSelection = true;
-            this.listView1.Location = new System.Drawing.Point(3, 38);
-            this.listView1.MultiSelect = false;
+            this.listView1.Location = new System.Drawing.Point(3, 35);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(327, 277);
-            this.listView1.TabIndex = 2;
+            this.listView1.Size = new System.Drawing.Size(327, 280);
+            this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick_1);
             // 
             // columnHeader1
             // 
@@ -282,16 +261,52 @@
             this.columnHeader3.Text = "Used traffic";
             this.columnHeader3.Width = 115;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.addToFilterToolStripMenuItem,
+            this.banInHostsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 70);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.openToolStripMenuItem.Text = "Copy address";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // addToFilterToolStripMenuItem
+            // 
+            this.addToFilterToolStripMenuItem.Enabled = false;
+            this.addToFilterToolStripMenuItem.Name = "addToFilterToolStripMenuItem";
+            this.addToFilterToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.addToFilterToolStripMenuItem.Text = "Add to filter";
+            this.addToFilterToolStripMenuItem.Click += new System.EventHandler(this.addToFilterToolStripMenuItem_Click);
+            // 
+            // banInHostsToolStripMenuItem
+            // 
+            this.banInHostsToolStripMenuItem.Enabled = false;
+            this.banInHostsToolStripMenuItem.Name = "banInHostsToolStripMenuItem";
+            this.banInHostsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.banInHostsToolStripMenuItem.Text = "Ban in hosts";
+            this.banInHostsToolStripMenuItem.Click += new System.EventHandler(this.banInHostsToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(3, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(327, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Here is advanced info should be displayed";
+            this.label1.Size = new System.Drawing.Size(327, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Traffic Statistic";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.UseMnemonic = false;
             // 
             // TA
             // 
@@ -305,18 +320,15 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(341, 392);
             this.Name = "TA";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Traffic Accounting 4.0";
             this.Load += new System.EventHandler(this.TA_Load);
-            this.Shown += new System.EventHandler(this.TA_Shown);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TA_FormClosing);
-            this.notifyIconContextMenuStrip.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,11 +336,6 @@
 
         #endregion
 
-        private System.Windows.Forms.NotifyIcon notifyIcon;
-        private System.Windows.Forms.ContextMenuStrip notifyIconContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Timer timerCheckElapsed;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownDay;
         private System.Windows.Forms.ToolStripMenuItem mondayToolStripMenuItem;
@@ -346,10 +353,16 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripAboutButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem banInHostsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToFilterToolStripMenuItem;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripButton toolStripConfiguration;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

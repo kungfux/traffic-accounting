@@ -14,7 +14,7 @@ namespace Traffic_Accounting
             private set;
         }
 
-        public string readUrl(string url, bool performCutting)
+        public string readUrl(string url)
         {
             LastOperationCompletedSuccessfully = true;
             string Response = "";
@@ -37,10 +37,6 @@ namespace Traffic_Accounting
                 streamRead.Close();
                 streamResponse.Close();
                 myHttpWebResponse.Close();
-                if (performCutting)
-                {
-                    Response = cutHtml(Response);
-                }
                 return Response;
             }
             catch (WebException)
@@ -51,7 +47,7 @@ namespace Traffic_Accounting
             return Response;
         }
 
-        private string cutHtml(string sourceHtml)
+        public string cutHtml(string sourceHtml)
         {
             int a = 0;
             a = sourceHtml.IndexOf(prepareCut(ClientParams.Parameters.HttpCut1));
@@ -60,7 +56,7 @@ namespace Traffic_Accounting
                 // TODO: alert for error
                 // For now: if a < 0 then page does not contain 
                 // any useful info and can be cleared
-                return "";
+                return "NOT_FOUND";
             }
             else
             {
@@ -73,7 +69,7 @@ namespace Traffic_Accounting
                 // TODO: alert for error
                 // For now: if a < 0 then page does not contain 
                 // any useful info and can be cleared
-                return "";
+                return "NOT_FOUND";
             }
             else
             {
