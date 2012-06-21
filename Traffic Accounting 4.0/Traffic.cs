@@ -49,13 +49,13 @@ namespace Traffic_Accounting
                 Match m = regex.Match(html);
                 while (m.Success)
                 {
-                    stat.WebSite.Add(m.Groups[1].Value);
-                    stat.UsedTraffic.Add(Convert.ToInt32(m.Groups[2].Value));
-                    if (!ClientParams.Parameters.TrafficFilterEnabled || 
+                    if (!ClientParams.Parameters.TrafficFilterEnabled ||
                         ClientParams.Parameters.TrafficFilterEnabled && !TrafficFilter.isInList(m.Groups[1].Value))
                     {
-                        // add value to total amount only in case
+                        // add value only in case
                         // filtering is disabled or site is not present in filter
+                        stat.WebSite.Add(m.Groups[1].Value);
+                        stat.UsedTraffic.Add(Convert.ToInt32(m.Groups[2].Value));
                         stat.TotalUsedTraffic += Convert.ToInt32(m.Groups[2].Value);
                     }
                     m = m.NextMatch();
@@ -248,7 +248,7 @@ namespace Traffic_Accounting
                 // check position of user
                 if (m.Captures.Count > 0)
                 {
-                    if (m.Captures[0].Value.Contains(Environment.MachineName.ToLower()))
+                    if (m.Captures[0].Value.Contains(ClientParams.Parameters.MachineName))
                     {
                         t.Position = t.MaxPositions;
                     }
@@ -275,6 +275,11 @@ namespace Traffic_Accounting
                 {
                     result = (result + 100) / 2;
                 }
+                else
+                    if (record > 10)
+                    {
+                        result = result / 2;
+                    }
             }
             return result;
         }

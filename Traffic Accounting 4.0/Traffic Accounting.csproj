@@ -64,10 +64,8 @@
     <Compile Include="GUI\Configuration.Designer.cs">
       <DependentUpon>Configuration.cs</DependentUpon>
     </Compile>
-    <Compile Include="fakeForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="MainThread.cs">
     </Compile>
-    <Compile Include="hosts.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="ListViewColumnSorter.cs" />
     <Compile Include="Program.cs" />
@@ -90,6 +88,7 @@
     <Compile Include="TrafficFilter.cs" />
     <Compile Include="CachedTrafficHistory.cs" />
     <Compile Include="TrafficHistory.cs" />
+    <Compile Include="WebBrowsers\WebBrowserSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

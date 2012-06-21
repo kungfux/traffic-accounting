@@ -6,33 +6,34 @@ using Traffic_Accounting.Properties;
 
 namespace Traffic_Accounting
 {
-    internal class fakeForm : Form
+    internal class MainThread : ApplicationContext
     {
         private NotifyIcon notifyIcon;
 
         private Traffic t = new Traffic();
         private DateTime dtLastChecked = DateTime.Now.AddDays(-1);
         private TA StatForm;
+        private WebBrowserSetup WebBrowserSetup = new WebBrowserSetup();
         bool forceRefresh = false;
+        ToolStripMenuItem menuImages = new ToolStripMenuItem("");
 
-        public fakeForm()
+        public MainThread()
         {
-            this.Visible = false;
-            this.WindowState = FormWindowState.Minimized;
-            this.ShowInTaskbar = false;
-            this.Load += new EventHandler(DefaultTimer_Load);
-            this.FormClosing += new FormClosingEventHandler(fakeForm_FormClosing);
             // contextMenu
             ContextMenuStrip menu = new ContextMenuStrip();
             ToolStripMenuItem menuOpen = new ToolStripMenuItem("Open");
             ToolStripMenuItem menuExit = new ToolStripMenuItem("Exit");
+            updateImageItem();
             menu.Font = new System.Drawing.Font("Tahoma", 8.25F);
             menuOpen.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             menuExit.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            menuImages.Font = new System.Drawing.Font("Tahoma", 8.25F);
             menuOpen.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             menuExit.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            menuImages.Click += new EventHandler(menuImages_Click);
             menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             menuOpen,
+            menuImages,
             menuExit});
             // notifyIcon
             notifyIcon = new NotifyIcon();
@@ -46,16 +47,29 @@ namespace Traffic_Accounting
             timer.Enabled = true;
             timer.Interval = 3600000;
             timer.Tick += new System.EventHandler(this.timerCheckElapsed_Tick);
-        }
-
-        void fakeForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            notifyIcon.Visible = false;
-        }
-
-        void DefaultTimer_Load(object sender, EventArgs e)
-        {
             timerCheckElapsed_Tick(this, null);
+        }
+
+        void updateImageItem()
+        {
+            switch (WebBrowserSetup.getImageStatus())
+            {
+                case WebBrowserSetup.ImageStatus.Show:
+                    menuImages.Text = "Disable images";
+                    break;
+                case WebBrowserSetup.ImageStatus.Hide:
+                    menuImages.Text = "Enable images";
+                    break;
+                case WebBrowserSetup.ImageStatus.Unknown:
+                    menuImages.Text = "Images inaccessable";
+                    break;
+            }
+        }
+
+        void menuImages_Click(object sender, EventArgs e)
+        {
+            WebBrowserSetup.switchImagesStatus();
+            updateImageItem();
         }
 
         // open statistic form
@@ -90,7 +104,8 @@ namespace Traffic_Accounting
         // close app
         private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            this.Close();
+            notifyIcon.Dispose();
+            Application.Exit();
         }
 
         // timer tick - auto check remaining traffic

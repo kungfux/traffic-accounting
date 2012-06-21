@@ -8,6 +8,11 @@ namespace Traffic_Accounting
         // from counting of total amount of traffic
         private List<string> FilterList = new List<string>();
 
+        public TrafficFilter()
+        {
+            addFormattedList(ClientParams.Parameters.TrafficSeparatedFilterList);
+        }
+
         // add website to filter
         public void addItem(string site)
         {
@@ -77,6 +82,13 @@ namespace Traffic_Accounting
                     addItem(list);
                 }
             }
+        }
+
+        private void updateClientParams()
+        {
+            ClientParams.Parameters.TrafficSeparatedFilterList = getFormattedList();
+            ClientParams p = new ClientParams();
+            p.saveParams();
         }
     }
 }

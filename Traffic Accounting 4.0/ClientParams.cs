@@ -16,6 +16,11 @@ namespace Traffic_Accounting
         private string RegPath = "Software\\ItWorksTeam\\Traffic Accounting\\Version 4.0";
         public string AssemblyFullName;
 
+        public enum WebBrowser
+        {
+            Internet_Explorer
+        }
+
         // list of parameters
         // 
         // OS Windows
@@ -25,6 +30,7 @@ namespace Traffic_Accounting
         //public string HttpCodePage = "utf-8";
         public string HttpCut1 = "<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>";
         public string HttpCut2 = "</TABLE>";
+        public string MachineName = Environment.MachineName.ToLower();
         // SystemTray
         public int TrayIconBackColor = Color.Transparent.ToArgb();
         public int TrayIconFontColor = Color.White.ToArgb();
@@ -47,6 +53,7 @@ namespace Traffic_Accounting
         public DayOfWeek FirstDayOfTheWeek = DayOfWeek.Monday;
         public bool TrafficRoundUp = true;
         //
+        public WebBrowser UserWebBrowser = WebBrowser.Internet_Explorer;
 
         public static ClientParams Parameters
         {
@@ -81,6 +88,8 @@ namespace Traffic_Accounting
                     RegPath, "HttpCut1", HttpCut1);
                 Parameters.HttpCut2 = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "HttpCut2", HttpCut2);
+                Parameters.MachineName = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "MachineName", MachineName);
                 // SystemTray
                 Parameters.TrayIconBackColor = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrayIconBackColor", TrayIconBackColor);

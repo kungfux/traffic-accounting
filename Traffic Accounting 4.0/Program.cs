@@ -40,13 +40,13 @@ namespace Traffic_Accounting
 
                         Application.EnableVisualStyles();
                         Application.SetCompatibleTextRenderingDefault(false);
-                        Application.Run(new fakeForm());
+                        Application.Run(new MainThread());
                     }
                     else
                     {
                         // TODO: Initialize language parameters at startup and display correct messages
                         //       according to user's language selection
-                        MessageBox.Show("Traffic Accounting 4.0 is already run...", "Traffic Accounting");
+                        MessageBox.Show("Traffic Accounting 4.0 is already run.", "Traffic Accounting");
                     }
                 }
             }

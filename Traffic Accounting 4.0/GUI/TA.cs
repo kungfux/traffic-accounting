@@ -13,6 +13,7 @@ namespace Traffic_Accounting
         }
 
         private Traffic t = new Traffic();
+        private TrafficFilter filter = new TrafficFilter();
         private ListView ListStat;
         private Label Label;
         private ListViewColumnSorter lvwColumnSorter;
@@ -129,8 +130,10 @@ namespace Traffic_Accounting
             {
                 for (int a = 0; a < hd.WebSite.Count; a++)
                 {
-                    ListStat.Items.Add(new ListViewItem(new string[] { (a2).ToString(),
-                    hd.WebSite[a], t.getConvertedBytes(hd.UsedTraffic[a]).ToString() }));
+                    //ListStat.Items.Add(new ListViewItem(new string[] { (a2).ToString(),
+                    //hd.WebSite[a], t.getConvertedBytes(hd.UsedTraffic[a]).ToString() }));
+                    ListStat.Items.Add(new ListViewItem(new string[] { (a2).ToString(), 
+                        hd.WebSite[a], t.getConvertedBytes(hd.UsedTraffic[a]).ToString() }));
                     a2++;
                 }
                 total += hd.TotalUsedTraffic;
@@ -144,7 +147,7 @@ namespace Traffic_Accounting
             }
             else
             {
-                toolStripStatusLabel1.Text += string.Format(" | You {0}% will be in top this week",
+                toolStripStatusLabel1.Text += string.Format(" | {0}% chance to be in top this week",
                     f);
             }
             this.UseWaitCursor = false;
@@ -182,23 +185,6 @@ namespace Traffic_Accounting
         public void callCurrentWeek()
         {
             currentWeekToolStripMenuItem.PerformClick();
-        }
-
-        // sort elements
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            switch(e.Column)
-            {
-                case 0:
-                    // sort by id
-                    break;
-                case 1:
-                    // sort by website
-                    break;
-                case 2:
-                    // sort by traffic amount
-                    break;
-            }
         }
 
         private void toolStripAboutButton_Click(object sender, EventArgs e)
@@ -239,12 +225,8 @@ namespace Traffic_Accounting
                 // TODO: Add site to list
                 //TrafficFilter f = new TrafficFilter();
                 //f.addItem(ListStat.SelectedItems[0].SubItems[1].Text);
+                filter.addItem(ListStat.SelectedItems[0].SubItems[1].Text);
             }
-        }
-
-        private void banInHostsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void listView1_ColumnClick_1(object sender, ColumnClickEventArgs e)
