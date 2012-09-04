@@ -36,14 +36,6 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.responce1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.address1 = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -64,7 +56,6 @@
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -73,13 +64,12 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(370, 429);
+            this.tabControl1.Size = new System.Drawing.Size(367, 429);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -145,86 +135,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Local cache info";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.responce1);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.address1);
-            this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.linkLabel4);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(362, 403);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "HTTP request";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // responce1
-            // 
-            this.responce1.Location = new System.Drawing.Point(9, 100);
-            this.responce1.Multiline = true;
-            this.responce1.Name = "responce1";
-            this.responce1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.responce1.Size = new System.Drawing.Size(359, 295);
-            this.responce1.TabIndex = 13;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 84);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Responce:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 43);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Address to load:";
-            // 
-            // address1
-            // 
-            this.address1.Location = new System.Drawing.Point(9, 60);
-            this.address1.Name = "address1";
-            this.address1.Size = new System.Drawing.Size(271, 21);
-            this.address1.TabIndex = 10;
-            this.address1.Text = "http://fw-br/squid/weekly/2007_50.html";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(9, 34);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(344, 1);
-            this.panel2.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(6, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(348, 28);
-            this.label3.TabIndex = 8;
-            this.label3.Text = " This tab is used for test how HTTP requests are performed. You can retrieve page" +
-                " and analyze it.";
-            // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(286, 63);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(67, 13);
-            this.linkLabel4.TabIndex = 6;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Load/Reload";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.groupBox2);
@@ -238,7 +148,7 @@
             this.tabPage3.Controls.Add(this.linkLabel3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(362, 403);
+            this.tabPage3.Size = new System.Drawing.Size(359, 403);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "HTML Parsing";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -390,8 +300,8 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(348, 28);
             this.label8.TabIndex = 15;
-            this.label8.Text = " This tab is used for check how program parse HTML. Here are you can play with di" +
-                "fferent pattern settings.";
+            this.label8.Text = " This tab is used for check how program parse HTML. Here you can play with differ" +
+                "ent pattern settings.";
             // 
             // linkLabel3
             // 
@@ -408,7 +318,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 429);
+            this.ClientSize = new System.Drawing.Size(367, 429);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -421,8 +331,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -442,14 +350,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox responce1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox address1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkBox2;

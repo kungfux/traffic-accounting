@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CONF002" xml:space="preserve">
+    <value>Основные</value>
+  </data>
+  <data name="CONF003" xml:space="preserve">
+    <value>Запускать вместе с Windows</value>
+  </data>
+  <data name="CONF004" xml:space="preserve">
+    <value>Интерфейс</value>
+  </data>
+  <data name="CONF005" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="CONF006" xml:space="preserve">
+    <value>Траффик</value>
+  </data>
+  <data name="CONF007" xml:space="preserve">
+    <value>Лимит траффика на неделю</value>
+  </data>
+  <data name="CONF008" xml:space="preserve">
+    <value>Округлять значения траффика</value>
+  </data>
+  <data name="CONF009" xml:space="preserve">
+    <value>Проверять позицию в ТОП</value>
+  </data>
+  <data name="CONF010" xml:space="preserve">
+    <value>Системный лоток</value>
+  </data>
+  <data name="CONF011" xml:space="preserve">
+    <value>Границы траффика: Превышен, Критично, Предупреждение</value>
+  </data>
+  <data name="CONF012" xml:space="preserve">
+    <value>Отображать цифры на иконке</value>
+  </data>
+  <data name="CONF013" xml:space="preserve">
+    <value>Стиль иконки</value>
+  </data>
+  <data name="CONF014" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="CONF015" xml:space="preserve">
+    <value>Использовать кэш для повышения производительности (рекомендуется)</value>
+  </data>
+  <data name="CONF016" xml:space="preserve">
+    <value>Размер кэша (в днях)</value>
+  </data>
+  <data name="CONF017" xml:space="preserve">
+    <value>Квадрат</value>
+  </data>
+  <data name="CONF018" xml:space="preserve">
+    <value>Круг</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>П&amp;ятница</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>&amp;Понедельник</value>
+  </data>
+  <data name="MT001" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="MT002" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="MT003" xml:space="preserve">
+    <value>Вкл. картинки</value>
+  </data>
+  <data name="MT004" xml:space="preserve">
+    <value>Выкл. картинки</value>
+  </data>
+  <data name="MT005" xml:space="preserve">
+    <value>Картинки недоступны</value>
+  </data>
+  <data name="PROGRAM001" xml:space="preserve">
+    <value>Traffic Accounting 4.0 уже запущен.</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>С&amp;уббота</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>&amp;Воскресенье</value>
+  </data>
+  <data name="TA001" xml:space="preserve">
+    <value>Статистика траффика за {0}</value>
+  </data>
+  <data name="TA002" xml:space="preserve">
+    <value>Всего использовано: {0}</value>
+  </data>
+  <data name="TA003" xml:space="preserve">
+    <value>Ваша позиция в ТОП: {0} из {1}</value>
+  </data>
+  <data name="TA004" xml:space="preserve">
+    <value>Статистика за текущую неделю</value>
+  </data>
+  <data name="TA005" xml:space="preserve">
+    <value>Вы не попадёте в ТОП 10</value>
+  </data>
+  <data name="TA006" xml:space="preserve">
+    <value>{0}% шанса попасть в ТОП 10</value>
+  </data>
+  <data name="TA007" xml:space="preserve">
+    <value>Статистика за прошлую неделю</value>
+  </data>
+  <data name="TA008" xml:space="preserve">
+    <value>Скопировать адрес</value>
+  </data>
+  <data name="TA009" xml:space="preserve">
+    <value>Добавить в фильтр</value>
+  </data>
+  <data name="TAColumn1" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="TAColumn2" xml:space="preserve">
+    <value>Затрачено траффика</value>
+  </data>
+  <data name="TAMENUABOUT" xml:space="preserve">
+    <value>&amp;О программе</value>
+  </data>
+  <data name="TAMENUDAY" xml:space="preserve">
+    <value>&amp;День</value>
+  </data>
+  <data name="TAMENUSETUP" xml:space="preserve">
+    <value>Н&amp;астройки</value>
+  </data>
+  <data name="TAMENUWEEK" xml:space="preserve">
+    <value>&amp;Неделя</value>
+  </data>
+  <data name="TASUBMENUCURRWEEK" xml:space="preserve">
+    <value>&amp;Текущая неделя</value>
+  </data>
+  <data name="TASUBMENUPREVWEEK" xml:space="preserve">
+    <value>&amp;Прошлая неделя</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>&amp;Четверг</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>&amp;Вторник</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>&amp;Среда</value>
+  </data>
+  <data name="ABOUT" xml:space="preserve">
+    <value>Traffic Accounting 4.0 сборка 29
+собрано
+30 августа, 2012
+
+Все права защищены © 2008-2012 IT WORKS Team
+
+Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
+
+Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГОДНОСТИ ДЛЯ СПЕЦИФИЧЕСКОЙ ЦЕЛИ. Для дополнительной информации обращайтесь к тексту лицензии GNU General Public License.
+ 
+Вы должны были получить копию лицензии GNU General Public License вместе с программой; если нет, напишите в фонд Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+Фукс Александр, настоящим отказывается от всех прав
+в интересах программы "Traffic Accounting"
+(которая прошла через компилятор)
+Написано Александром Фуксом.</value>
+  </data>
+  <data name="B" xml:space="preserve">
+    <value>Б</value>
+  </data>
+  <data name="GB" xml:space="preserve">
+    <value>ГБ</value>
+  </data>
+  <data name="KB" xml:space="preserve">
+    <value>КБ</value>
+  </data>
+  <data name="MB" xml:space="preserve">
+    <value>МБ</value>
+  </data>
+  <data name="CONF019" xml:space="preserve">
+    <value>Треугольник</value>
+  </data>
+  <data name="CONF020" xml:space="preserve">
+    <value>Смайл</value>
+  </data>
+  <data name="CONF021" xml:space="preserve">
+    <value>Прозрачный</value>
+  </data>
+  <data name="CONF022" xml:space="preserve">
+    <value>Цвет цифр</value>
+  </data>
+  <data name="TA010" xml:space="preserve">
+    <value>Всего отфильтровано: {0}</value>
+  </data>
+  <data name="TA011" xml:space="preserve">
+    <value>Удалить из фильтра</value>
+  </data>
+  <data name="CONF023" xml:space="preserve">
+    <value>Использовать фильтр</value>
+  </data>
+  <data name="TA012" xml:space="preserve">
+    <value>Итого вместе: {1}</value>
+  </data>
+  <data name="CONF024" xml:space="preserve">
+    <value>Какие вебсайты уже фильтруются?</value>
+  </data>
+  <data name="CONF025" xml:space="preserve">
+    <value>Список фильтра пуст.</value>
+  </data>
+  <data name="CONF026" xml:space="preserve">
+    <value>Следующие вебсайты присутствуют в списке фильтра:
+{0}</value>
+  </data>
+  <data name="CONF027" xml:space="preserve">
+    <value>Фильтр отключён.</value>
+  </data>
+  <data name="PROGRAMNAME" xml:space="preserve">
+    <value>Traffic Accounting 4.0</value>
+  </data>
+  <data name="TA013" xml:space="preserve">
+    <value>Произошла ошибка при получении статистики. Возможно ошибка сети или сервера. Статистика может быть неверной или не полной!</value>
+  </data>
+  <data name="FridayR" xml:space="preserve">
+    <value>пятницу</value>
+  </data>
+  <data name="MondayR" xml:space="preserve">
+    <value>понедельник</value>
+  </data>
+  <data name="SaturdayR" xml:space="preserve">
+    <value>субботу</value>
+  </data>
+  <data name="SundayR" xml:space="preserve">
+    <value>воскресенье</value>
+  </data>
+  <data name="ThursdayR" xml:space="preserve">
+    <value>четверг</value>
+  </data>
+  <data name="TuesdayR" xml:space="preserve">
+    <value>вторник</value>
+  </data>
+  <data name="WednesdayR" xml:space="preserve">
+    <value>среду</value>
+  </data>
+</root>

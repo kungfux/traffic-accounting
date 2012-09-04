@@ -1,10 +1,39 @@
-﻿using System;
+﻿/*   
+ *  Traffic Accounting 4.0
+ *  Traffic reporting system
+ *  Copyright (C) IT WORKS TEAM 2008-2012
+ *  
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  
+ *  IT WORKS TEAM, hereby disclaims all copyright
+ *  interest in the program ".NET Assemblies Collection"
+ *  (which makes passes at compilers)
+ *  written by Alexander Fuks.
+ * 
+ *  Alexander Fuks, 01 July 2010
+ *  IT WORKS TEAM, Founder of the team.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ItWorksTeam.IO;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Reflection;
+using System.IO;
 
 namespace Traffic_Accounting
 {
@@ -23,6 +52,7 @@ namespace Traffic_Accounting
 
         // list of parameters
         // 
+        public string Language = "English";
         // OS Windows
         public bool AutoStart = false;
         // HttpRequest
@@ -33,16 +63,16 @@ namespace Traffic_Accounting
         public string MachineName = Environment.MachineName.ToLower();
         // SystemTray
         public int TrayIconBackColor = Color.Transparent.ToArgb();
-        public int TrayIconFontColor = Color.White.ToArgb();
+        public string TrayIconFontColor = "White";
         public bool TrayDisplayDigits = true;
         public bool TrayDigitsColorRangesEnabled = false;
         public bool TrayBackColorRangesEnabled = true;
         public byte[] TrayTrafficRanges = new byte[3] { 0, 20, 50 };
-        public bool TrayDrawCircleInsteadOfSquare = true;
+        public int IconFashion = 1;
         // Traffic
         public int TrafficLimitForWeek = 100;
         public bool TrafficCacheEnabled = true;
-        public int TrafficCacheSize = 7;
+        public int TrafficCacheSize = 8;
         public bool TOPenabled = true;
         public bool TrafficFilterEnabled = false;
         public string TrafficSeparatedFilterList = "";
@@ -75,10 +105,12 @@ namespace Traffic_Accounting
             // Global
             Parameters.AutoStart = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                 "Software\\Microsoft\\Windows\\CurrentVersion\\Run", "Traffic Accounting 4.0",
-                "").CompareTo(ClientParams.Parameters.AssemblyFullName) == 0;
+                "").ToLower().CompareTo(ClientParams.Parameters.AssemblyFullName) == 0;
 
             if (Registry.IsBranchExist(Registry.BaseKeys.HKEY_CURRENT_USER, RegPath))
             {
+                Parameters.Language = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "Language", Language);
                 // Http
                 //Parameters.HttpMethod = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                 //    RegPath, "HttpMethod", "POST");
@@ -93,7 +125,7 @@ namespace Traffic_Accounting
                 // SystemTray
                 Parameters.TrayIconBackColor = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrayIconBackColor", TrayIconBackColor);
-                Parameters.TrayIconFontColor = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                Parameters.TrayIconFontColor = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrayIconFontColor", TrayIconFontColor);
                 Parameters.TrayDisplayDigits = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrayDisplayDigits", TrayDisplayDigits);
@@ -103,8 +135,8 @@ namespace Traffic_Accounting
                     RegPath, "TrayBackColorRangesEnabled", TrayBackColorRangesEnabled);
                 Parameters.TrayTrafficRanges = Registry.ReadKey<byte[]>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrayTrafficRanges", TrayTrafficRanges);
-                Parameters.TrayDrawCircleInsteadOfSquare = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "TrayDrawCircleInsteadOfSquare", TrayDrawCircleInsteadOfSquare);
+                Parameters.IconFashion = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "IconFashion", IconFashion);
                 // Cache
                 Parameters.TrafficCacheEnabled = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficCacheEnabled", TrafficCacheEnabled);
@@ -137,6 +169,16 @@ namespace Traffic_Accounting
 
         public void saveParams()
         {
+            if (Parameters.Language != Language)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                        RegPath, "Language", Parameters.Language);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "Language");
+            }
             // auto start
             if (Parameters.AutoStart)
             {
@@ -207,15 +249,26 @@ namespace Traffic_Accounting
                     RegPath, "TrayDisplayDigits");
             }
             // display circle instead of square
-            if (Parameters.TrayDrawCircleInsteadOfSquare != TrayDrawCircleInsteadOfSquare)
+            if (Parameters.IconFashion != IconFashion)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "TrayDrawCircleInsteadOfSquare", Parameters.TrayDrawCircleInsteadOfSquare);
+                    RegPath, "IconFashion", Parameters.IconFashion);
             }
             else
             {
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "TrayDrawCircleInsteadOfSquare");
+                    RegPath, "IconFashion");
+            }
+            // icon font color
+            if (Parameters.TrayIconFontColor != TrayIconFontColor)
+            {
+               Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                        RegPath, "TrayIconFontColor", Parameters.TrayIconFontColor);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                   RegPath, "TrayIconFontColor");
             }
             // cache
             if (Parameters.TrafficCacheEnabled != TrafficCacheEnabled)
@@ -238,6 +291,33 @@ namespace Traffic_Accounting
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficCacheSize");
             }
+            //
+            if (Parameters.TrafficSeparatedFilterList != TrafficSeparatedFilterList)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficSeparatedFilterList", Parameters.TrafficSeparatedFilterList);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficSeparatedFilterList");
+            }
+            //
+            if (Parameters.TrafficFilterEnabled != TrafficFilterEnabled)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficFilterEnabled", Parameters.TrafficFilterEnabled);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficFilterEnabled");
+            }
         }
+
+        //private bool IsValidColor(KnownColor color)
+        //{
+        //    return Color.FromKnownColor(color).IsKnownColor;
+        //}
     }
 }

@@ -26,19 +26,31 @@
  *  IT WORKS TEAM, Founder of the team.
  */
 
-using System;
-using System.Collections.Generic;
+using System.Resources;
+using Traffic_Accounting.MultiLanguages;
 
 namespace Traffic_Accounting
 {
-    [Serializable]
-    public class TrafficHistory
+    internal class Languages
     {
-        internal bool IsLoaded = false;
-        public sbyte WeekNumber = -1;
-        public DateTime DateTime;
-        public List<string> WebSite = new List<string>();
-        public List<int> UsedTraffic = new List<int>();
-        public TOP TOP = new TOP();
+        private ResourceManager _rm;
+
+        public Languages(string Language)
+        {
+            switch(Language)
+            {
+                case "Русский":
+                    _rm = LangRU.ResourceManager;
+                    break;
+                default:
+                    _rm = LangEN.ResourceManager;
+                    break;
+            }
+        }
+
+        public string GetMessage(string CODE)
+        {
+            return _rm.GetString(CODE);
+        }
     }
 }

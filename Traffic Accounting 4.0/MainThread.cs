@@ -1,4 +1,32 @@
-﻿using System;
+﻿/*   
+ *  Traffic Accounting 4.0
+ *  Traffic reporting system
+ *  Copyright (C) IT WORKS TEAM 2008-2012
+ *  
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  
+ *  IT WORKS TEAM, hereby disclaims all copyright
+ *  interest in the program ".NET Assemblies Collection"
+ *  (which makes passes at compilers)
+ *  written by Alexander Fuks.
+ * 
+ *  Alexander Fuks, 01 July 2010
+ *  IT WORKS TEAM, Founder of the team.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -16,13 +44,18 @@ namespace Traffic_Accounting
         private WebBrowserSetup WebBrowserSetup = new WebBrowserSetup();
         bool forceRefresh = false;
         ToolStripMenuItem menuImages = new ToolStripMenuItem("");
+        Languages l = new Languages(ClientParams.Parameters.Language);
+        Configuration c = new Configuration();
+        ToolStripMenuItem menuOpen;
+        ToolStripMenuItem menuExit;
+        TrafficFilter filter = new TrafficFilter();
 
         public MainThread()
         {
             // contextMenu
             ContextMenuStrip menu = new ContextMenuStrip();
-            ToolStripMenuItem menuOpen = new ToolStripMenuItem("Open");
-            ToolStripMenuItem menuExit = new ToolStripMenuItem("Exit");
+            menuOpen = new ToolStripMenuItem(l.GetMessage("MT001"));
+            menuExit = new ToolStripMenuItem(l.GetMessage("MT002"));
             updateImageItem();
             menu.Font = new System.Drawing.Font("Tahoma", 8.25F);
             menuOpen.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -45,7 +78,7 @@ namespace Traffic_Accounting
             // timerCheckElapsed
             Timer timer = new Timer();
             timer.Enabled = true;
-            timer.Interval = 3600000;
+            timer.Interval = 14400000; // 4 hours
             timer.Tick += new System.EventHandler(this.timerCheckElapsed_Tick);
             timerCheckElapsed_Tick(this, null);
         }
@@ -55,13 +88,13 @@ namespace Traffic_Accounting
             switch (WebBrowserSetup.getImageStatus())
             {
                 case WebBrowserSetup.ImageStatus.Show:
-                    menuImages.Text = "Disable images";
+                    menuImages.Text = l.GetMessage("MT004");
                     break;
                 case WebBrowserSetup.ImageStatus.Hide:
-                    menuImages.Text = "Enable images";
+                    menuImages.Text = l.GetMessage("MT003");
                     break;
                 case WebBrowserSetup.ImageStatus.Unknown:
-                    menuImages.Text = "Images inaccessable";
+                    menuImages.Text = l.GetMessage("MT005");
                     break;
             }
         }
@@ -80,14 +113,35 @@ namespace Traffic_Accounting
                 StatForm = new TA();
                 StatForm.FormClosed += new FormClosedEventHandler(StatForm_FormClosed);
                 StatForm.ConfigurationChanged += new TA.ConfChanged(StatForm_ConfigurationChanged);
+                StatForm.LanguageChanged += new TA.LangChanged(StatForm_LanguageChanged);
                 StatForm.Show();
                 StatForm.Activate();
-                StatForm.callCurrentWeek();
+                if (DateTime.Now.DayOfWeek == ClientParams.Parameters.FirstDayOfTheWeek)
+                {
+                    StatForm.callPrevWeek();
+                }
+                else
+                {
+                    StatForm.callCurrentWeek();
+                }
             }
             else
             {
                 StatForm.Activate();
             }
+        }
+
+        void StatForm_LanguageChanged()
+        {
+            l = new Languages(ClientParams.Parameters.Language);
+            Translate();
+        }
+
+        private void Translate()
+        {
+            menuOpen.Text = l.GetMessage("MT001");
+            menuExit.Text = l.GetMessage("MT002");
+            updateImageItem();
         }
 
         void StatForm_ConfigurationChanged()
@@ -114,17 +168,31 @@ namespace Traffic_Accounting
             if (forceRefresh || dtLastChecked.DayOfYear < DateTime.Now.DayOfYear)
             {
                 forceRefresh = false;
-                List<TrafficHistory> h = t.getByWeek(DateTime.Now);
+                TrafficHistory h = t.getByWeek(DateTime.Now);
+                //if (h.IsLoaded)
+                //{
                 long total = 0;
-                foreach (TrafficHistory th in h)
+                for (int a = 0; a < h.WebSite.Count; a++)
                 {
-                    total += th.TotalUsedTraffic;
+                    if (!ClientParams.Parameters.TrafficFilterEnabled)
+                    {
+                        total += h.UsedTraffic[a];
+                    }
+                    else if (!filter.isInList(h.WebSite[a]))
+                    {
+                        total += h.UsedTraffic[a];
+                    }
                 }
                 total = t.convertBytes(total, 4, 4)[0];
-                if (t.LastOperationCompletedSuccessfully)
-                {
+                //if (t.LastOperationCompletedSuccessfully)
+                //{
                     notifyIcon.Icon = new SystemTray().getIcon(ClientParams.Parameters.TrafficLimitForWeek - Convert.ToInt32(total));
                     dtLastChecked = DateTime.Now;
+                //}
+                if (!h.IsLoaded)
+                {
+                    MessageBox.Show(l.GetMessage("TA013"), l.GetMessage("PROGRAMNAME"),
+                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

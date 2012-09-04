@@ -26,19 +26,15 @@
  *  IT WORKS TEAM, Founder of the team.
  */
 
-using System;
-using System.Collections.Generic;
-
-namespace Traffic_Accounting
+namespace Traffic_Accounting.TAServer
 {
-    [Serializable]
-    public class TrafficHistory
+    public class UpdateInfo
     {
-        internal bool IsLoaded = false;
-        public sbyte WeekNumber = -1;
-        public DateTime DateTime;
-        public List<string> WebSite = new List<string>();
-        public List<int> UsedTraffic = new List<int>();
-        public TOP TOP = new TOP();
+        public int MajorVersion;
+        public int MinorVersion;
+        public int BuildNumber;
+        public bool IsImportantUpdate;
+        public string UpdateInfoRussian;
+        public string UpdateInfoEnglish;
     }
 }

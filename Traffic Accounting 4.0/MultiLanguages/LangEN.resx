@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CONF002" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="CONF003" xml:space="preserve">
+    <value>Start automatically at Windows startup</value>
+  </data>
+  <data name="CONF004" xml:space="preserve">
+    <value>Interface</value>
+  </data>
+  <data name="CONF005" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="CONF006" xml:space="preserve">
+    <value>Traffic</value>
+  </data>
+  <data name="CONF007" xml:space="preserve">
+    <value>Traffic limit for one week</value>
+  </data>
+  <data name="CONF008" xml:space="preserve">
+    <value>Round up traffic values</value>
+  </data>
+  <data name="CONF009" xml:space="preserve">
+    <value>Check your position in top</value>
+  </data>
+  <data name="CONF010" xml:space="preserve">
+    <value>System Tray</value>
+  </data>
+  <data name="CONF011" xml:space="preserve">
+    <value>Traffic Ranges: Exceed, Critical, Warning</value>
+  </data>
+  <data name="CONF012" xml:space="preserve">
+    <value>Draw digits on the icon</value>
+  </data>
+  <data name="CONF013" xml:space="preserve">
+    <value>Icon fashion</value>
+  </data>
+  <data name="CONF014" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="CONF015" xml:space="preserve">
+    <value>Use local cache to increase performance (recommended)</value>
+  </data>
+  <data name="CONF016" xml:space="preserve">
+    <value>Cache size (in days)</value>
+  </data>
+  <data name="CONF017" xml:space="preserve">
+    <value>Square</value>
+  </data>
+  <data name="CONF018" xml:space="preserve">
+    <value>Circle</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>&amp;Friday</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>&amp;Monday</value>
+  </data>
+  <data name="MT001" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="MT002" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="MT003" xml:space="preserve">
+    <value>Enable images</value>
+  </data>
+  <data name="MT004" xml:space="preserve">
+    <value>Disable images</value>
+  </data>
+  <data name="MT005" xml:space="preserve">
+    <value>Images inaccessable</value>
+  </data>
+  <data name="PROGRAM001" xml:space="preserve">
+    <value>Traffic Accounting 4.0 is already run.</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>&amp;Saturday</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>S&amp;unday</value>
+  </data>
+  <data name="TA001" xml:space="preserve">
+    <value>Traffic statistic for {0}</value>
+  </data>
+  <data name="TA002" xml:space="preserve">
+    <value>Total used traffic: {0}</value>
+  </data>
+  <data name="TA003" xml:space="preserve">
+    <value>Your position in top is {0} out of {1}</value>
+  </data>
+  <data name="TA004" xml:space="preserve">
+    <value>Current week's statistics</value>
+  </data>
+  <data name="TA005" xml:space="preserve">
+    <value>You will not be in TOP 10 this week</value>
+  </data>
+  <data name="TA006" xml:space="preserve">
+    <value>{0}% chance to be in TOP 10 this week</value>
+  </data>
+  <data name="TA007" xml:space="preserve">
+    <value>Previous week's statistics</value>
+  </data>
+  <data name="TA008" xml:space="preserve">
+    <value>Copy address</value>
+  </data>
+  <data name="TA009" xml:space="preserve">
+    <value>Add to filter</value>
+  </data>
+  <data name="TAColumn1" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="TAColumn2" xml:space="preserve">
+    <value>Used traffic</value>
+  </data>
+  <data name="TAMENUABOUT" xml:space="preserve">
+    <value>&amp;About</value>
+  </data>
+  <data name="TAMENUDAY" xml:space="preserve">
+    <value>&amp;Day</value>
+  </data>
+  <data name="TAMENUSETUP" xml:space="preserve">
+    <value>&amp;Setup</value>
+  </data>
+  <data name="TAMENUWEEK" xml:space="preserve">
+    <value>&amp;Week</value>
+  </data>
+  <data name="TASUBMENUCURRWEEK" xml:space="preserve">
+    <value>&amp;Current week</value>
+  </data>
+  <data name="TASUBMENUPREVWEEK" xml:space="preserve">
+    <value>Pr&amp;evious week</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>T&amp;hursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>&amp;Tuesday</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>&amp;Wednesday</value>
+  </data>
+  <data name="ABOUT" xml:space="preserve">
+    <value>Traffic Accounting 4.0 build 29
+built on
+August 30, 2012
+
+Copyright © 2008-2012 IT WORKS Team
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+Fuks Alexander, hereby disclaims all copyright
+interest in the program "Traffic Accounting"
+(which makes passed at compilers)
+written by Alexander Fuks.</value>
+  </data>
+  <data name="B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="CONF019" xml:space="preserve">
+    <value>Triangle</value>
+  </data>
+  <data name="CONF020" xml:space="preserve">
+    <value>Smile</value>
+  </data>
+  <data name="CONF021" xml:space="preserve">
+    <value>Transparent</value>
+  </data>
+  <data name="CONF022" xml:space="preserve">
+    <value>Digits color</value>
+  </data>
+  <data name="TA010" xml:space="preserve">
+    <value>Total filtered traffic: {0}</value>
+  </data>
+  <data name="TA011" xml:space="preserve">
+    <value>Remove from filter</value>
+  </data>
+  <data name="CONF023" xml:space="preserve">
+    <value>Use traffic filter</value>
+  </data>
+  <data name="TA012" xml:space="preserve">
+    <value>Total together: {1}</value>
+  </data>
+  <data name="CONF024" xml:space="preserve">
+    <value>What websites are already in filter?</value>
+  </data>
+  <data name="CONF025" xml:space="preserve">
+    <value>Filter's list is empty.</value>
+  </data>
+  <data name="CONF026" xml:space="preserve">
+    <value>Following websites are present in the filter's list:
+{0}</value>
+  </data>
+  <data name="CONF027" xml:space="preserve">
+    <value>Filter is turned off now.</value>
+  </data>
+  <data name="PROGRAMNAME" xml:space="preserve">
+    <value>Traffic Accounting 4.0</value>
+  </data>
+  <data name="TA013" xml:space="preserve">
+    <value>Error occur during retrieving statistics. It can be network or server error. Statistics can be wrong or partially filled!</value>
+  </data>
+  <data name="FridayR" xml:space="preserve">
+    <value>friday</value>
+  </data>
+  <data name="MondayR" xml:space="preserve">
+    <value>monday</value>
+  </data>
+  <data name="SaturdayR" xml:space="preserve">
+    <value>saturday</value>
+  </data>
+  <data name="SundayR" xml:space="preserve">
+    <value>sunday</value>
+  </data>
+  <data name="ThursdayR" xml:space="preserve">
+    <value>thursday</value>
+  </data>
+  <data name="TuesdayR" xml:space="preserve">
+    <value>tuesday</value>
+  </data>
+  <data name="WednesdayR" xml:space="preserve">
+    <value>wednesday</value>
+  </data>
+</root>

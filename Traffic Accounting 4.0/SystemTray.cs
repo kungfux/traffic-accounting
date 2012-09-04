@@ -1,5 +1,34 @@
-﻿using System.Drawing;
+﻿/*   
+ *  Traffic Accounting 4.0
+ *  Traffic reporting system
+ *  Copyright (C) IT WORKS TEAM 2008-2012
+ *  
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  
+ *  IT WORKS TEAM, hereby disclaims all copyright
+ *  interest in the program ".NET Assemblies Collection"
+ *  (which makes passes at compilers)
+ *  written by Alexander Fuks.
+ * 
+ *  Alexander Fuks, 01 July 2010
+ *  IT WORKS TEAM, Founder of the team.
+ */
+
+using System.Drawing;
 using System;
+using Traffic_Accounting.Properties;
 
 namespace Traffic_Accounting
 {
@@ -10,7 +39,7 @@ namespace Traffic_Accounting
         /// </summary>
         public Icon getIcon(int value)
         {
-            Color IconFontColor = Color.FromArgb(ClientParams.Parameters.TrayIconFontColor);
+            Color IconFontColor = Color.FromName(ClientParams.Parameters.TrayIconFontColor);
             Color IconBackColor = Color.FromArgb(ClientParams.Parameters.TrayIconBackColor);
             // Calculate font size.
             // If we will draw 1 digit - size can be big,
@@ -35,14 +64,51 @@ namespace Traffic_Accounting
             SolidBrush backBrush = new SolidBrush(IconBackColor);
             SolidBrush foreBrush = new SolidBrush(IconFontColor);
             RectangleF canvas = new RectangleF(0, 0, 32, 32);
-            if (!ClientParams.Parameters.TrayDrawCircleInsteadOfSquare)
+
+            switch(ClientParams.Parameters.IconFashion)
             {
-                graphic.FillRectangle(backBrush, canvas);
+                case 0: // nothing
+                    break;
+                case 1: // square
+                    graphic.FillRectangle(backBrush, canvas);
+                    break;
+                case 2: // circle
+                    graphic.FillEllipse(backBrush, canvas);
+                    break;
+                case 3: // triangle
+                    if (IsColorIsAbnormal(value) == 0)
+                    {
+                        graphic.FillPolygon(backBrush,
+                            new Point[] { new Point(16, 0), new Point(0, 32), new Point(32, 32) },
+                             System.Drawing.Drawing2D.FillMode.Winding);
+                    }
+                    else
+                    {
+                        graphic.FillPolygon(backBrush,
+                            new Point[] { new Point(0, 0), new Point(32, 0), new Point(16, 32) },
+                             System.Drawing.Drawing2D.FillMode.Winding);
+                    }
+                    break;
+                //case 3: // smiles
+                //    switch(IsColorIsAbnormal(value))
+                //    {
+                //        case 1:
+                //            graphic.DrawImage(Resources.exceded, 0, 0);
+                //            break;
+                //        case 2:
+                //            graphic.DrawImage(Resources.panic, 0, 0);
+                //            break;
+                //        case 3:
+                //            graphic.DrawImage(Resources.warning, 0, 0);
+                //            break;
+                //        default:
+                //            graphic.DrawImage(Resources.smile_normal, 0, 0);
+                //            break;
+                //    }
+                //    break;
+
             }
-            else
-            {
-                graphic.FillEllipse(backBrush, canvas);
-            }
+           
             if (ClientParams.Parameters.TrayDisplayDigits)
             {
                 SizeF size = graphic.MeasureString(string.Format("{0:00}", Math.Abs(value)), font);
@@ -90,6 +156,22 @@ namespace Traffic_Accounting
                     return Color.DarkGreen;
             }
             return Color.Transparent;
+        }
+
+        private int IsColorIsAbnormal(int value)
+        {
+            switch (getRangesColorRepsentation(value))
+            {
+                case 0:
+                    return 1;
+                case 1:
+                    return 2;
+                case 2:
+                    return 3;
+                case 3:
+                    return 0;
+            }
+            return 0;
         }
     }
 }

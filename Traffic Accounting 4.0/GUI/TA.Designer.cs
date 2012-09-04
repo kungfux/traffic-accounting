@@ -76,7 +76,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.ShowItemToolTips = false;
-            this.toolStrip1.Size = new System.Drawing.Size(348, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(355, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -201,9 +201,10 @@
             this.statusStrip1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 372);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 407);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(348, 22);
+            this.statusStrip1.ShowItemToolTips = true;
+            this.statusStrip1.Size = new System.Drawing.Size(355, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -211,8 +212,8 @@
             // 
             this.toolStripStatusLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(42, 17);
-            this.toolStripStatusLabel1.Text = "Ready.";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel1.Text = " ";
             // 
             // groupBox1
             // 
@@ -222,7 +223,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(0, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 347);
+            this.groupBox1.Size = new System.Drawing.Size(355, 382);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -238,8 +239,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(3, 36);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(342, 308);
+            this.listView1.Size = new System.Drawing.Size(349, 343);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -259,7 +261,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Used traffic";
-            this.columnHeader3.Width = 115;
+            this.columnHeader3.Width = 151;
             // 
             // contextMenuStrip1
             // 
@@ -281,7 +283,6 @@
             // 
             // addToFilterToolStripMenuItem
             // 
-            this.addToFilterToolStripMenuItem.Enabled = false;
             this.addToFilterToolStripMenuItem.Name = "addToFilterToolStripMenuItem";
             this.addToFilterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.addToFilterToolStripMenuItem.Text = "Add to filter";
@@ -293,7 +294,7 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(3, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(342, 17);
+            this.label1.Size = new System.Drawing.Size(349, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Traffic Statistic";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -303,13 +304,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 394);
+            this.ClientSize = new System.Drawing.Size(355, 429);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(341, 392);
+            this.MinimumSize = new System.Drawing.Size(370, 465);
             this.Name = "TA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Traffic Accounting 4.0";

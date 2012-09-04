@@ -28,19 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.checkBoxAutoStart = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -48,6 +53,7 @@
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -57,16 +63,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBar1.Location = new System.Drawing.Point(271, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(17, 381);
-            this.vScrollBar1.TabIndex = 0;
-            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             // 
             // checkBoxAutoStart
             // 
@@ -74,7 +72,7 @@
             this.checkBoxAutoStart.Location = new System.Drawing.Point(13, 17);
             this.checkBoxAutoStart.Name = "checkBoxAutoStart";
             this.checkBoxAutoStart.Size = new System.Drawing.Size(206, 17);
-            this.checkBoxAutoStart.TabIndex = 1;
+            this.checkBoxAutoStart.TabIndex = 2;
             this.checkBoxAutoStart.Text = "Start automatically at Windows startup";
             this.checkBoxAutoStart.UseVisualStyleBackColor = true;
             this.checkBoxAutoStart.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
@@ -84,35 +82,57 @@
             this.groupBox1.Controls.Add(this.checkBoxAutoStart);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 43);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.Size = new System.Drawing.Size(256, 47);
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " General ";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "English",
+            "Русский"});
+            this.comboBox2.Location = new System.Drawing.Point(82, 22);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 4;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Language";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.numericUpDown1);
             this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Location = new System.Drawing.Point(3, 280);
+            this.groupBox2.Location = new System.Drawing.Point(3, 424);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(256, 74);
-            this.groupBox2.TabIndex = 3;
+            this.groupBox2.Size = new System.Drawing.Size(256, 88);
+            this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = " System ";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(93, 41);
+            this.label1.Location = new System.Drawing.Point(93, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 13);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Cache size in days";
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(13, 39);
+            this.numericUpDown1.Location = new System.Drawing.Point(13, 55);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             366,
             0,
@@ -125,7 +145,7 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown1.TabIndex = 1;
+            this.numericUpDown1.TabIndex = 18;
             this.numericUpDown1.Value = new decimal(new int[] {
             1,
             0,
@@ -135,27 +155,50 @@
             // 
             // checkBox1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(13, 19);
+            this.checkBox1.Location = new System.Drawing.Point(13, 18);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(220, 17);
-            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Size = new System.Drawing.Size(234, 36);
+            this.checkBox1.TabIndex = 17;
             this.checkBox1.Text = "Use local cache to increase performance";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.linkLabel1);
+            this.groupBox3.Controls.Add(this.checkBox5);
             this.groupBox3.Controls.Add(this.checkBox4);
             this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.numericUpDown2);
-            this.groupBox3.Location = new System.Drawing.Point(3, 52);
+            this.groupBox3.Location = new System.Drawing.Point(3, 117);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(256, 98);
-            this.groupBox3.TabIndex = 4;
+            this.groupBox3.Size = new System.Drawing.Size(256, 133);
+            this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Traffic ";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(28, 111);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(175, 13);
+            this.linkLabel1.TabIndex = 10;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "What websites are already is in filter";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(13, 91);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(96, 17);
+            this.checkBox5.TabIndex = 9;
+            this.checkBox5.Text = "Use traffic filter";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // checkBox4
             // 
@@ -163,7 +206,7 @@
             this.checkBox4.Location = new System.Drawing.Point(13, 68);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(148, 17);
-            this.checkBox4.TabIndex = 6;
+            this.checkBox4.TabIndex = 8;
             this.checkBox4.Text = "Check your position in top";
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
@@ -174,7 +217,7 @@
             this.checkBox2.Location = new System.Drawing.Point(13, 45);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(136, 17);
-            this.checkBox2.TabIndex = 5;
+            this.checkBox2.TabIndex = 7;
             this.checkBox2.Text = "Round up traffic values";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
@@ -185,7 +228,7 @@
             this.label2.Location = new System.Drawing.Point(93, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(122, 13);
-            this.label2.TabIndex = 4;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Traffic limit for one week";
             // 
             // numericUpDown2
@@ -203,7 +246,7 @@
             0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown2.TabIndex = 3;
+            this.numericUpDown2.TabIndex = 6;
             this.numericUpDown2.Value = new decimal(new int[] {
             1,
             0,
@@ -213,6 +256,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.comboBox3);
+            this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.comboBox1);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.checkBox3);
@@ -220,12 +265,31 @@
             this.groupBox4.Controls.Add(this.numericUpDown4);
             this.groupBox4.Controls.Add(this.numericUpDown3);
             this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Location = new System.Drawing.Point(3, 156);
+            this.groupBox4.Location = new System.Drawing.Point(3, 256);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(256, 118);
-            this.groupBox4.TabIndex = 5;
+            this.groupBox4.Size = new System.Drawing.Size(256, 162);
+            this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "System Tray ";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(81, 96);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.TabIndex = 14;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 99);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Digits color";
             // 
             // comboBox1
             // 
@@ -234,16 +298,16 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Square",
             "Circle"});
-            this.comboBox1.Location = new System.Drawing.Point(82, 84);
+            this.comboBox1.Location = new System.Drawing.Point(81, 125);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 11;
+            this.comboBox1.TabIndex = 15;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 87);
+            this.label4.Location = new System.Drawing.Point(10, 128);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 10;
@@ -252,17 +316,17 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(13, 62);
+            this.checkBox3.Location = new System.Drawing.Point(13, 73);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(134, 17);
-            this.checkBox3.TabIndex = 9;
+            this.checkBox3.TabIndex = 13;
             this.checkBox3.Text = "Draw digits on the icon";
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // numericUpDown5
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(173, 36);
+            this.numericUpDown5.Location = new System.Drawing.Point(173, 47);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             255,
             0,
@@ -270,7 +334,7 @@
             0});
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown5.TabIndex = 6;
+            this.numericUpDown5.TabIndex = 12;
             this.numericUpDown5.Value = new decimal(new int[] {
             1,
             0,
@@ -281,7 +345,7 @@
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(93, 36);
+            this.numericUpDown4.Location = new System.Drawing.Point(93, 47);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             255,
             0,
@@ -289,7 +353,7 @@
             0});
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown4.TabIndex = 5;
+            this.numericUpDown4.TabIndex = 11;
             this.numericUpDown4.Value = new decimal(new int[] {
             1,
             0,
@@ -300,7 +364,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(13, 36);
+            this.numericUpDown3.Location = new System.Drawing.Point(13, 47);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             255,
             0,
@@ -308,7 +372,7 @@
             0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown3.TabIndex = 4;
+            this.numericUpDown3.TabIndex = 10;
             this.numericUpDown3.Value = new decimal(new int[] {
             1,
             0,
@@ -318,24 +382,35 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(10, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(202, 13);
+            this.label3.Size = new System.Drawing.Size(237, 26);
             this.label3.TabIndex = 0;
             this.label3.Text = "Traffic Ranges: Exceed, Critical, Warning";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.comboBox2);
+            this.groupBox5.Controls.Add(this.label5);
+            this.groupBox5.Location = new System.Drawing.Point(3, 56);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(256, 55);
+            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = " Interface ";
             // 
             // Configuration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.vScrollBar1);
             this.Name = "Configuration";
-            this.Size = new System.Drawing.Size(288, 381);
+            this.Size = new System.Drawing.Size(288, 519);
             this.Load += new System.EventHandler(this.Configuration_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -350,13 +425,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.CheckBox checkBoxAutoStart;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -376,5 +452,12 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
