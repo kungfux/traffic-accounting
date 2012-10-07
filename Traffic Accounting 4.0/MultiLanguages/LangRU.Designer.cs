@@ -61,15 +61,15 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 сборка 29
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 сборка 30
         ///собрано
-        ///30 августа, 2012
+        ///23 сентября, 2012
         ///
         ///Все права защищены © 2008-2012 IT WORKS Team
         ///
         ///Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
         ///
-        ///Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГО [rest of string was truncated]&quot;;.
+        ///Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ABOUT {
             get {

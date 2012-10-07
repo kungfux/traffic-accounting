@@ -45,6 +45,7 @@
   </Target>
   -->
   <ItemGroup>
+    <Compile Include="DayOfWeek.cs" />
     <Compile Include="DebugScreen\DebugForm.cs">
       <SubType>Form</SubType>
     </Compile>

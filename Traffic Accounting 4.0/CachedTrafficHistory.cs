@@ -193,7 +193,7 @@ namespace Traffic_Accounting
             DateTime s = new DateTime(DateTime.Today.Year, 1, 1);
             while (s < date)
             {
-                if (s.DayOfWeek == DayOfWeek.Sunday)
+                if (s.DayOfWeek == System.DayOfWeek.Sunday)
                 {
                     weeks++;
                     s = s.AddDays(7);

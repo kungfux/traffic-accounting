@@ -114,7 +114,8 @@ namespace Traffic_Accounting
             TrafficHistory stat = new TrafficHistory();
             for (int a = 0; a <= 7; a++)
             {
-                if (date.DayOfWeek == ClientParams.Parameters.FirstDayOfTheWeek)
+                //if (date.DayOfWeek == ClientParams.Parameters.FirstDayOfTheWeek)
+                if (DayOfWeek.Convert(date.DayOfWeek) == ClientParams.Parameters.FirstDayOfTheWeek)
                 {
                     a = 7;
                 }
@@ -285,7 +286,7 @@ namespace Traffic_Accounting
             DateTime s = new DateTime(DateTime.Today.Year, 1, 1);
             while (s < date)
             {
-                if (s.DayOfWeek == DayOfWeek.Sunday)
+                if (s.DayOfWeek == System.DayOfWeek.Sunday)
                 {
                     weeks++;
                     s = s.AddDays(7);

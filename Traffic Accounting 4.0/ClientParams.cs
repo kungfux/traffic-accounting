@@ -80,7 +80,7 @@ namespace Traffic_Accounting
         public string TrafficStatWeeklyUrl = "http://fw-br/squid/weekly/[yyyy_WW].html";
         public string TrafficStatPattern = @"<TR><TD ALIGN=LEFT>([\S.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
         public string TrafficTopPattern = @"<TR><TD ALIGN=LEFT><A HREF=#([\S.]*)>([\S.]*) (([\S.]*))</A>"; // TODO: Add to registry
-        public DayOfWeek FirstDayOfTheWeek = DayOfWeek.Monday;
+        public Traffic_Accounting.DayOfWeek.DayOfWeekValue FirstDayOfTheWeek = DayOfWeek.DayOfWeekValue.Monday;
         public bool TrafficRoundUp = true;
         //
         public WebBrowser UserWebBrowser = WebBrowser.Internet_Explorer;
@@ -153,7 +153,7 @@ namespace Traffic_Accounting
                     RegPath, "TrafficStatDailyUrl", TrafficStatWeeklyUrl);
                 Parameters.TrafficStatPattern = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficStatPattern", TrafficStatPattern);
-                Parameters.FirstDayOfTheWeek = (DayOfWeek)Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                Parameters.FirstDayOfTheWeek = (Traffic_Accounting.DayOfWeek.DayOfWeekValue)Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
                                 RegPath, "FirstDayOfTheWeek", (int)FirstDayOfTheWeek);
                 Parameters.TrafficRoundUp = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                             RegPath, "TrafficRoundUp", TrafficRoundUp);

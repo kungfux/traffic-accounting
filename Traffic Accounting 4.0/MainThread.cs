@@ -116,7 +116,8 @@ namespace Traffic_Accounting
                 StatForm.LanguageChanged += new TA.LangChanged(StatForm_LanguageChanged);
                 StatForm.Show();
                 StatForm.Activate();
-                if (DateTime.Now.DayOfWeek == ClientParams.Parameters.FirstDayOfTheWeek)
+                //if (DateTime.Now.DayOfWeek == ClientParams.Parameters.FirstDayOfTheWeek)
+                if (DayOfWeek.Convert(DateTime.Now.DayOfWeek) == ClientParams.Parameters.FirstDayOfTheWeek)
                 {
                     StatForm.callPrevWeek();
                 }

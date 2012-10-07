@@ -90,7 +90,7 @@ namespace Traffic_Accounting
         private DateTime GetMonday()
         {
             DateTime dt = DateTime.Now;
-            while (dt.DayOfWeek != DayOfWeek.Monday)
+            while (dt.DayOfWeek != System.DayOfWeek.Monday)
             {
                 dt = dt.AddDays(-1);
             }
@@ -101,7 +101,8 @@ namespace Traffic_Accounting
         private DateTime GetClientMonday()
         {
             DateTime dt = DateTime.Now;
-            while (dt.DayOfWeek != ClientParams.Parameters.FirstDayOfTheWeek)
+            //while (dt.DayOfWeek != ClientParams.Parameters.FirstDayOfTheWeek)
+            while (DayOfWeek.Convert(dt.DayOfWeek) != ClientParams.Parameters.FirstDayOfTheWeek)
             {
                 dt = dt.AddDays(-1);
             }
@@ -127,7 +128,7 @@ namespace Traffic_Accounting
             {
                 toolStripDropDownDay.DropDownItems[a].Enabled = false;
             }
-            for (int a = (int)DateTime.Now.DayOfWeek - 2; a >= (int)ClientParams.Parameters.FirstDayOfTheWeek - 1; a--)
+            for (int a = (int)DayOfWeek.Convert(DateTime.Now.DayOfWeek) - 2; a >= (int)ClientParams.Parameters.FirstDayOfTheWeek - 1; a--)
             {
                 toolStripDropDownDay.DropDownItems[a].Enabled = true;
             }
