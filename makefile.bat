@@ -1,0 +1,1 @@
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /p:Configuration=Release ".\Traffic Accounting 4.0\Traffic Accounting.csproj"
