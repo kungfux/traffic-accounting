@@ -147,7 +147,16 @@
     <Content Include="Files\1336866141_traffic_lights_yellow.ico" />
     <Content Include="Files\1336866150_traffic_lights_green.ico" />
     <Content Include="Files\1336866323_traffic_lights.ico" />
+    <Content Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WhatsNew.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Files\smile_normal.gif" />
     <None Include="Files\smile_normal.png" />
+    <None Include="TrafficAccountingDraftManual.odt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

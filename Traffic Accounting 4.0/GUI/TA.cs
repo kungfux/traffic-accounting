@@ -128,9 +128,9 @@ namespace Traffic_Accounting
             {
                 toolStripDropDownDay.DropDownItems[a].Enabled = false;
             }
-            for (int a = (int)DayOfWeek.Convert(DateTime.Now.DayOfWeek) - 2; a >= (int)ClientParams.Parameters.FirstDayOfTheWeek - 1; a--)
+            for (int a = (int)DayOfWeek.Convert(DateTime.Now.DayOfWeek); a > (int)ClientParams.Parameters.FirstDayOfTheWeek; a--)
             {
-                toolStripDropDownDay.DropDownItems[a].Enabled = true;
+                toolStripDropDownDay.DropDownItems[a-2].Enabled = true;
             }
         }
 

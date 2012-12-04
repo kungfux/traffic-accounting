@@ -89,11 +89,12 @@ namespace Traffic_Accounting
                     //}
                     m = m.NextMatch();
                 }
-                if (ClientParams.Parameters.TrafficCacheEnabled)
+                if (ClientParams.Parameters.TrafficCacheEnabled &&
+                    HttpRequest.LastOperationCompletedSuccessfully)
                 {
                     StatCache.updateCache(stat);
                 }
-                stat.IsLoaded = true;
+                stat.IsLoaded = HttpRequest.LastOperationCompletedSuccessfully;
                 return stat;
             }
             else

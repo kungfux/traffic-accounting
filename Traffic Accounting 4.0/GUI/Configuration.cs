@@ -75,22 +75,6 @@ namespace Traffic_Accounting
             this.LanguageChanged -= new LangChanged(Configuration_LanguageChanged);
             this.LanguageChanged += new LangChanged(Configuration_LanguageChanged);
             Translate();
-            // display current setup
-            checkBoxAutoStart.Checked = ClientParams.Parameters.AutoStart;
-            comboBox2.SelectedItem = ClientParams.Parameters.Language;
-            numericUpDown2.Value = ClientParams.Parameters.TrafficLimitForWeek;
-            checkBox2.Checked = ClientParams.Parameters.TrafficRoundUp;
-            checkBox4.Checked = ClientParams.Parameters.TOPenabled;
-            numericUpDown3.Value = ClientParams.Parameters.TrayTrafficRanges[0];
-            numericUpDown4.Value = ClientParams.Parameters.TrayTrafficRanges[1];
-            numericUpDown5.Value = ClientParams.Parameters.TrayTrafficRanges[2];
-            numericUpDown4.Maximum = numericUpDown5.Value;
-            numericUpDown3.Maximum = numericUpDown4.Value;
-            checkBox3.Checked = ClientParams.Parameters.TrayDisplayDigits;
-            comboBox1.SelectedIndex = ClientParams.Parameters.IconFashion;
-            checkBox1.Checked = ClientParams.Parameters.TrafficCacheEnabled;
-            numericUpDown1.Value = ClientParams.Parameters.TrafficCacheSize;
-            checkBox5.Checked = ClientParams.Parameters.TrafficFilterEnabled;
 
             comboBox3.Items.Clear();
             comboBox3.Items.AddRange(new string[] {
@@ -235,6 +219,33 @@ namespace Traffic_Accounting
                 KnownColor.YellowGreen.ToString()
             });
 
+            System.Drawing.Text.InstalledFontCollection installedFonts =
+                new System.Drawing.Text.InstalledFontCollection();
+            foreach (FontFamily ff in installedFonts.Families)
+            {
+                comboBox5.Items.Add(ff.Name);
+            }
+
+            // display current setup
+            checkBoxAutoStart.Checked = ClientParams.Parameters.AutoStart;
+            comboBox2.SelectedItem = ClientParams.Parameters.Language;
+            numericUpDown2.Value = ClientParams.Parameters.TrafficLimitForWeek;
+            checkBox2.Checked = ClientParams.Parameters.TrafficRoundUp;
+            checkBox4.Checked = ClientParams.Parameters.TOPenabled;
+            numericUpDown3.Value = ClientParams.Parameters.TrayTrafficRanges[0];
+            numericUpDown4.Value = ClientParams.Parameters.TrayTrafficRanges[1];
+            numericUpDown5.Value = ClientParams.Parameters.TrayTrafficRanges[2];
+            numericUpDown4.Maximum = numericUpDown5.Value;
+            numericUpDown3.Maximum = numericUpDown4.Value;
+            checkBox3.Checked = ClientParams.Parameters.TrayDisplayDigits;
+            comboBox1.SelectedIndex = ClientParams.Parameters.IconFashion;
+            checkBox1.Checked = ClientParams.Parameters.TrafficCacheEnabled;
+            numericUpDown1.Value = ClientParams.Parameters.TrafficCacheSize;
+            checkBox5.Checked = ClientParams.Parameters.TrafficFilterEnabled;
+            checkBox6.Checked = ClientParams.Parameters.DisplayNotify;
+            comboBox4.Text = ClientParams.Parameters.TrayFontSize.ToString();
+            comboBox5.Text = ClientParams.Parameters.TrayFontName;
+
             comboBox3.SelectedItem = (object)ClientParams.Parameters.TrayIconFontColor;
             comboBox3.Enabled = checkBox3.Checked;
             loaded = true;
@@ -258,6 +269,7 @@ namespace Traffic_Accounting
                 ClientParams.Parameters.TrayDisplayDigits = checkBox3.Checked;
                 ClientParams.Parameters.TrafficCacheEnabled = checkBox1.Checked;
                 ClientParams.Parameters.TrafficFilterEnabled = checkBox5.Checked;
+                ClientParams.Parameters.DisplayNotify = checkBox6.Checked;
                 ConfigChanged();
             }
         }
@@ -303,6 +315,8 @@ namespace Traffic_Accounting
                 {
                     ClientParams.Parameters.TrayIconFontColor = comboBox3.SelectedItem.ToString();
                 }
+                int.TryParse(comboBox4.Text, out ClientParams.Parameters.TrayFontSize);
+                ClientParams.Parameters.TrayFontName = comboBox5.Text;
                 ConfigChanged();
             }
         }
@@ -352,6 +366,9 @@ namespace Traffic_Accounting
                 /*l.GetMessage("CONF020")*/});
             checkBox5.Text = l.GetMessage("CONF023");
             linkLabel1.Text = l.GetMessage("CONF024");
+            checkBox6.Text = l.GetMessage("CONF028");
+            label7.Text = l.GetMessage("CONF029");
+            label8.Text = l.GetMessage("CONF030");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

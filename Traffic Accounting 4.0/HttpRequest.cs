@@ -31,6 +31,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Traffic_Accounting
 {
@@ -121,16 +122,38 @@ namespace Traffic_Accounting
         /// </summary>
         private string getLocalIP()
         {
+            // prepare regexp which will qualify only ip addresses like *.*.*.*
+            Regex regex = new Regex("([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})", 
+                RegexOptions.Singleline);
+            // get local ip's
             string localHostName = Dns.GetHostName();
             IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
-            if (localIPs.Length > 0)
+            // check each ip until correct will be found
+            foreach (IPAddress ip in localIPs)
             {
-                return localIPs[localIPs.Length - 1].ToString();
+                // if qualify by mask *.*.*.*
+                if (regex.Match(ip.ToString()).Success)
+                {
+                    return ip.ToString();
+                }
             }
-            else
-            {
-                return "";
-            }
+            // if nothing found
+            Languages lang = new Languages(ClientParams.Parameters.Language);
+            MessageBox.Show(lang.GetMessage("INTERNAL_IP_NOTFOUND"),
+                lang.GetMessage("PROGRAMNAME"), MessageBoxButtons.OK,
+                 MessageBoxIcon.Error);
+            LastOperationCompletedSuccessfully = false;
+            return "";
+            
+            // Old code
+            //if (localIPs.Length > 0)
+            //{
+            //    return localIPs[localIPs.Length - 1].ToString();
+            //}
+            //else
+            //{
+            //    return "";
+            //}
         }
     }
 }

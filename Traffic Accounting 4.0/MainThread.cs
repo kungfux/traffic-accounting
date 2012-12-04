@@ -31,6 +31,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using Traffic_Accounting.Properties;
+using System.Drawing;
 
 namespace Traffic_Accounting
 {
@@ -49,6 +50,10 @@ namespace Traffic_Accounting
         ToolStripMenuItem menuOpen;
         ToolStripMenuItem menuExit;
         TrafficFilter filter = new TrafficFilter();
+        // timer DisplayNotify
+        Timer timerDisplayNotify;
+        Point mousePoint = new Point(0, 0);
+        int displayNotifyLastDay = 0;
 
         public MainThread()
         {
@@ -81,6 +86,8 @@ namespace Traffic_Accounting
             timer.Interval = 14400000; // 4 hours
             timer.Tick += new System.EventHandler(this.timerCheckElapsed_Tick);
             timerCheckElapsed_Tick(this, null);
+            // timerDisplayNotify
+            initTimerDisplayNotify();
         }
 
         void updateImageItem()
@@ -149,6 +156,11 @@ namespace Traffic_Accounting
         {
             forceRefresh = true;
             timerCheckElapsed_Tick(this, null);
+            // TODO: add for DisplayNotify
+            if (ClientParams.Parameters.DisplayNotify)
+            {
+                initTimerDisplayNotify();
+            }
         }
 
         void StatForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -196,6 +208,99 @@ namespace Traffic_Accounting
                      MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void initTimerDisplayNotify()
+        {
+            // timerDisplayNotify
+            if (timerDisplayNotify != null)
+            {
+                timerDisplayNotify.Dispose();
+            }
+            if (ClientParams.Parameters.DisplayNotify)
+            {
+                mousePoint = Cursor.Position;
+
+                timerDisplayNotify = new Timer();
+                timerDisplayNotify.Interval = 5000;
+                timerDisplayNotify.Tick += new EventHandler(timerDisplayNotify_Tick);
+                timerDisplayNotify.Start();
+            }
+        }
+
+        void timerDisplayNotify_Tick(object sender, EventArgs e)
+        {
+            if (mousePoint != Cursor.Position && 
+                displayNotifyLastDay != DateTime.Now.Day)
+            {
+                notifyIcon.ShowBalloonTip(0, l.GetMessage("PROGRAMNAME"),
+                    getNotifyText(), ToolTipIcon.Info);
+                mousePoint = Cursor.Position;
+                displayNotifyLastDay = DateTime.Now.Day;
+            }
+        }
+
+        public string getNotifyText()
+        {
+            string result = l.GetMessage("TA004");
+            result += Environment.NewLine + Environment.NewLine;
+
+            TrafficHistory h = new TrafficHistory();
+            h = t.getByWeek(DateTime.Now);
+            int a2 = 1;
+            long totalUnfiltered = 0;
+            long totalFiltered = 0;
+            for (int a = 0; a < h.WebSite.Count; a++)
+            {
+                if (ClientParams.Parameters.TrafficFilterEnabled &&
+                    filter.isInList(h.WebSite[a]))
+                {
+                    totalFiltered += h.UsedTraffic[a];
+                }
+                else
+                {
+                    totalUnfiltered += h.UsedTraffic[a];
+                }
+                a2++;
+            }
+
+            result += string.Format(l.GetMessage("TA002"),
+                    t.getConvertedBytes(totalUnfiltered));
+
+            if (ClientParams.Parameters.TrafficFilterEnabled)
+            {
+                result += Environment.NewLine;
+                result +=
+                    string.Format(
+                    string.Concat(
+                        l.GetMessage("TA010"),
+                        Environment.NewLine,
+                        l.GetMessage("TA012")),
+                        t.getConvertedBytes(totalFiltered),
+                        t.getConvertedBytes(totalFiltered + totalUnfiltered));
+            }
+
+            if (ClientParams.Parameters.TOPenabled)
+            {
+                result += Environment.NewLine + Environment.NewLine;
+
+                int f = h.TOP.Position;
+                if (f == 0)
+                {
+                    result += l.GetMessage("TA005");
+                }
+                else
+                {
+                    result += string.Format(l.GetMessage("TA006"), f);
+                }
+            }
+            
+            if (!h.IsLoaded)
+            {
+                result = l.GetMessage("TA013");
+            }
+
+            return result;
         }
     }
 }

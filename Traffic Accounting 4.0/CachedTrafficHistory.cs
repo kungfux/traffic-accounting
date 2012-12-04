@@ -31,6 +31,8 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using ItWorksTeam.IO;
 
 namespace Traffic_Accounting
 {
@@ -43,10 +45,26 @@ namespace Traffic_Accounting
         // load cache
         public CachedTrafficHistory()
         {
+            // check version compatibility
+            Registry registry = new Registry();
+            int assemblyBuild = Assembly.GetExecutingAssembly().GetName().Version.Revision;
+            int lastusedBuild = registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                "Software\\ItWorksTeam\\Traffic Accounting\\Version 4.0", "LastBuildRun", 0);
+            if (assemblyBuild != lastusedBuild)
+            {
+                if (File.Exists(CacheFileName))
+                {
+                    File.Delete(CacheFileName);
+                    registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                        "Software\\ItWorksTeam\\Traffic Accounting\\Version 4.0", "LastBuildRun",
+                        assemblyBuild);
+                }
+            }
+
             loadCache();
         }
 
-        // search is date is present in cache
+        // search is date present in cache?
         // else search week
         public int searchDay(DateTime date, bool OnlySingleDays)
         {

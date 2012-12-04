@@ -259,9 +259,9 @@
     <value>&amp;Среда</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 сборка 30
+    <value>Traffic Accounting 4.0 сборка 31
 собрано
-23 сентября, 2012
+04 декабря, 2012
 
 Все права защищены © 2008-2012 IT WORKS Team
 
@@ -351,5 +351,17 @@
   </data>
   <data name="WednesdayR" xml:space="preserve">
     <value>среду</value>
+  </data>
+  <data name="INTERNAL_IP_NOTFOUND" xml:space="preserve">
+    <value>Не удалось определить локальный IP адрес! Пожалуйста, укажите его в параметрах вручную.</value>
+  </data>
+  <data name="CONF028" xml:space="preserve">
+    <value>Показывать уведомление по утрам</value>
+  </data>
+  <data name="CONF029" xml:space="preserve">
+    <value>Размер цифр</value>
+  </data>
+  <data name="CONF030" xml:space="preserve">
+    <value>Шрифт</value>
   </data>
 </root>

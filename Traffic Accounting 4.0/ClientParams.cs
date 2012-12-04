@@ -64,11 +64,14 @@ namespace Traffic_Accounting
         // SystemTray
         public int TrayIconBackColor = Color.Transparent.ToArgb();
         public string TrayIconFontColor = "White";
+        public int TrayFontSize = 17;
+        public string TrayFontName = "Calibri";
         public bool TrayDisplayDigits = true;
         public bool TrayDigitsColorRangesEnabled = false;
         public bool TrayBackColorRangesEnabled = true;
         public byte[] TrayTrafficRanges = new byte[3] { 0, 20, 50 };
         public int IconFashion = 1;
+        public bool DisplayNotify = false;
         // Traffic
         public int TrafficLimitForWeek = 100;
         public bool TrafficCacheEnabled = true;
@@ -129,6 +132,10 @@ namespace Traffic_Accounting
                     RegPath, "TrayIconFontColor", TrayIconFontColor);
                 Parameters.TrayDisplayDigits = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrayDisplayDigits", TrayDisplayDigits);
+                Parameters.TrayFontSize = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrayFontSize", TrayFontSize);
+                Parameters.TrayFontName = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrayFontName", TrayFontName);
                 Parameters.TrayDigitsColorRangesEnabled = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrayDigitsColorRangesEnabled", TrayDigitsColorRangesEnabled);
                 Parameters.TrayBackColorRangesEnabled = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -137,6 +144,8 @@ namespace Traffic_Accounting
                     RegPath, "TrayTrafficRanges", TrayTrafficRanges);
                 Parameters.IconFashion = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "IconFashion", IconFashion);
+                Parameters.DisplayNotify = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "DisplayNotify", DisplayNotify);
                 // Cache
                 Parameters.TrafficCacheEnabled = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficCacheEnabled", TrafficCacheEnabled);
@@ -269,6 +278,36 @@ namespace Traffic_Accounting
             {
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                    RegPath, "TrayIconFontColor");
+            }
+            if (Parameters.TrayFontSize != TrayFontSize)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                        RegPath, "TrayFontSize", Parameters.TrayFontSize);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                   RegPath, "TrayFontSize");
+            }
+            if (Parameters.TrayFontName != TrayFontName)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                        RegPath, "TrayFontName", Parameters.TrayFontName);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                   RegPath, "TrayFontName");
+            }
+            if (Parameters.DisplayNotify)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                        RegPath, "DisplayNotify", Parameters.DisplayNotify);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                   RegPath, "DisplayNotify");
             }
             // cache
             if (Parameters.TrafficCacheEnabled != TrafficCacheEnabled)

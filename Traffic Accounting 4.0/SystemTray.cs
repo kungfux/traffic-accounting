@@ -47,7 +47,9 @@ namespace Traffic_Accounting
             // One more limit: we can draw only 1 and 2 digits, no more
             if (value > 999) value = 999;
             if (value < -999) value = -999;
-            Font font = new Font("Calibri", 17, FontStyle.Bold);
+            Font font = new Font(ClientParams.Parameters.TrayFontName, 
+                ClientParams.Parameters.TrayFontSize, 
+                FontStyle.Bold);
 
             // Change fore color according to traffic ranges
             if (ClientParams.Parameters.TrayDigitsColorRangesEnabled)

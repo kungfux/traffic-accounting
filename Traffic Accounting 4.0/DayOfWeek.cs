@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Traffic_Accounting
 {
-    internal static class DayOfWeek
+    public static class DayOfWeek
     {
         public enum DayOfWeekValue
         {
