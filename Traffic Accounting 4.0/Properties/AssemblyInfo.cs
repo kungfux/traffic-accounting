@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2012
+ *  Copyright (C) IT WORKS TEAM 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("IT WORKS Team")]
 [assembly: AssemblyProduct("Traffic Accounting")]
-[assembly: AssemblyCopyright("Copyright © IT WORKS Team 2008-2012")]
+[assembly: AssemblyCopyright("Copyright © IT WORKS TEAM 2008-2013")]
 [assembly: AssemblyTrademark("Traffic Accounting")]
 [assembly: AssemblyCulture("")]
 
@@ -57,5 +57,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("4.0.0.31")]
-[assembly: AssemblyFileVersion("4.0.0.31")]
+[assembly: AssemblyVersion("4.0.0.33")]
+[assembly: AssemblyFileVersion("4.0.0.33")]

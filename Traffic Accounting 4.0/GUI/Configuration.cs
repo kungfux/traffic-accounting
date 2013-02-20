@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2012
+ *  Copyright (C) IT WORKS TEAM 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -373,38 +373,29 @@ namespace Traffic_Accounting
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (ClientParams.Parameters.TrafficFilterEnabled)
+            // filter is enabled
+            if (ClientParams.Parameters.TrafficSeparatedFilterList != "")
             {
-                // filter is enabled
-                if (ClientParams.Parameters.TrafficSeparatedFilterList != "")
+                string websites = "";
+                if (ClientParams.Parameters.TrafficSeparatedFilterList.IndexOf(';') < 0)
                 {
-                    string websites = "";
-                    if (ClientParams.Parameters.TrafficSeparatedFilterList.IndexOf(';') < 0)
-                    {
-                        websites = ClientParams.Parameters.TrafficSeparatedFilterList;
-                    }
-                    else
-                    {
-                        foreach (string s in ClientParams.Parameters.TrafficSeparatedFilterList.Split(';'))
-                        {
-                            websites += string.Concat(s, Environment.NewLine);
-                        }
-                    }
-                    MessageBox.Show(string.Format(l.GetMessage("CONF026"), websites),
-                        l.GetMessage("CONF024"), MessageBoxButtons.OK, 
-                        MessageBoxIcon.Information);
+                    websites = ClientParams.Parameters.TrafficSeparatedFilterList;
                 }
                 else
                 {
-                    MessageBox.Show(l.GetMessage("CONF025"), l.GetMessage("CONF024"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    foreach (string s in ClientParams.Parameters.TrafficSeparatedFilterList.Split(';'))
+                    {
+                        websites += string.Concat(s, Environment.NewLine);
+                    }
                 }
+                MessageBox.Show(string.Format(l.GetMessage("CONF026"), websites),
+                    l.GetMessage("CONF024"), MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             else
             {
-                // filter is disabled
-                MessageBox.Show(l.GetMessage("CONF027"), l.GetMessage("CONF024"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(l.GetMessage("CONF025"), l.GetMessage("CONF024"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

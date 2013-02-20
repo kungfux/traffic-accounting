@@ -44,6 +44,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
@@ -57,8 +59,6 @@
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -282,6 +282,25 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "System Tray ";
             // 
+            // comboBox5
+            // 
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(81, 149);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 21);
+            this.comboBox5.TabIndex = 20;
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 152);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Font name";
+            // 
             // comboBox4
             // 
             this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -451,25 +470,6 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = " Interface ";
             // 
-            // comboBox5
-            // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(81, 149);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
-            this.comboBox5.TabIndex = 20;
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 152);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Font name";
-            // 
             // Configuration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,7 +481,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Configuration";
-            this.Size = new System.Drawing.Size(288, 590);
+            this.Size = new System.Drawing.Size(288, 582);
             this.Load += new System.EventHandler(this.Configuration_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

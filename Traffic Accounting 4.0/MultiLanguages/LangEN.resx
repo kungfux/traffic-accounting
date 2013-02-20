@@ -259,11 +259,11 @@
     <value>&amp;Wednesday</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 build 31
+    <value>Traffic Accounting 4.0 build 33
 built on
-December 04, 2012
+February 20, 2013
 
-Copyright © 2008-2012 IT WORKS Team
+Copyright © 2008-2013 IT WORKS Team
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
  
@@ -322,7 +322,7 @@ written by Alexander Fuks.</value>
     <value>Following websites are present in the filter's list:
 {0}</value>
   </data>
-  <data name="CONF027" xml:space="preserve">
+  <data name="CONF027_removed" xml:space="preserve">
     <value>Filter is turned off now.</value>
   </data>
   <data name="PROGRAMNAME" xml:space="preserve">
@@ -356,7 +356,7 @@ written by Alexander Fuks.</value>
     <value>Could not detect local IP! Please specify it in parameters manually.</value>
   </data>
   <data name="CONF028" xml:space="preserve">
-    <value>Display notify every morning</value>
+    <value>Display everyday notification</value>
   </data>
   <data name="CONF029" xml:space="preserve">
     <value>Digits size</value>

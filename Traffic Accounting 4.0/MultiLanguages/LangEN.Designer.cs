@@ -61,11 +61,11 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 31
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 33
         ///built on
-        ///December 04, 2012
+        ///February 20, 2013
         ///
-        ///Copyright © 2008-2012 IT WORKS Team
+        ///Copyright © 2008-2013 IT WORKS Team
         ///
         ///This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
         /// 
@@ -315,14 +315,14 @@ namespace Traffic_Accounting.MultiLanguages {
         /// <summary>
         ///   Looks up a localized string similar to Filter is turned off now..
         /// </summary>
-        internal static string CONF027 {
+        internal static string CONF027_removed {
             get {
-                return ResourceManager.GetString("CONF027", resourceCulture);
+                return ResourceManager.GetString("CONF027_removed", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display notify every morning.
+        ///   Looks up a localized string similar to Display everyday notification.
         /// </summary>
         internal static string CONF028 {
             get {

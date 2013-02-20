@@ -259,11 +259,11 @@
     <value>&amp;Среда</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 сборка 31
+    <value>Traffic Accounting 4.0 сборка 33
 собрано
-04 декабря, 2012
+20 февраля, 2013
 
-Все права защищены © 2008-2012 IT WORKS Team
+Все права защищены © 2008-2013 IT WORKS Team
 
 Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
 
@@ -322,7 +322,7 @@
     <value>Следующие вебсайты присутствуют в списке фильтра:
 {0}</value>
   </data>
-  <data name="CONF027" xml:space="preserve">
+  <data name="CONF027_removed" xml:space="preserve">
     <value>Фильтр отключён.</value>
   </data>
   <data name="PROGRAMNAME" xml:space="preserve">
@@ -356,7 +356,7 @@
     <value>Не удалось определить локальный IP адрес! Пожалуйста, укажите его в параметрах вручную.</value>
   </data>
   <data name="CONF028" xml:space="preserve">
-    <value>Показывать уведомление по утрам</value>
+    <value>Показывать ежедневное уведомление</value>
   </data>
   <data name="CONF029" xml:space="preserve">
     <value>Размер цифр</value>
