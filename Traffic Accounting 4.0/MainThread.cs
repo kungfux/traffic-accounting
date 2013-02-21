@@ -27,11 +27,10 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Traffic_Accounting.Properties;
 using System.Drawing;
+using Traffic_Accounting.GUI;
 
 namespace Traffic_Accounting
 {
@@ -54,6 +53,7 @@ namespace Traffic_Accounting
         Timer timerDisplayNotify;
         Point mousePoint = new Point(0, 0);
         int displayNotifyLastDay = 0;
+        int lastBackColor = 2;
 
         public MainThread()
         {
@@ -199,7 +199,10 @@ namespace Traffic_Accounting
                 total = t.convertBytes(total, 4, 4)[0];
                 //if (t.LastOperationCompletedSuccessfully)
                 //{
-                    notifyIcon.Icon = new SystemTray().getIcon(ClientParams.Parameters.TrafficLimitForWeek - Convert.ToInt32(total));
+                    SystemTray tray = new SystemTray();
+                    int trafficRemains = ClientParams.Parameters.TrafficLimitForWeek - Convert.ToInt32(total);
+                    notifyIcon.Icon = tray.getIcon(trafficRemains);
+                    lastBackColor = tray.getRangesColorRepsentation(trafficRemains);
                     dtLastChecked = DateTime.Now;
                 //}
                 if (!h.IsLoaded)
@@ -233,8 +236,7 @@ namespace Traffic_Accounting
             if (mousePoint != Cursor.Position && 
                 displayNotifyLastDay != DateTime.Now.Day)
             {
-                notifyIcon.ShowBalloonTip(0, l.GetMessage("PROGRAMNAME"),
-                    getNotifyText(), ToolTipIcon.Info);
+                new NotifyForm(getNotifyText(), lastBackColor).Show();
                 mousePoint = Cursor.Position;
                 displayNotifyLastDay = DateTime.Now.Day;
             }
@@ -242,7 +244,7 @@ namespace Traffic_Accounting
 
         public string getNotifyText()
         {
-            string result = l.GetMessage("TA004");
+            string result = l.GetMessage("TA004"); //Current week's statistics
             result += Environment.NewLine + Environment.NewLine;
 
             TrafficHistory h = new TrafficHistory();
@@ -264,7 +266,7 @@ namespace Traffic_Accounting
                 a2++;
             }
 
-            result += string.Format(l.GetMessage("TA002"),
+            result += string.Format(l.GetMessage("TA002"), //Total used traffic: {0}
                     t.getConvertedBytes(totalUnfiltered));
 
             if (ClientParams.Parameters.TrafficFilterEnabled)
@@ -273,31 +275,31 @@ namespace Traffic_Accounting
                 result +=
                     string.Format(
                     string.Concat(
-                        l.GetMessage("TA010"),
+                        l.GetMessage("TA010"), //Total filtered traffic: {0}
                         Environment.NewLine,
-                        l.GetMessage("TA012")),
+                        l.GetMessage("TA012")), //Total together: {1}
                         t.getConvertedBytes(totalFiltered),
                         t.getConvertedBytes(totalFiltered + totalUnfiltered));
             }
 
             if (ClientParams.Parameters.TOPenabled)
             {
-                result += Environment.NewLine + Environment.NewLine;
+                result += Environment.NewLine;
 
                 int f = h.TOP.Position;
                 if (f == 0)
                 {
-                    result += l.GetMessage("TA005");
+                    result += l.GetMessage("TA005"); //You will not be in TOP 10 this week
                 }
                 else
                 {
-                    result += string.Format(l.GetMessage("TA006"), f);
+                    result += string.Format(l.GetMessage("TA006"), f); //{0}% chance to be in TOP 10 this week
                 }
             }
             
             if (!h.IsLoaded)
             {
-                result = l.GetMessage("TA013");
+                result = l.GetMessage("TA013"); //Error occur during retrieving statistics. It can be network or server error. Statistics can be wrong or partially filled!
             }
 
             return result;

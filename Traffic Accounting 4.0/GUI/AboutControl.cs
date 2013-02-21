@@ -27,9 +27,6 @@
  */
 
 using System;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using Traffic_Accounting.Properties;
 

@@ -125,7 +125,7 @@ namespace Traffic_Accounting
         /// 2 - warning (yellow)
         /// 3 - normal
         /// </summary>
-        private int getRangesColorRepsentation(int value)
+        public int getRangesColorRepsentation(int value)
         {
             // { 0, 20, 50}
             for (int a = ClientParams.Parameters.TrayTrafficRanges.Length - 1; a >= 0; a--)

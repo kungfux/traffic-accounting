@@ -61,9 +61,9 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 сборка 33
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 сборка 34
         ///собрано
-        ///20 февраля, 2013
+        ///21 февраля, 2013
         ///
         ///Все права защищены © 2008-2013 IT WORKS Team
         ///
@@ -565,7 +565,7 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}% шанса попасть в ТОП 10.
+        ///   Looks up a localized string similar to {0}% шансов попасть в ТОП 10.
         /// </summary>
         internal static string TA006 {
             get {

@@ -214,7 +214,7 @@
     <value>Вы не попадёте в ТОП 10</value>
   </data>
   <data name="TA006" xml:space="preserve">
-    <value>{0}% шанса попасть в ТОП 10</value>
+    <value>{0}% шансов попасть в ТОП 10</value>
   </data>
   <data name="TA007" xml:space="preserve">
     <value>Статистика за прошлую неделю</value>
@@ -259,9 +259,9 @@
     <value>&amp;Среда</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 сборка 33
+    <value>Traffic Accounting 4.0 сборка 34
 собрано
-20 февраля, 2013
+21 февраля, 2013
 
 Все права защищены © 2008-2013 IT WORKS Team
 
