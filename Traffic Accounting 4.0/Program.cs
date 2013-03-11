@@ -42,11 +42,17 @@ namespace Traffic_Accounting
         [STAThread]
         static void Main(string[] args)
         {
-            if (args.Length > 0 && args[0] == "/debug")
+            if (args.Length > 0 && args[0].Length > 0)
             {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new DebugForm());
+                switch(args[0])
+                {
+                    case "/debug":
+                        // show debug form
+                        Application.EnableVisualStyles();
+                        Application.SetCompatibleTextRenderingDefault(false);
+                        Application.Run(new DebugForm());
+                        break;
+                }
             }
             else
             {

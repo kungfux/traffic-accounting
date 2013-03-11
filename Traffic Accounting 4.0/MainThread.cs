@@ -31,6 +31,7 @@ using System.Windows.Forms;
 using Traffic_Accounting.Properties;
 using System.Drawing;
 using Traffic_Accounting.GUI;
+using Microsoft.Win32;
 
 namespace Traffic_Accounting
 {
@@ -39,22 +40,21 @@ namespace Traffic_Accounting
         private NotifyIcon notifyIcon;
 
         private Traffic t = new Traffic();
-        private DateTime dtLastChecked = DateTime.Now.AddDays(-1);
+        private int dtLastChecked = DateTime.Now.AddDays(-1).DayOfYear;
         private TA StatForm;
         private WebBrowserSetup WebBrowserSetup = new WebBrowserSetup();
-        bool forceRefresh = false;
-        ToolStripMenuItem menuImages = new ToolStripMenuItem("");
-        Languages l = new Languages(ClientParams.Parameters.Language);
-        Configuration c = new Configuration();
-        ToolStripMenuItem menuOpen;
-        ToolStripMenuItem menuExit;
-        TrafficFilter filter = new TrafficFilter();
-        // timer DisplayNotify
-        Timer timerDisplayNotify;
-        Point mousePoint = new Point(0, 0);
-        int displayNotifyLastDay = 0;
-        int lastBackColor = 2;
-
+        private bool forceRefresh = false;
+        private ToolStripMenuItem menuImages = new ToolStripMenuItem("");
+        private Languages l = new Languages(ClientParams.Parameters.Language);
+        private ToolStripMenuItem menuOpen;
+        private ToolStripMenuItem menuExit;
+        private TrafficFilter filter = new TrafficFilter();
+        // when notify form was displayed last time
+        private int displayNotifyLastDay = 0;
+        // last back color for icon
+        // needed due bad code of displaying notify form
+        private int lastBackColor = 2;
+        
         public MainThread()
         {
             // contextMenu
@@ -86,8 +86,29 @@ namespace Traffic_Accounting
             timer.Interval = 14400000; // 4 hours
             timer.Tick += new System.EventHandler(this.timerCheckElapsed_Tick);
             timerCheckElapsed_Tick(this, null);
-            // timerDisplayNotify
-            initTimerDisplayNotify();
+            // registry system events
+            if (ClientParams.Parameters.DisplayNotify)
+            {
+                SystemEvents.SessionSwitch += new SessionSwitchEventHandler(SystemEvents_SessionSwitch);
+                DisplayNotify();
+            }
+        }
+
+        void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
+        {
+            // display notify form in case new day is active
+            // and session has been unlocked
+            if (e.Reason == SessionSwitchReason.SessionUnlock &&
+                displayNotifyLastDay != DateTime.Now.Day)
+            {
+                DisplayNotify();
+            }
+        }
+
+        private void DisplayNotify()
+        {
+            new NotifyForm(getNotifyText(), lastBackColor).Show();
+            displayNotifyLastDay = DateTime.Now.Day;
         }
 
         void updateImageItem()
@@ -156,10 +177,11 @@ namespace Traffic_Accounting
         {
             forceRefresh = true;
             timerCheckElapsed_Tick(this, null);
-            // TODO: add for DisplayNotify
+            
             if (ClientParams.Parameters.DisplayNotify)
             {
-                initTimerDisplayNotify();
+                SystemEvents.SessionSwitch -= SystemEvents_SessionSwitch;
+                SystemEvents.SessionSwitch += new SessionSwitchEventHandler(SystemEvents_SessionSwitch);
             }
         }
 
@@ -178,7 +200,7 @@ namespace Traffic_Accounting
         // timer tick - auto check remaining traffic
         private void timerCheckElapsed_Tick(object sender, EventArgs e)
         {
-            if (forceRefresh || dtLastChecked.DayOfYear < DateTime.Now.DayOfYear)
+            if (forceRefresh || dtLastChecked < DateTime.Now.DayOfYear)
             {
                 forceRefresh = false;
                 TrafficHistory h = t.getByWeek(DateTime.Now);
@@ -203,42 +225,13 @@ namespace Traffic_Accounting
                     int trafficRemains = ClientParams.Parameters.TrafficLimitForWeek - Convert.ToInt32(total);
                     notifyIcon.Icon = tray.getIcon(trafficRemains);
                     lastBackColor = tray.getRangesColorRepsentation(trafficRemains);
-                    dtLastChecked = DateTime.Now;
+                    dtLastChecked = DateTime.Now.DayOfYear;
                 //}
                 if (!h.IsLoaded)
                 {
                     MessageBox.Show(l.GetMessage("TA013"), l.GetMessage("PROGRAMNAME"),
                      MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-        }
-
-        private void initTimerDisplayNotify()
-        {
-            // timerDisplayNotify
-            if (timerDisplayNotify != null)
-            {
-                timerDisplayNotify.Dispose();
-            }
-            if (ClientParams.Parameters.DisplayNotify)
-            {
-                mousePoint = Cursor.Position;
-
-                timerDisplayNotify = new Timer();
-                timerDisplayNotify.Interval = 5000;
-                timerDisplayNotify.Tick += new EventHandler(timerDisplayNotify_Tick);
-                timerDisplayNotify.Start();
-            }
-        }
-
-        void timerDisplayNotify_Tick(object sender, EventArgs e)
-        {
-            if (mousePoint != Cursor.Position && 
-                displayNotifyLastDay != DateTime.Now.Day)
-            {
-                new NotifyForm(getNotifyText(), lastBackColor).Show();
-                mousePoint = Cursor.Position;
-                displayNotifyLastDay = DateTime.Now.Day;
             }
         }
 

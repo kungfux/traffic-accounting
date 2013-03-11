@@ -55,6 +55,9 @@ namespace Traffic_Accounting.GUI
                     pictureBox1.Image = Resources._1336866150_traffic_lights_green.ToBitmap();
                     break;
             }
+
+            this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width,
+            Screen.PrimaryScreen.WorkingArea.Height - this.Height);
         }
 
         private void NotifyForm_Click(object sender, System.EventArgs e)
