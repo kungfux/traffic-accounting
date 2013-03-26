@@ -45,9 +45,12 @@ namespace Traffic_Accounting
 
         public string readUrl(string url)
         {
+            Log.Trace.addTrace(
+                string.Format("Reading URL {0}",
+                url));
+
             LastOperationCompletedSuccessfully = true;
             string Response = "";
-
 
             try
             {
@@ -73,6 +76,11 @@ namespace Traffic_Accounting
                 // TODO: Report about problem correcly
                 LastOperationCompletedSuccessfully = false;
             }
+
+            Log.Trace.addTrace(
+                string.Format("Done. Is success: {0}, responce length: {1}",
+                LastOperationCompletedSuccessfully, Response.Length));
+
             return Response;
         }
 
@@ -85,6 +93,7 @@ namespace Traffic_Accounting
                 // TODO: alert for error
                 // For now: if a < 0 then page does not contain 
                 // any useful info and can be cleared
+                Log.Trace.addTrace("Cut HTML failed. IndexOf return < 0");
                 return "NOT_FOUND";
             }
             else
@@ -98,12 +107,16 @@ namespace Traffic_Accounting
                 // TODO: alert for error
                 // For now: if a < 0 then page does not contain 
                 // any useful info and can be cleared
+                Log.Trace.addTrace("Cut HTML failed. IndexOf return < 0");
                 return "NOT_FOUND";
             }
             else
             {
                 sourceHtml = sourceHtml.Remove(a, sourceHtml.Length - a);
             }
+
+            Log.Trace.addTrace("Cut HTML OK");
+
             return sourceHtml;
         }
 
@@ -114,6 +127,9 @@ namespace Traffic_Accounting
         {
             cutPattern = cutPattern.Replace("[IP]", getLocalIP());
             cutPattern = cutPattern.Replace("[MACHINE]", Environment.MachineName.ToLower());
+
+            Log.Trace.addTrace(string.Format("String will be {0}", cutPattern));
+
             return cutPattern;
         }
 
@@ -134,6 +150,8 @@ namespace Traffic_Accounting
                 // if qualify by mask *.*.*.*
                 if (regex.Match(ip.ToString()).Success)
                 {
+                    Log.Trace.addTrace(string.Format("IP found: {0}", ip.ToString()));
+
                     return ip.ToString();
                 }
             }
@@ -143,17 +161,11 @@ namespace Traffic_Accounting
                 lang.GetMessage("PROGRAMNAME"), MessageBoxButtons.OK,
                  MessageBoxIcon.Error);
             LastOperationCompletedSuccessfully = false;
+
+            Log.Trace.addTrace(string.Format("Suitable IP not found. Host: {0}", 
+                localHostName));
+
             return "";
-            
-            // Old code
-            //if (localIPs.Length > 0)
-            //{
-            //    return localIPs[localIPs.Length - 1].ToString();
-            //}
-            //else
-            //{
-            //    return "";
-            //}
         }
     }
 }

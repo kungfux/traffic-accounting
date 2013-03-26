@@ -159,9 +159,6 @@
   <data name="CONF015" xml:space="preserve">
     <value>Use local cache to increase performance (recommended)</value>
   </data>
-  <data name="CONF016" xml:space="preserve">
-    <value>Cache size (in days)</value>
-  </data>
   <data name="CONF017" xml:space="preserve">
     <value>Square</value>
   </data>
@@ -259,9 +256,9 @@
     <value>&amp;Wednesday</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 build 35
+    <value>Traffic Accounting 4.0 build 36
 built on
-February 27, 2013
+March 26, 2013
 
 Copyright © 2008-2013 IT WORKS Team
 

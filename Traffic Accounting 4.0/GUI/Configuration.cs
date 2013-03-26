@@ -240,7 +240,6 @@ namespace Traffic_Accounting
             checkBox3.Checked = ClientParams.Parameters.TrayDisplayDigits;
             comboBox1.SelectedIndex = ClientParams.Parameters.IconFashion;
             checkBox1.Checked = ClientParams.Parameters.TrafficCacheEnabled;
-            numericUpDown1.Value = ClientParams.Parameters.TrafficCacheSize;
             checkBox5.Checked = ClientParams.Parameters.TrafficFilterEnabled;
             checkBox6.Checked = ClientParams.Parameters.DisplayNotify;
             comboBox4.Text = ClientParams.Parameters.TrayFontSize.ToString();
@@ -292,7 +291,6 @@ namespace Traffic_Accounting
                 ClientParams.Parameters.TrayTrafficRanges[0] = (byte)numericUpDown3.Value;
                 ClientParams.Parameters.TrayTrafficRanges[1] = (byte)numericUpDown4.Value;
                 ClientParams.Parameters.TrayTrafficRanges[2] = (byte)numericUpDown5.Value;
-                ClientParams.Parameters.TrafficCacheSize = (int)numericUpDown1.Value;
                 ConfigChanged();
             }
         }
@@ -357,7 +355,6 @@ namespace Traffic_Accounting
             label4.Text = l.GetMessage("CONF013");
             groupBox2.Text = l.GetMessage("CONF014");
             checkBox1.Text = l.GetMessage("CONF015");
-            label1.Text = l.GetMessage("CONF016");
             label6.Text = l.GetMessage("CONF022");
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(new string[] { 

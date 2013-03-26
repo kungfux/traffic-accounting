@@ -28,7 +28,6 @@
 
 using System.Drawing;
 using System;
-using Traffic_Accounting.Properties;
 
 namespace Traffic_Accounting
 {
@@ -67,7 +66,7 @@ namespace Traffic_Accounting
             SolidBrush foreBrush = new SolidBrush(IconFontColor);
             RectangleF canvas = new RectangleF(0, 0, 32, 32);
 
-            switch(ClientParams.Parameters.IconFashion)
+            switch (ClientParams.Parameters.IconFashion)
             {
                 case 0: // nothing
                     break;
@@ -91,24 +90,6 @@ namespace Traffic_Accounting
                              System.Drawing.Drawing2D.FillMode.Winding);
                     }
                     break;
-                //case 3: // smiles
-                //    switch(IsColorIsAbnormal(value))
-                //    {
-                //        case 1:
-                //            graphic.DrawImage(Resources.exceded, 0, 0);
-                //            break;
-                //        case 2:
-                //            graphic.DrawImage(Resources.panic, 0, 0);
-                //            break;
-                //        case 3:
-                //            graphic.DrawImage(Resources.warning, 0, 0);
-                //            break;
-                //        default:
-                //            graphic.DrawImage(Resources.smile_normal, 0, 0);
-                //            break;
-                //    }
-                //    break;
-
             }
            
             if (ClientParams.Parameters.TrayDisplayDigits)

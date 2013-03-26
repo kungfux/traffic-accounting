@@ -159,9 +159,6 @@
   <data name="CONF015" xml:space="preserve">
     <value>Использовать кэш для повышения производительности (рекомендуется)</value>
   </data>
-  <data name="CONF016" xml:space="preserve">
-    <value>Размер кэша (в днях)</value>
-  </data>
   <data name="CONF017" xml:space="preserve">
     <value>Квадрат</value>
   </data>
@@ -259,9 +256,9 @@
     <value>&amp;Среда</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 сборка 35
+    <value>Traffic Accounting 4.0 сборка 36
 собрано
-27 февраля, 2013
+26 марта, 2013
 
 Все права защищены © 2008-2013 IT WORKS Team
 

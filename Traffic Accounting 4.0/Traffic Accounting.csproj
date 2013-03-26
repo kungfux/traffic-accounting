@@ -45,7 +45,6 @@
   </Target>
   -->
   <ItemGroup>
-    <Compile Include="DayOfWeek.cs" />
     <Compile Include="DebugScreen\DebugForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +70,7 @@
     <Compile Include="GUI\NotifyForm.Designer.cs">
       <DependentUpon>NotifyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Log.cs" />
     <Compile Include="MultiLanguages\LangEN.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -61,15 +61,15 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 35
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 36
         ///built on
-        ///February 27, 2013
+        ///March 26, 2013
         ///
         ///Copyright © 2008-2013 IT WORKS Team
         ///
         ///This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
         /// 
-        ///This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTI [rest of string was truncated]&quot;;.
+        ///This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICUL [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ABOUT {
             get {
@@ -209,15 +209,6 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string CONF015 {
             get {
                 return ResourceManager.GetString("CONF015", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cache size (in days).
-        /// </summary>
-        internal static string CONF016 {
-            get {
-                return ResourceManager.GetString("CONF016", resourceCulture);
             }
         }
         

@@ -29,7 +29,6 @@
 using System;
 using System.Windows.Forms;
 using Traffic_Accounting.Properties;
-using System.Drawing;
 using Traffic_Accounting.GUI;
 using Microsoft.Win32;
 
@@ -40,7 +39,7 @@ namespace Traffic_Accounting
         private NotifyIcon notifyIcon;
 
         private Traffic t = new Traffic();
-        private int dtLastChecked = DateTime.Now.AddDays(-1).DayOfYear;
+        private int dtLastChecked = 0;
         private TA StatForm;
         private WebBrowserSetup WebBrowserSetup = new WebBrowserSetup();
         private bool forceRefresh = false;
@@ -54,6 +53,8 @@ namespace Traffic_Accounting
         // last back color for icon
         // needed due bad code of displaying notify form
         private int lastBackColor = 2;
+        // single instance of NotifyForm
+        NotifyForm notifyForm = null;
         
         public MainThread()
         {
@@ -96,9 +97,14 @@ namespace Traffic_Accounting
 
         void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
         {
+            Log.Trace.addTrace(string.Format("Session switched. Argument: {1} DisplayNotifyLastDay: {0}",
+                displayNotifyLastDay, e.Reason));
+
             // display notify form in case new day is active
             // and session has been unlocked
-            if (e.Reason == SessionSwitchReason.SessionUnlock &&
+            if ((e.Reason == SessionSwitchReason.SessionUnlock ||
+                e.Reason == SessionSwitchReason.ConsoleConnect ||
+                e.Reason == SessionSwitchReason.RemoteConnect) &&
                 displayNotifyLastDay != DateTime.Now.Day)
             {
                 DisplayNotify();
@@ -107,7 +113,16 @@ namespace Traffic_Accounting
 
         private void DisplayNotify()
         {
-            new NotifyForm(getNotifyText(), lastBackColor).Show();
+            Log.Trace.addTrace("Displaying notify window");
+            if (notifyForm != null)
+            {
+                if (!notifyForm.IsDisposed)
+                {
+                    notifyForm.Close();
+                }
+            }
+            notifyForm = new NotifyForm(getNotifyText(), lastBackColor);
+            notifyForm.Show();
             displayNotifyLastDay = DateTime.Now.Day;
         }
 
@@ -136,6 +151,8 @@ namespace Traffic_Accounting
         // open statistic form
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Log.Trace.addTrace("Opening statistics window");
+
             if (StatForm == null)
             {
                 StatForm = new TA();
@@ -144,8 +161,8 @@ namespace Traffic_Accounting
                 StatForm.LanguageChanged += new TA.LangChanged(StatForm_LanguageChanged);
                 StatForm.Show();
                 StatForm.Activate();
-                //if (DateTime.Now.DayOfWeek == ClientParams.Parameters.FirstDayOfTheWeek)
-                if (DayOfWeek.Convert(DateTime.Now.DayOfWeek) == ClientParams.Parameters.FirstDayOfTheWeek)
+                
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
                 {
                     StatForm.callPrevWeek();
                 }
@@ -162,6 +179,7 @@ namespace Traffic_Accounting
 
         void StatForm_LanguageChanged()
         {
+            Log.Trace.addTrace("Language changed. Translating");
             l = new Languages(ClientParams.Parameters.Language);
             Translate();
         }
@@ -175,6 +193,7 @@ namespace Traffic_Accounting
 
         void StatForm_ConfigurationChanged()
         {
+            Log.Trace.addTrace("Configuration changed.");
             forceRefresh = true;
             timerCheckElapsed_Tick(this, null);
             
@@ -193,6 +212,7 @@ namespace Traffic_Accounting
         // close app
         private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
+            Log.Trace.addTrace("Exit from application");
             notifyIcon.Dispose();
             Application.Exit();
         }
@@ -200,12 +220,19 @@ namespace Traffic_Accounting
         // timer tick - auto check remaining traffic
         private void timerCheckElapsed_Tick(object sender, EventArgs e)
         {
+            Log.Trace.addTrace("Check elapsed traffic started");
+            Log.Trace.addTrace(string.Format("Force refresh: {0}, last checked: {1}, current: {2}",
+                forceRefresh,
+                dtLastChecked,
+                DateTime.Now.DayOfYear));
+
             if (forceRefresh || dtLastChecked < DateTime.Now.DayOfYear)
             {
                 forceRefresh = false;
                 TrafficHistory h = t.getByWeek(DateTime.Now);
-                //if (h.IsLoaded)
-                //{
+
+                Log.Trace.addTrace(string.Format("Is statistics loaded: {0}", h.IsLoaded));
+
                 long total = 0;
                 for (int a = 0; a < h.WebSite.Count; a++)
                 {
@@ -219,14 +246,13 @@ namespace Traffic_Accounting
                     }
                 }
                 total = t.convertBytes(total, 4, 4)[0];
-                //if (t.LastOperationCompletedSuccessfully)
-                //{
-                    SystemTray tray = new SystemTray();
-                    int trafficRemains = ClientParams.Parameters.TrafficLimitForWeek - Convert.ToInt32(total);
-                    notifyIcon.Icon = tray.getIcon(trafficRemains);
-                    lastBackColor = tray.getRangesColorRepsentation(trafficRemains);
-                    dtLastChecked = DateTime.Now.DayOfYear;
-                //}
+
+                SystemTray tray = new SystemTray();
+                int trafficRemains = ClientParams.Parameters.TrafficLimitForWeek - Convert.ToInt32(total);
+                notifyIcon.Icon = tray.getIcon(trafficRemains);
+                lastBackColor = tray.getRangesColorRepsentation(trafficRemains);
+                dtLastChecked = DateTime.Now.DayOfYear;
+
                 if (!h.IsLoaded)
                 {
                     MessageBox.Show(l.GetMessage("TA013"), l.GetMessage("PROGRAMNAME"),
@@ -237,6 +263,8 @@ namespace Traffic_Accounting
 
         public string getNotifyText()
         {
+            Log.Trace.addTrace("Building notify text");
+
             string result = l.GetMessage("TA004"); //Current week's statistics
             result += Environment.NewLine + Environment.NewLine;
 

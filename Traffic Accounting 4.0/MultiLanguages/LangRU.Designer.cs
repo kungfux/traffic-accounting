@@ -61,15 +61,15 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 сборка 35
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 сборка 36
         ///собрано
-        ///27 февраля, 2013
+        ///26 марта, 2013
         ///
         ///Все права защищены © 2008-2013 IT WORKS Team
         ///
         ///Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
         ///
-        ///Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГО [rest of string was truncated]&quot;;.
+        ///Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГОДН [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ABOUT {
             get {
@@ -209,15 +209,6 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string CONF015 {
             get {
                 return ResourceManager.GetString("CONF015", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Размер кэша (в днях).
-        /// </summary>
-        internal static string CONF016 {
-            get {
-                return ResourceManager.GetString("CONF016", resourceCulture);
             }
         }
         

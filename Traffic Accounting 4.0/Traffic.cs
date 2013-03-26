@@ -28,7 +28,6 @@
 
 using System;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
 
 namespace Traffic_Accounting
 {
@@ -80,13 +79,6 @@ namespace Traffic_Accounting
                 {
                     stat.WebSite.Add(m.Groups[1].Value);
                     stat.UsedTraffic.Add(Convert.ToInt32(m.Groups[2].Value));
-                    //if (!ClientParams.Parameters.TrafficFilterEnabled ||
-                    //    ClientParams.Parameters.TrafficFilterEnabled && !TrafficFilter.isInList(m.Groups[1].Value))
-                    //{
-                        // add value only in case
-                        // filtering is disabled or site is not present in filter
-                        //stat.TotalUsedTraffic += Convert.ToInt32(m.Groups[2].Value);
-                    //}
                     m = m.NextMatch();
                 }
                 if (ClientParams.Parameters.TrafficCacheEnabled &&
@@ -115,8 +107,8 @@ namespace Traffic_Accounting
             TrafficHistory stat = new TrafficHistory();
             for (int a = 0; a <= 7; a++)
             {
-                //if (date.DayOfWeek == ClientParams.Parameters.FirstDayOfTheWeek)
-                if (DayOfWeek.Convert(date.DayOfWeek) == ClientParams.Parameters.FirstDayOfTheWeek)
+                // if requested date is Monday then nothing to do
+                if (date.DayOfWeek == System.DayOfWeek.Monday)
                 {
                     a = 7;
                 }

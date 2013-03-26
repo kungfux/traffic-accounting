@@ -56,6 +56,7 @@ namespace Traffic_Accounting
             }
         }
 
+        // add website to filter without updating
         private void addItemWOUpdate(string site)
         {
             if (FilterList.FindIndex(
@@ -88,7 +89,6 @@ namespace Traffic_Accounting
                 delegate(string item)
                 {
                     return site.EndsWith(item);
-                    //return site.Equals(item);
                 }
             ) >= 0;
         }
@@ -136,6 +136,8 @@ namespace Traffic_Accounting
             }
         }
 
+        // apply new filter list and
+        // save current filter list
         private void updateClientParams()
         {
             ClientParams.Parameters.TrafficSeparatedFilterList = getFormattedList();

@@ -37,17 +37,28 @@ namespace Traffic_Accounting
 {
     public class Program
     {
+        // Application mutex
         private const string AppMutexName = "Traffic Accounting 4.0";
 
         [STAThread]
         static void Main(string[] args)
         {
+            // Initialize configuration
+            ClientParams p = new ClientParams();
+            Assembly a = Assembly.GetExecutingAssembly();
+            ClientParams.Parameters.AssemblyFullName = a.Location.ToLower();
+            // Load client parameters
+            p.LoadClientParams();
+            
+            Log.Trace.addTrace("Starting application");
+
             if (args.Length > 0 && args[0].Length > 0)
             {
                 switch(args[0])
                 {
                     case "/debug":
                         // show debug form
+                        Log.Trace.addTrace("Running debug form");
                         Application.EnableVisualStyles();
                         Application.SetCompatibleTextRenderingDefault(false);
                         Application.Run(new DebugForm());
@@ -56,18 +67,15 @@ namespace Traffic_Accounting
             }
             else
             {
+                Log.Trace.addTrace("Running main thread");
+
                 using (Mutex mutex = new Mutex(false, AppMutexName))
                 {
-                    ClientParams p = new ClientParams();
                     string ta = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Traffic Accounting";
                     if (!Directory.Exists(ta))
                     {
                         Directory.CreateDirectory(ta);
                     }
-                    Assembly a = Assembly.GetExecutingAssembly();
-                    ClientParams.Parameters.AssemblyFullName = a.Location.ToLower();
-                    // Load client parameters
-                    p.LoadClientParams();
 
                     bool Running = !mutex.WaitOne(0, false);
                     if (!Running)
@@ -78,14 +86,13 @@ namespace Traffic_Accounting
                     }
                     else
                     {
-                        // TODO: Initialize language parameters at startup and display correct messages
-                        //       according to user's language selection
-                        //MessageBox.Show("Traffic Accounting 4.0 is already run.", "Traffic Accounting");
                         Languages l = new Languages(ClientParams.Parameters.Language);
                         MessageBox.Show(l.GetMessage("PROGRAM001"), "Traffic Accounting");
                     }
                 }
             }
+
+            Log.Trace.addTrace("Program ended");
         }
     }
 }

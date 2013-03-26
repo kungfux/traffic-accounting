@@ -27,16 +27,13 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using ItWorksTeam.IO;
-using System.Windows.Forms;
 using System.Drawing;
-using System.Reflection;
-using System.IO;
 
 namespace Traffic_Accounting
 {
+    // TODO
+    // Optimize all methods
     internal class ClientParams
     {
         private static ClientParams _clientParams;
@@ -51,13 +48,13 @@ namespace Traffic_Accounting
         }
 
         // list of parameters
-        // 
+        //
+        public bool TraceEnabled = false;
+        //
         public string Language = "English";
         // OS Windows
         public bool AutoStart = false;
         // HttpRequest
-        //public string HttpMethod = "POST";
-        //public string HttpCodePage = "utf-8";
         public string HttpCut1 = "<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>";
         public string HttpCut2 = "</TABLE>";
         public string MachineName = Environment.MachineName.ToLower();
@@ -75,7 +72,6 @@ namespace Traffic_Accounting
         // Traffic
         public int TrafficLimitForWeek = 100;
         public bool TrafficCacheEnabled = true;
-        public int TrafficCacheSize = 8;
         public bool TOPenabled = true;
         public bool TrafficFilterEnabled = false;
         public string TrafficSeparatedFilterList = "";
@@ -83,7 +79,6 @@ namespace Traffic_Accounting
         public string TrafficStatWeeklyUrl = "http://fw-br/squid/weekly/[yyyy_WW].html";
         public string TrafficStatPattern = @"<TR><TD ALIGN=LEFT>([\S.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
         public string TrafficTopPattern = @"<TR><TD ALIGN=LEFT><A HREF=#([\S.]*)>([\S.]*) (([\S.]*))</A>"; // TODO: Add to registry
-        public Traffic_Accounting.DayOfWeek.DayOfWeekValue FirstDayOfTheWeek = DayOfWeek.DayOfWeekValue.Monday;
         public bool TrafficRoundUp = true;
         //
         public WebBrowser UserWebBrowser = WebBrowser.Internet_Explorer;
@@ -115,10 +110,6 @@ namespace Traffic_Accounting
                 Parameters.Language = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "Language", Language);
                 // Http
-                //Parameters.HttpMethod = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
-                //    RegPath, "HttpMethod", "POST");
-                //Parameters.HttpCodePage = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
-                //    RegPath, "HttpCodePage", "utf-8");
                 Parameters.HttpCut1 = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "HttpCut1", HttpCut1);
                 Parameters.HttpCut2 = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -149,8 +140,6 @@ namespace Traffic_Accounting
                 // Cache
                 Parameters.TrafficCacheEnabled = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficCacheEnabled", TrafficCacheEnabled);
-                Parameters.TrafficCacheSize = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "TrafficCacheSize", TrafficCacheSize);
                 // Filter
                 Parameters.TrafficFilterEnabled = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficFilterEnabled", TrafficFilterEnabled);
@@ -162,8 +151,6 @@ namespace Traffic_Accounting
                     RegPath, "TrafficStatDailyUrl", TrafficStatWeeklyUrl);
                 Parameters.TrafficStatPattern = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficStatPattern", TrafficStatPattern);
-                Parameters.FirstDayOfTheWeek = (Traffic_Accounting.DayOfWeek.DayOfWeekValue)Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
-                                RegPath, "FirstDayOfTheWeek", (int)FirstDayOfTheWeek);
                 Parameters.TrafficRoundUp = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                             RegPath, "TrafficRoundUp", TrafficRoundUp);
                 Parameters.TrafficLimitForWeek = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -173,6 +160,9 @@ namespace Traffic_Accounting
                     RegPath, "TOPenabled", TOPenabled);
                 Parameters.TrafficTopPattern = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficTopPattern", TrafficTopPattern);
+                // Log
+                Parameters.TraceEnabled = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TraceEnabled", TraceEnabled);
             }
         }
 
@@ -320,16 +310,6 @@ namespace Traffic_Accounting
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficCacheEnabled");
             }
-            if (Parameters.TrafficCacheSize != TrafficCacheSize && Parameters.TrafficCacheEnabled)
-            {
-                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "TrafficCacheSize", Parameters.TrafficCacheSize);
-            }
-            else
-            {
-                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "TrafficCacheSize");
-            }
             //
             if (Parameters.TrafficSeparatedFilterList != TrafficSeparatedFilterList)
             {
@@ -352,11 +332,17 @@ namespace Traffic_Accounting
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficFilterEnabled");
             }
+            //
+            if (Parameters.TraceEnabled != TraceEnabled)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TraceEnabled", Parameters.TraceEnabled);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TraceEnabled");
+            }
         }
-
-        //private bool IsValidColor(KnownColor color)
-        //{
-        //    return Color.FromKnownColor(color).IsKnownColor;
-        //}
     }
 }

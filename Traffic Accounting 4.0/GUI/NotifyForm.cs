@@ -30,11 +30,14 @@ using System.Windows.Forms;
 using Traffic_Accounting.Properties;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System;
 
 namespace Traffic_Accounting.GUI
 {
     public partial class NotifyForm : Form
     {
+        private int DayStarted = DateTime.Now.DayOfYear;
+
         public NotifyForm(string text, int imagestate)
         {
             InitializeComponent();
@@ -58,6 +61,18 @@ namespace Traffic_Accounting.GUI
 
             this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width,
             Screen.PrimaryScreen.WorkingArea.Height - this.Height);
+
+            Timer timerToDestroy = new Timer();
+            timerToDestroy.Interval = 60000; // 1 minute
+            timerToDestroy.Tick += new System.EventHandler(timerToDestroy_Tick);
+        }
+
+        void timerToDestroy_Tick(object sender, System.EventArgs e)
+        {
+            if (DateTime.Now.DayOfYear > DayStarted)
+            {
+                this.Close();
+            }
         }
 
         private void NotifyForm_Click(object sender, System.EventArgs e)

@@ -29,7 +29,6 @@
 using System;
 using System.Xml.Serialization;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using ItWorksTeam.IO;
@@ -38,29 +37,47 @@ namespace Traffic_Accounting
 {
     internal class CachedTrafficHistory
     {
-        // private items
-        private List<TrafficHistory> TrafficHistoryCache = new List<TrafficHistory>();
+        // Private items
+        private static List<TrafficHistory> TrafficHistoryCache = new List<TrafficHistory>();
         private readonly string CacheFileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Traffic Accounting\\cache.xml";
+        private int CacheSize = 8; // in days
+
         // constructor
         // load cache
         public CachedTrafficHistory()
         {
+            // skip loading of cache in case
+            // cache was loaded before
+            if (TrafficHistoryCache.Count > 0)
+            {
+                return;
+            }
+
             // check version compatibility
             Registry registry = new Registry();
             int assemblyBuild = Assembly.GetExecutingAssembly().GetName().Version.Revision;
             int lastusedBuild = registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
                 "Software\\ItWorksTeam\\Traffic Accounting\\Version 4.0", "LastBuildRun", 0);
+            
+            Log.Trace.addTrace(
+                string.Format("Loading cache (assembly build: {0}, last used build: {1})", 
+                assemblyBuild, lastusedBuild));
+
+            // if current program build is new
+            // then clear cache to avoid problems
+            // with cached elements
             if (assemblyBuild != lastusedBuild)
             {
                 if (File.Exists(CacheFileName))
                 {
+                    Log.Trace.addTrace("Clearing cache");
                     File.Delete(CacheFileName);
                     registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                         "Software\\ItWorksTeam\\Traffic Accounting\\Version 4.0", "LastBuildRun",
                         assemblyBuild);
                 }
             }
-
+            // load cache
             loadCache();
         }
 
@@ -68,6 +85,10 @@ namespace Traffic_Accounting
         // else search week
         public int searchDay(DateTime date, bool OnlySingleDays)
         {
+            //Log.Trace.addTrace(
+            //    string.Format("Searching in cache for {0} (OnlySingleDays={1})",
+            //    date, OnlySingleDays));
+
             if (OnlySingleDays)
             {
                 return TrafficHistoryCache.FindIndex(
@@ -92,6 +113,8 @@ namespace Traffic_Accounting
         // retrieve day item from cache
         public TrafficHistory getDay(DateTime date)
         {
+            Log.Trace.addTrace(string.Format("Reading cache for {0}", date));
+
             int index = searchDay(date, true);
             TrafficHistory h = TrafficHistoryCache[index];
             if (index >= 0)
@@ -104,6 +127,8 @@ namespace Traffic_Accounting
         // retrieve week item from cache
         public TrafficHistory getWeek(DateTime date)
         {
+            Log.Trace.addTrace(string.Format("Reading cache for {0}", date));
+
             int index = searchDay(date, false);
             TrafficHistory h = TrafficHistoryCache[index];
             if (index >= 0)
@@ -116,7 +141,10 @@ namespace Traffic_Accounting
         // add item to cache
         public void updateCache(TrafficHistory StatDay)
         {
-            if (searchDay(StatDay.DateTime, true) == -1)
+            Log.Trace.addTrace(string.Format("Update cache with {0}", StatDay));
+
+            int index = searchDay(StatDay.DateTime, true);
+            if (index == -1)
             {
                 // add new cache item
                 TrafficHistoryCache.Add(StatDay);
@@ -124,7 +152,7 @@ namespace Traffic_Accounting
             else
             {
                 // update existing
-                TrafficHistoryCache[searchDay(StatDay.DateTime, true)] = StatDay;
+                TrafficHistoryCache[index] = StatDay;
             }
             // sort stat by day
             TrafficHistoryCache.Sort(
@@ -139,6 +167,7 @@ namespace Traffic_Accounting
         // load cache from fs
         public void loadCache()
         {
+            Log.Trace.addTrace("Loading cache for FS");
             List<TrafficHistory> loaded = DeserializeClass<List<TrafficHistory>>(CacheFileName);
             if (loaded != null)
             {
@@ -149,6 +178,7 @@ namespace Traffic_Accounting
         // save cache to fs
         public void saveCache()
         {
+            Log.Trace.addTrace("Saving cache to FS");
             ClearOutLimitedCache();
             SerializeClass<List<TrafficHistory>>(TrafficHistoryCache, CacheFileName);
         }
@@ -156,6 +186,7 @@ namespace Traffic_Accounting
         // method for serializaion
         private bool SerializeClass<T>(T Class, string fullPathToFile)
         {
+            Log.Trace.addTrace(string.Format("Serializing cache to {0}", fullPathToFile));
             try
             {
                 XmlSerializer xs = new XmlSerializer(typeof(T));
@@ -173,6 +204,7 @@ namespace Traffic_Accounting
         // method for deserialization
         public T DeserializeClass<T>(string fullPathToFile)
         {
+            Log.Trace.addTrace(string.Format("Deserializing cache from {0}", fullPathToFile));
             T result = default(T);
             try
             {
@@ -193,12 +225,13 @@ namespace Traffic_Accounting
         // remove old items from cache
         private void ClearOutLimitedCache()
         {
+            Log.Trace.addTrace("Clear outlimited cache");
             TrafficHistoryCache.RemoveAll(
                 delegate(TrafficHistory history)
                 {
                     return 
-                        (history.WeekNumber == -1 && history.DateTime.DayOfYear < DateTime.Now.AddDays(0 - ClientParams.Parameters.TrafficCacheSize).DayOfYear) ||
-                        (history.WeekNumber != -1 && history.WeekNumber < getWeekNumber(DateTime.Now.AddDays(0 - ClientParams.Parameters.TrafficCacheSize)));
+                        (history.WeekNumber == -1 && history.DateTime.DayOfYear < DateTime.Now.AddDays(0 - CacheSize).DayOfYear) ||
+                        (history.WeekNumber != -1 && history.WeekNumber < getWeekNumber(DateTime.Now.AddDays(0 - CacheSize)));
                 });
         }
 
@@ -221,6 +254,9 @@ namespace Traffic_Accounting
                     s = s.AddDays(1);
                 }
             }
+            Log.Trace.addTrace(
+                string.Format("Calculate week number from {0}. Result is {1}", 
+                date, weeks));
             return weeks;
         }
     }

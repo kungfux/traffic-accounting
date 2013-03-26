@@ -90,7 +90,7 @@ namespace Traffic_Accounting
         private DateTime GetMonday()
         {
             DateTime dt = DateTime.Now;
-            while (dt.DayOfWeek != System.DayOfWeek.Monday)
+            while (dt.DayOfWeek != DayOfWeek.Monday)
             {
                 dt = dt.AddDays(-1);
             }
@@ -101,8 +101,8 @@ namespace Traffic_Accounting
         private DateTime GetClientMonday()
         {
             DateTime dt = DateTime.Now;
-            //while (dt.DayOfWeek != ClientParams.Parameters.FirstDayOfTheWeek)
-            while (DayOfWeek.Convert(dt.DayOfWeek) != ClientParams.Parameters.FirstDayOfTheWeek)
+            //while monday
+            while (dt.DayOfWeek != DayOfWeek.Monday)
             {
                 dt = dt.AddDays(-1);
             }
@@ -128,7 +128,7 @@ namespace Traffic_Accounting
             {
                 toolStripDropDownDay.DropDownItems[a].Enabled = false;
             }
-            for (int a = (int)DayOfWeek.Convert(DateTime.Now.DayOfWeek); a > (int)ClientParams.Parameters.FirstDayOfTheWeek; a--)
+            for (int a = (int)DateTime.Now.DayOfWeek; a > (int)DayOfWeek.Monday; a--)
             {
                 toolStripDropDownDay.DropDownItems[a-2].Enabled = true;
             }
@@ -144,7 +144,7 @@ namespace Traffic_Accounting
             ListStat.Items.Clear();
             groupBox1.Controls.Add(ListStat);
             groupBox1.Controls.Add(Label);
-            int i = toolStripDropDownDay.DropDownItems.IndexOf(e.ClickedItem) - ((int)ClientParams.Parameters.FirstDayOfTheWeek - 1);
+            int i = toolStripDropDownDay.DropDownItems.IndexOf(e.ClickedItem) - ((int)DayOfWeek.Monday - 1);
             WhatToRefresh = i + 1;
             DateTime dt = GetClientMonday().AddDays(i);
             TrafficHistory h = t.getByDay(dt);
@@ -209,27 +209,15 @@ namespace Traffic_Accounting
             ListStat.Items.Clear();
             groupBox1.Controls.Add(ListStat);
             groupBox1.Controls.Add(Label);
-            //int i = toolStripDropDownWeek.DropDownItems.IndexOf(e.ClickedItem);
+
             TrafficHistory h = new TrafficHistory();
-            //if (i == 0)
-            //{
             h = t.getByWeek(DateTime.Now);
-            //}
-            //else
-            //{
-            //    DateTime prev = GetMonday().AddDays(-1);
-            //    h = t.getByWeek(prev);
-            //}
-            //
-            //if (h.IsLoaded)
-            //{
+
             int a2 = 1;
             long totalUnfiltered = 0;
             long totalFiltered = 0;
             for (int a = 0; a < h.WebSite.Count; a++)
             {
-                //ListStat.Items.Add(new ListViewItem(new string[] { (a2).ToString(),
-                //hd.WebSite[a], t.getConvertedBytes(hd.UsedTraffic[a]).ToString() }));
                 ListViewItem item = new ListViewItem(new string[] { (a2).ToString(), 
                     h.WebSite[a], t.getConvertedBytes(h.UsedTraffic[a]).ToString() });
                 if (ClientParams.Parameters.TrafficFilterEnabled &&
