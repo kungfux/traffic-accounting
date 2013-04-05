@@ -1,5 +1,5 @@
 ﻿/*   
-  *  .NET Assemblies Collection
+  *  Traffic Accounting
   *  Assemblies collection for .NET technology projects
   *  Copyright (C) IT WORKS TEAM 2010-2012
   *  

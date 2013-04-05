@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,13 +17,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *  
- *  IT WORKS TEAM, hereby disclaims all copyright
- *  interest in the program ".NET Assemblies Collection"
+ *  Fuks Alexander, hereby disclaims all copyright
+ *  interest in the program "Traffic Accounting"
  *  (which makes passes at compilers)
  *  written by Alexander Fuks.
- * 
- *  Alexander Fuks, 01 July 2010
- *  IT WORKS TEAM, Founder of the team.
  */
 
 using System.Windows.Forms;
@@ -348,16 +345,6 @@ namespace Traffic_Accounting
             previousWeekToolStripMenuItem.PerformClick();
         }
 
-        private void toolStripAboutButton_Click(object sender, EventArgs e)
-        {
-            groupBox1.Text = "";
-            toolStripStatusLabel1.Text = "";
-            AboutControl c = new AboutControl();
-            c.Dock = DockStyle.Fill;
-            groupBox1.Controls.Clear();
-            groupBox1.Controls.Add(c);
-        }
-
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (ListStat.SelectedItems.Count <= 0)
@@ -463,7 +450,7 @@ namespace Traffic_Accounting
             toolStripDropDownDay.Text = l.GetMessage("TAMENUDAY");
             toolStripDropDownWeek.Text = l.GetMessage("TAMENUWEEK");
             toolStripConfiguration.Text = l.GetMessage("TAMENUSETUP");
-            toolStripAboutButton.Text = l.GetMessage("TAMENUABOUT");
+            toolStripHelp.Text = l.GetMessage("TAMENUHELP");
             mondayToolStripMenuItem.Text = l.GetMessage("Monday");
             tuesdayToolStripMenuItem.Text = l.GetMessage("Tuesday");
             wednesdayToolStripMenuItem.Text = l.GetMessage("Wednesday");
@@ -473,6 +460,7 @@ namespace Traffic_Accounting
             sundayToolStripMenuItem.Text = l.GetMessage("Sunday");
             currentWeekToolStripMenuItem.Text = l.GetMessage("TASUBMENUCURRWEEK");
             previousWeekToolStripMenuItem.Text = l.GetMessage("TASUBMENUPREVWEEK");
+            aboutToolStripMenuItem.Text = l.GetMessage("TAMENUABOUT");
             listView1.Columns[1].Text = l.GetMessage("TAColumn1");
             listView1.Columns[2].Text = l.GetMessage("TAColumn2");
             openToolStripMenuItem.Text = l.GetMessage("TA008");
@@ -512,6 +500,105 @@ namespace Traffic_Accounting
                     break;
             }
             ConfigChanged();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            groupBox1.Text = "";
+            toolStripStatusLabel1.Text = "";
+            AboutControl c = new AboutControl();
+            c.Dock = DockStyle.Fill;
+            groupBox1.Controls.Clear();
+            groupBox1.Controls.Add(c);
+        }
+
+        public string getNotifyText()
+        {
+            Log.Trace.addTrace("Building notify text");
+
+            string result = "";
+
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            {
+                result = l.GetMessage("TA007"); //Previous week's statistics
+            }
+            else
+            {
+                result = l.GetMessage("TA004"); //Current week's statistics
+            }
+
+            result += Environment.NewLine + Environment.NewLine;
+
+            TrafficHistory h = new TrafficHistory();
+
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            {
+                DateTime prev = GetMonday().AddDays(-7);
+                h = t.getByWeek(prev, false);
+            }
+            else
+            {
+                h = t.getByWeek(DateTime.Now); // retrive info for current week
+            }
+
+            if (!h.IsLoaded)
+            {
+                // Error occur during retrieving statistics. 
+                // It can be network or server error. 
+                // Statistics can be wrong or partially filled!
+                result = l.GetMessage("TA013");
+                return result;
+            }
+
+            int a2 = 1;
+            long totalUnfiltered = 0;
+            long totalFiltered = 0;
+            for (int a = 0; a < h.WebSite.Count; a++)
+            {
+                if (ClientParams.Parameters.TrafficFilterEnabled &&
+                    filter.isInList(h.WebSite[a]))
+                {
+                    totalFiltered += h.UsedTraffic[a];
+                }
+                else
+                {
+                    totalUnfiltered += h.UsedTraffic[a];
+                }
+                a2++;
+            }
+
+            result += string.Format(l.GetMessage("TA002"), //Total used traffic: {0}
+                    t.getConvertedBytes(totalUnfiltered));
+
+            if (ClientParams.Parameters.TrafficFilterEnabled)
+            {
+                result += Environment.NewLine;
+                result +=
+                    string.Format(
+                    string.Concat(
+                        l.GetMessage("TA010"), //Total filtered traffic: {0}
+                        Environment.NewLine,
+                        l.GetMessage("TA012")), //Total together: {1}
+                        t.getConvertedBytes(totalFiltered),
+                        t.getConvertedBytes(totalFiltered + totalUnfiltered));
+            }
+
+            if (ClientParams.Parameters.TOPenabled)
+            {
+                result += Environment.NewLine;
+
+                int f = h.TOP.Position;
+                if (f == 0)
+                {
+                    result += l.GetMessage("TA005"); //You will not be in TOP 10 this week
+                }
+                else
+                {
+                    result += string.Format(l.GetMessage("TA006"), f); //{0}% chance to be in TOP 10 this week
+                }
+            }
+
+            return result;
         }
     }
 }

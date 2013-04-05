@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,13 +17,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *  
- *  IT WORKS TEAM, hereby disclaims all copyright
- *  interest in the program ".NET Assemblies Collection"
+ *  Fuks Alexander, hereby disclaims all copyright
+ *  interest in the program "Traffic Accounting"
  *  (which makes passes at compilers)
  *  written by Alexander Fuks.
- * 
- *  Alexander Fuks, 01 July 2010
- *  IT WORKS TEAM, Founder of the team.
  */
 
 using System;
@@ -75,11 +72,13 @@ namespace Traffic_Accounting
         public bool TOPenabled = true;
         public bool TrafficFilterEnabled = false;
         public string TrafficSeparatedFilterList = "";
-        public string TrafficStatDailyUrl = "http://fw-br/squid/daily/[yyyy_MM_dd].html";
-        public string TrafficStatWeeklyUrl = "http://fw-br/squid/weekly/[yyyy_WW].html";
+        public string TrafficStatDailyUrl = "/squid/daily/[yyyy_MM_dd].html";
+        public string TrafficStatWeeklyUrl = "/squid/weekly/[yyyy_WW].html";
         public string TrafficStatPattern = @"<TR><TD ALIGN=LEFT>([\S.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
         public string TrafficTopPattern = @"<TR><TD ALIGN=LEFT><A HREF=#([\S.]*)>([\S.]*) (([\S.]*))</A>"; // TODO: Add to registry
         public bool TrafficRoundUp = true;
+        //
+        public FwServers.FwServer Location = FwServers.FwServer.Berdyansk;
         //
         public WebBrowser UserWebBrowser = WebBrowser.Internet_Explorer;
 
@@ -110,10 +109,17 @@ namespace Traffic_Accounting
                 Parameters.Language = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "Language", Language);
                 // Http
-                Parameters.HttpCut1 = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "HttpCut1", HttpCut1);
-                Parameters.HttpCut2 = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "HttpCut2", HttpCut2);
+                string httpcut = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "HttpCut", HttpCut1 + "|" + HttpCut2);
+                if (httpcut.Contains("|"))
+                {
+                    string[] cutted = httpcut.Split('|');
+                    if (cutted.Length >= 2)
+                    {
+                        Parameters.HttpCut1 = cutted[0];
+                        Parameters.HttpCut2 = cutted[1];
+                    }
+                }
                 Parameters.MachineName = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "MachineName", MachineName);
                 // SystemTray
@@ -163,6 +169,9 @@ namespace Traffic_Accounting
                 // Log
                 Parameters.TraceEnabled = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TraceEnabled", TraceEnabled);
+                // Location
+                Parameters.Location = (FwServers.FwServer)Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "Location", (int)Location);
             }
         }
 
@@ -342,6 +351,28 @@ namespace Traffic_Accounting
             {
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TraceEnabled");
+            }
+            //
+            if (Parameters.Location != Location)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "Location", (int)Parameters.Location);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "Location");
+            }
+            //
+            if (Parameters.HttpCut1 != HttpCut1 || Parameters.HttpCut2 != HttpCut2)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "HttpCut", Parameters.HttpCut1 + "|" + Parameters.HttpCut2);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "HttpCut");
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,13 +17,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *  
- *  IT WORKS TEAM, hereby disclaims all copyright
- *  interest in the program ".NET Assemblies Collection"
+ *  Fuks Alexander, hereby disclaims all copyright
+ *  interest in the program "Traffic Accounting"
  *  (which makes passes at compilers)
  *  written by Alexander Fuks.
- * 
- *  Alexander Fuks, 01 July 2010
- *  IT WORKS TEAM, Founder of the team.
  */
 
 using System;
@@ -45,12 +42,12 @@ namespace Traffic_Accounting
         private void AboutControl_Load(object sender, EventArgs e)
         {
             label1.Text = l.GetMessage("ABOUT");
-            //pictureBox1_Click(this, null);
+            textBox1.Text = l.GetMessage("COPYRIGHTTEXT");
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            switch(image)
+            switch (image)
             {
                 case 0:
                     pictureBox1.Image = Resources._1336866125_traffic_lights_red.ToBitmap();

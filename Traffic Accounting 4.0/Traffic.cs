@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,13 +17,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *  
- *  IT WORKS TEAM, hereby disclaims all copyright
- *  interest in the program ".NET Assemblies Collection"
+ *  Fuks Alexander, hereby disclaims all copyright
+ *  interest in the program "Traffic Accounting"
  *  (which makes passes at compilers)
  *  written by Alexander Fuks.
- * 
- *  Alexander Fuks, 01 July 2010
- *  IT WORKS TEAM, Founder of the team.
  */
 
 using System;
@@ -43,6 +40,7 @@ namespace Traffic_Accounting
         private CachedTrafficHistory StatCache = new CachedTrafficHistory();
         private TrafficFilter TrafficFilter = new TrafficFilter();
         private Languages l = new Languages(ClientParams.Parameters.Language);
+        private FwServers fwservers = new FwServers();
 
         private enum TrafficEnumeration
         {
@@ -56,12 +54,14 @@ namespace Traffic_Accounting
         {
             LastOperationCompletedSuccessfully = true;
 
-            if (ClientParams.Parameters.TrafficCacheEnabled && StatCache.searchDay(date, true) != -1)
+            if (StatCache.searchDay(date, true) != -1)
             {
                 // check is results already exists in cache
                 return StatCache.getDay(date);
             }
-            string url = prepareStatUrl(date, ClientParams.Parameters.TrafficStatDailyUrl);
+            string url = prepareStatUrl(date,
+                fwservers.getHttpAddress(ClientParams.Parameters.Location) +
+                ClientParams.Parameters.TrafficStatDailyUrl);
             string html = HttpRequest.readUrl(url);
             if (HttpRequest.LastOperationCompletedSuccessfully)
             {
@@ -81,8 +81,7 @@ namespace Traffic_Accounting
                     stat.UsedTraffic.Add(Convert.ToInt32(m.Groups[2].Value));
                     m = m.NextMatch();
                 }
-                if (ClientParams.Parameters.TrafficCacheEnabled &&
-                    HttpRequest.LastOperationCompletedSuccessfully)
+                if (HttpRequest.LastOperationCompletedSuccessfully)
                 {
                     StatCache.updateCache(stat);
                 }
@@ -169,12 +168,14 @@ namespace Traffic_Accounting
         {
             LastOperationCompletedSuccessfully = true;
 
-            if (ClientParams.Parameters.TrafficCacheEnabled && StatCache.searchDay(dayInWeek, false) != -1)
+            if (StatCache.searchDay(dayInWeek, false) != -1)
             {
                 // check is results already exists in cache
                 return StatCache.getWeek(dayInWeek);
             }
-            string url = prepareStatUrl(dayInWeek, ClientParams.Parameters.TrafficStatWeeklyUrl);
+            string url = prepareStatUrl(dayInWeek,
+                fwservers.getHttpAddress(ClientParams.Parameters.Location) +
+                ClientParams.Parameters.TrafficStatWeeklyUrl);
             string html = HttpRequest.readUrl(url);
             if (HttpRequest.LastOperationCompletedSuccessfully)
             {
@@ -196,16 +197,15 @@ namespace Traffic_Accounting
                     //if (!ClientParams.Parameters.TrafficFilterEnabled ||
                     //    ClientParams.Parameters.TrafficFilterEnabled && !TrafficFilter.isInList(m.Groups[1].Value))
                     //{
-                        // add value to total amount only in case
-                        // filtering is disabled or site is not present in filter
-                        //stat.TotalUsedTraffic += Convert.ToInt32(m.Groups[2].Value);
+                    // add value to total amount only in case
+                    // filtering is disabled or site is not present in filter
+                    //stat.TotalUsedTraffic += Convert.ToInt32(m.Groups[2].Value);
                     //}
                     m = m.NextMatch();
                 }
-                if (ClientParams.Parameters.TrafficCacheEnabled)
-                {
-                    StatCache.updateCache(stat);
-                }
+
+                StatCache.updateCache(stat);
+
                 stat.IsLoaded = true;
                 return stat;
             }

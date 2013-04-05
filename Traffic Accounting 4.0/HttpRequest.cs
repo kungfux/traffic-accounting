@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,13 +17,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *  
- *  IT WORKS TEAM, hereby disclaims all copyright
- *  interest in the program ".NET Assemblies Collection"
+ *  Fuks Alexander, hereby disclaims all copyright
+ *  interest in the program "Traffic Accounting"
  *  (which makes passes at compilers)
  *  written by Alexander Fuks.
- * 
- *  Alexander Fuks, 01 July 2010
- *  IT WORKS TEAM, Founder of the team.
  */
 
 using System;
@@ -118,6 +115,15 @@ namespace Traffic_Accounting
             Log.Trace.addTrace("Cut HTML OK");
 
             return sourceHtml;
+
+            //Regex regex = new Regex(prepareCut(@"<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>([\s\S]+?)</TABLE>"));
+            //Match m = regex.Match(sourceHtml);
+            //if (m.Groups.Count > 0)
+            //{
+            //    MessageBox.Show(m.Groups[0].Value, m.Groups.Count.ToString());
+            //    return m.Groups[0].Value;
+            //}
+            //return "NOT_FOUND";
         }
 
         /// <summary>
@@ -136,7 +142,7 @@ namespace Traffic_Accounting
         /// <summary>
         /// return current IP address for local machine
         /// </summary>
-        private string getLocalIP()
+        public string getLocalIP()
         {
             // prepare regexp which will qualify only ip addresses like *.*.*.*
             Regex regex = new Regex("([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})", 

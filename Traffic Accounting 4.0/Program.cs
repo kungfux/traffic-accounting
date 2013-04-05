@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,13 +17,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *  
- *  IT WORKS TEAM, hereby disclaims all copyright
- *  interest in the program ".NET Assemblies Collection"
+ *  Fuks Alexander, hereby disclaims all copyright
+ *  interest in the program "Traffic Accounting"
  *  (which makes passes at compilers)
  *  written by Alexander Fuks.
- * 
- *  Alexander Fuks, 01 July 2010
- *  IT WORKS TEAM, Founder of the team.
  */
 
 using System;
@@ -32,11 +29,16 @@ using System.Threading;
 using System.IO;
 using System.Reflection;
 using Traffic_Accounting.DebugScreen;
+using System.Runtime.InteropServices;
 
 namespace Traffic_Accounting
 {
     public class Program
     {
+        [DllImport("kernel32.dll")]
+        static extern bool AttachConsole(int dwProcessId);
+        private const int ATTACH_PARENT_PROCESS = -1;
+
         // Application mutex
         private const string AppMutexName = "Traffic Accounting 4.0";
 
@@ -49,6 +51,8 @@ namespace Traffic_Accounting
             ClientParams.Parameters.AssemblyFullName = a.Location.ToLower();
             // Load client parameters
             p.LoadClientParams();
+            // load language
+            Languages l = new Languages(ClientParams.Parameters.Language);
             
             Log.Trace.addTrace("Starting application");
 
@@ -86,8 +90,8 @@ namespace Traffic_Accounting
                     }
                     else
                     {
-                        Languages l = new Languages(ClientParams.Parameters.Language);
-                        MessageBox.Show(l.GetMessage("PROGRAM001"), "Traffic Accounting");
+                        MessageBox.Show(l.GetMessage("PROGRAM001"), AppMutexName,
+                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }

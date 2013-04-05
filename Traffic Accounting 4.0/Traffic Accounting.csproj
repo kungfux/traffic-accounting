@@ -51,6 +51,7 @@
     <Compile Include="DebugScreen\DebugForm.Designer.cs">
       <DependentUpon>DebugForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FwServers.cs" />
     <Compile Include="GUI\AboutControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

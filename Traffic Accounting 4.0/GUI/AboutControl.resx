@@ -149,22 +149,7 @@
         9UtotQ3wdsQm+GspYJWghtoVf57/A/swDcnraL3WAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Traffic Accounting 4.0 build 26
-built on
-July 17, 2012
-
-Copyright © 2008-2012 IT WORKS Team
-
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
- 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
- 
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-Fuks Alexander, hereby disclaims all copyright
-interest in the program "Traffic Accounting"
-(which makes passed at compilers)
-written by Alexander Fuks.</value>
-  </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

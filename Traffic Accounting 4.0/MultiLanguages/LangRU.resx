@@ -256,22 +256,11 @@
     <value>&amp;Среда</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 сборка 36
+    <value>Traffic Accounting 4.0 сборка 37
 собрано
-26 марта, 2013
+05 апреля, 2013
 
-Все права защищены © 2008-2013 IT WORKS Team
-
-Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
-
-Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГОДНОСТИ ДЛЯ СПЕЦИФИЧЕСКОЙ ЦЕЛИ. Для дополнительной информации обращайтесь к тексту лицензии GNU General Public License.
- 
-Вы должны были получить копию лицензии GNU General Public License вместе с программой; если нет, напишите в фонд Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-Фукс Александр, настоящим отказывается от всех прав
-в интересах программы "Traffic Accounting"
-(которая прошла через компилятор)
-Написано Александром Фуксом.</value>
+Все права защищены © 2008-2013 Фукс Александр</value>
   </data>
   <data name="B" xml:space="preserve">
     <value>Б</value>
@@ -360,5 +349,26 @@
   </data>
   <data name="CONF030" xml:space="preserve">
     <value>Шрифт</value>
+  </data>
+  <data name="CONF031" xml:space="preserve">
+    <value>Местоположение</value>
+  </data>
+  <data name="CONF032" xml:space="preserve">
+    <value>Бердянск,Запорожье,Львов,Севастополь,Ялта</value>
+  </data>
+  <data name="COPYRIGHTTEXT" xml:space="preserve">
+    <value>Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
+
+Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГОДНОСТИ ДЛЯ СПЕЦИФИЧЕСКОЙ ЦЕЛИ. Для дополнительной информации обращайтесь к тексту лицензии GNU General Public License.
+ 
+Вы должны были получить копию лицензии GNU General Public License вместе с программой; если нет, напишите в фонд Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+Фукс Александр, настоящим отказывается от всех прав
+в интересах программы "Traffic Accounting"
+(которая прошла через компилятор)
+Написано Александром Фуксом.</value>
+  </data>
+  <data name="TAMENUHELP" xml:space="preserve">
+    <value>&amp;Справка</value>
   </data>
 </root>

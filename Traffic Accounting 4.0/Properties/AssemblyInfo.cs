@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,13 +17,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *  
- *  IT WORKS TEAM, hereby disclaims all copyright
- *  interest in the program ".NET Assemblies Collection"
+ *  Fuks Alexander, hereby disclaims all copyright
+ *  interest in the program "Traffic Accounting"
  *  (which makes passes at compilers)
  *  written by Alexander Fuks.
- * 
- *  Alexander Fuks, 01 July 2010
- *  IT WORKS TEAM, Founder of the team.
  */
 
 using System.Reflection;
@@ -36,9 +33,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Traffic Accounting")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("IT WORKS Team")]
+[assembly: AssemblyCompany("Fuks Alexander")]
 [assembly: AssemblyProduct("Traffic Accounting")]
-[assembly: AssemblyCopyright("Copyright © IT WORKS TEAM 2008-2013")]
+[assembly: AssemblyCopyright("Copyright © Fuks Alexander 2008-2013")]
 [assembly: AssemblyTrademark("Traffic Accounting")]
 [assembly: AssemblyCulture("")]
 
@@ -57,5 +54,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("4.0.0.36")]
-[assembly: AssemblyFileVersion("4.0.0.36")]
+[assembly: AssemblyVersion("4.0.0.37")]
+[assembly: AssemblyFileVersion("4.0.0.37")]

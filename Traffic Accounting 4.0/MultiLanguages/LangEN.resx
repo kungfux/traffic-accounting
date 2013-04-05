@@ -256,22 +256,11 @@
     <value>&amp;Wednesday</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 build 36
+    <value>Traffic Accounting 4.0 build 37
 built on
-March 26, 2013
+April 5, 2013
 
-Copyright © 2008-2013 IT WORKS Team
-
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
- 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
- 
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-Fuks Alexander, hereby disclaims all copyright
-interest in the program "Traffic Accounting"
-(which makes passed at compilers)
-written by Alexander Fuks.</value>
+Copyright © 2008-2013 Fuks Alexander</value>
   </data>
   <data name="B" xml:space="preserve">
     <value>B</value>
@@ -360,5 +349,26 @@ written by Alexander Fuks.</value>
   </data>
   <data name="CONF030" xml:space="preserve">
     <value>Font name</value>
+  </data>
+  <data name="CONF031" xml:space="preserve">
+    <value>Your location</value>
+  </data>
+  <data name="CONF032" xml:space="preserve">
+    <value>Berdyansk,Zaporozhye,Lviv,Sevastopol',Yalta</value>
+  </data>
+  <data name="COPYRIGHTTEXT" xml:space="preserve">
+    <value>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+Fuks Alexander, hereby disclaims all copyright
+interest in the program "Traffic Accounting"
+(which makes passed at compilers)
+written by Alexander Fuks.</value>
+  </data>
+  <data name="TAMENUHELP" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
 </root>

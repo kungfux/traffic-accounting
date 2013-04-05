@@ -61,15 +61,11 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 36
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 37
         ///built on
-        ///March 26, 2013
+        ///April 5, 2013
         ///
-        ///Copyright © 2008-2013 IT WORKS Team
-        ///
-        ///This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-        /// 
-        ///This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICUL [rest of string was truncated]&quot;;.
+        ///Copyright © 2008-2013 Fuks Alexander.
         /// </summary>
         internal static string ABOUT {
             get {
@@ -336,6 +332,37 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string CONF030 {
             get {
                 return ResourceManager.GetString("CONF030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your location.
+        /// </summary>
+        internal static string CONF031 {
+            get {
+                return ResourceManager.GetString("CONF031", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berdyansk,Zaporozhye,Lviv,Sevastopol&apos;,Yalta.
+        /// </summary>
+        internal static string CONF032 {
+            get {
+                return ResourceManager.GetString("CONF032", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+        /// 
+        ///This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+        /// 
+        ///You should have received a cop [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string COPYRIGHTTEXT {
+            get {
+                return ResourceManager.GetString("COPYRIGHTTEXT", resourceCulture);
             }
         }
         
@@ -660,6 +687,15 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string TAMENUDAY {
             get {
                 return ResourceManager.GetString("TAMENUDAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Help.
+        /// </summary>
+        internal static string TAMENUHELP {
+            get {
+                return ResourceManager.GetString("TAMENUHELP", resourceCulture);
             }
         }
         

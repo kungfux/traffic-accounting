@@ -61,15 +61,11 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 сборка 36
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 сборка 37
         ///собрано
-        ///26 марта, 2013
+        ///05 апреля, 2013
         ///
-        ///Все права защищены © 2008-2013 IT WORKS Team
-        ///
-        ///Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
-        ///
-        ///Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГОДН [rest of string was truncated]&quot;;.
+        ///Все права защищены © 2008-2013 Фукс Александр.
         /// </summary>
         internal static string ABOUT {
             get {
@@ -336,6 +332,35 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string CONF030 {
             get {
                 return ResourceManager.GetString("CONF030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Местоположение.
+        /// </summary>
+        internal static string CONF031 {
+            get {
+                return ResourceManager.GetString("CONF031", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бердянск,Запорожье,Львов,Севастополь,Ялта.
+        /// </summary>
+        internal static string CONF032 {
+            get {
+                return ResourceManager.GetString("CONF032", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
+        ///
+        ///Эта программа создана в надежде, что она может быть полезна, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемой гарантии ГОДНОСТИ или ПРИГОДНОСТИ ДЛЯ СПЕЦИФИЧЕСКОЙ ЦЕЛИ. Для дополнительной информации обращайтесь к тексту лицензии GNU General Public L [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string COPYRIGHTTEXT {
+            get {
+                return ResourceManager.GetString("COPYRIGHTTEXT", resourceCulture);
             }
         }
         
@@ -660,6 +685,15 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string TAMENUDAY {
             get {
                 return ResourceManager.GetString("TAMENUDAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Справка.
+        /// </summary>
+        internal static string TAMENUHELP {
+            get {
+                return ResourceManager.GetString("TAMENUHELP", resourceCulture);
             }
         }
         

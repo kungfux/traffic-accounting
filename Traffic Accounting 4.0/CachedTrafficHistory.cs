@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) IT WORKS TEAM 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2013
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,13 +17,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *  
- *  IT WORKS TEAM, hereby disclaims all copyright
- *  interest in the program ".NET Assemblies Collection"
+ *  Fuks Alexander, hereby disclaims all copyright
+ *  interest in the program "Traffic Accounting"
  *  (which makes passes at compilers)
  *  written by Alexander Fuks.
- * 
- *  Alexander Fuks, 01 July 2010
- *  IT WORKS TEAM, Founder of the team.
  */
 
 using System;
@@ -47,7 +44,15 @@ namespace Traffic_Accounting
         public CachedTrafficHistory()
         {
             // skip loading of cache in case
-            // cache was loaded before
+            // cache is disabled in setup
+            if (!ClientParams.Parameters.TrafficCacheEnabled)
+            {
+                return;
+            }
+
+            // skip loading of cache in case
+            // cache was loaded before or
+            // runtime cache is present
             if (TrafficHistoryCache.Count > 0)
             {
                 return;
@@ -178,9 +183,15 @@ namespace Traffic_Accounting
         // save cache to fs
         public void saveCache()
         {
-            Log.Trace.addTrace("Saving cache to FS");
+            if (!ClientParams.Parameters.TrafficCacheEnabled)
+            {
+                // skip saving because setting is disabled
+                Log.Trace.addTrace("Saving cache to FS is skipped");
+                return;
+            }
             ClearOutLimitedCache();
             SerializeClass<List<TrafficHistory>>(TrafficHistoryCache, CacheFileName);
+            Log.Trace.addTrace("Cache is saved to FS");
         }
 
         // method for serializaion
@@ -258,6 +269,15 @@ namespace Traffic_Accounting
                 string.Format("Calculate week number from {0}. Result is {1}", 
                 date, weeks));
             return weeks;
+        }
+
+        /// <summary>
+        /// clear runtime cache
+        /// </summary>
+        public void ClearRuntimeCache()
+        {
+            Log.Trace.addTrace("Runtime cache is cleared");
+            TrafficHistoryCache.Clear();
         }
     }
 }
