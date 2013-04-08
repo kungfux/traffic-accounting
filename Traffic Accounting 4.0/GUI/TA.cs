@@ -586,19 +586,34 @@ namespace Traffic_Accounting
             if (ClientParams.Parameters.TOPenabled)
             {
                 result += Environment.NewLine;
-
-                int f = h.TOP.Position;
-                if (f == 0)
+                if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
                 {
-                    result += l.GetMessage("TA005"); //You will not be in TOP 10 this week
+                    result += string.Format(l.GetMessage("TA003"),
+                        h.TOP.Position, h.TOP.MaxPositions);
                 }
                 else
                 {
-                    result += string.Format(l.GetMessage("TA006"), f); //{0}% chance to be in TOP 10 this week
+                    int f = h.TOP.Position;
+                    if (f == 0)
+                    {
+                        result += l.GetMessage("TA005"); //You will not be in TOP 10 this week
+                    }
+                    else
+                    {
+                        result += string.Format(l.GetMessage("TA006"), f); //{0}% chance to be in TOP 10 this week
+                    }
                 }
             }
 
             return result;
+        }
+
+        private void TA_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

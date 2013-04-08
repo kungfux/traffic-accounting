@@ -45,7 +45,7 @@ namespace Traffic_Accounting
             textBox1.Text = l.GetMessage("COPYRIGHTTEXT");
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             switch (image)
             {

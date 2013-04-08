@@ -150,10 +150,10 @@ namespace Traffic_Accounting
         {
             Log.Trace.addTrace("Opening statistics window");
 
-            if (StatForm.IsDisposed)
+            if (StatForm == null || StatForm.IsDisposed)
             {
                 StatForm = new TA();
-                //StatForm.FormClosed += new FormClosedEventHandler(StatForm_FormClosed);
+                StatForm.FormClosed += new FormClosedEventHandler(StatForm_FormClosed);
                 StatForm.ConfigurationChanged += new TA.ConfChanged(StatForm_ConfigurationChanged);
                 StatForm.LanguageChanged += new TA.LangChanged(StatForm_LanguageChanged);
             }
@@ -198,10 +198,10 @@ namespace Traffic_Accounting
             }
         }
 
-        //void StatForm_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-        //    StatForm = null;
-        //}
+        void StatForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            StatForm = null;
+        }
 
         // close app
         private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -257,67 +257,11 @@ namespace Traffic_Accounting
 
         public string getNotifyText()
         {
+            if (StatForm == null)
+            {
+                StatForm = new TA();
+            }
             return StatForm.getNotifyText();
-            // Current week statistics
-            //string result = l.GetMessage("TA004"); //Current week's statistics
-            //result += Environment.NewLine + Environment.NewLine;
-
-            //TrafficHistory h = new TrafficHistory();
-            //h = t.getByWeek(DateTime.Now);
-            //int a2 = 1;
-            //long totalUnfiltered = 0;
-            //long totalFiltered = 0;
-            //for (int a = 0; a < h.WebSite.Count; a++)
-            //{
-            //    if (ClientParams.Parameters.TrafficFilterEnabled &&
-            //        filter.isInList(h.WebSite[a]))
-            //    {
-            //        totalFiltered += h.UsedTraffic[a];
-            //    }
-            //    else
-            //    {
-            //        totalUnfiltered += h.UsedTraffic[a];
-            //    }
-            //    a2++;
-            //}
-
-            //result += string.Format(l.GetMessage("TA002"), //Total used traffic: {0}
-            //        t.getConvertedBytes(totalUnfiltered));
-
-            //if (ClientParams.Parameters.TrafficFilterEnabled)
-            //{
-            //    result += Environment.NewLine;
-            //    result +=
-            //        string.Format(
-            //        string.Concat(
-            //            l.GetMessage("TA010"), //Total filtered traffic: {0}
-            //            Environment.NewLine,
-            //            l.GetMessage("TA012")), //Total together: {1}
-            //            t.getConvertedBytes(totalFiltered),
-            //            t.getConvertedBytes(totalFiltered + totalUnfiltered));
-            //}
-
-            //if (ClientParams.Parameters.TOPenabled)
-            //{
-            //    result += Environment.NewLine;
-
-            //    int f = h.TOP.Position;
-            //    if (f == 0)
-            //    {
-            //        result += l.GetMessage("TA005"); //You will not be in TOP 10 this week
-            //    }
-            //    else
-            //    {
-            //        result += string.Format(l.GetMessage("TA006"), f); //{0}% chance to be in TOP 10 this week
-            //    }
-            //}
-
-            //if (!h.IsLoaded)
-            //{
-            //    result = l.GetMessage("TA013"); //Error occur during retrieving statistics. It can be network or server error. Statistics can be wrong or partially filled!
-            //}
-
-            //return result;
         }
     }
 }

@@ -331,6 +331,19 @@ namespace Traffic_Accounting
                 int.TryParse(comboBox4.Text, out ClientParams.Parameters.TrayFontSize);
                 ClientParams.Parameters.TrayFontName = comboBox5.Text;
                 ClientParams.Parameters.Location = (FwServers.FwServer)comboBox6.SelectedIndex + 1;
+
+                // check if user change location
+                // then we need to clear runtime cache
+                if (sender is ComboBox)
+                {
+                    ComboBox combobox = (ComboBox)sender;
+                    if (combobox.Name == comboBox6.Name)
+                    {
+                        CachedTrafficHistory cache = new CachedTrafficHistory();
+                        cache.ClearRuntimeCache();
+                    }
+                }
+
                 ConfigChanged();
             }
         }
@@ -383,6 +396,7 @@ namespace Traffic_Accounting
             label7.Text = l.GetMessage("CONF029");
             label8.Text = l.GetMessage("CONF030");
             label1.Text = l.GetMessage("CONF031");
+            comboBox6.Items.Clear();
             comboBox6.Items.AddRange(l.GetMessage("CONF032").Split(','));
             comboBox6.SelectedIndex = (int)ClientParams.Parameters.Location - 1;
         }

@@ -65,7 +65,7 @@ namespace Traffic_Accounting
         public bool TrayBackColorRangesEnabled = true;
         public byte[] TrayTrafficRanges = new byte[3] { 0, 20, 50 };
         public int IconFashion = 1;
-        public bool DisplayNotify = false;
+        public bool DisplayNotify = true;
         // Traffic
         public int TrafficLimitForWeek = 100;
         public bool TrafficCacheEnabled = true;
@@ -298,7 +298,7 @@ namespace Traffic_Accounting
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                    RegPath, "TrayFontName");
             }
-            if (Parameters.DisplayNotify)
+            if (!Parameters.DisplayNotify)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                         RegPath, "DisplayNotify", Parameters.DisplayNotify);

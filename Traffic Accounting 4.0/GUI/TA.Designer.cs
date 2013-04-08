@@ -200,7 +200,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -321,11 +321,13 @@
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(370, 465);
             this.Name = "TA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Traffic Accounting 4.0";
             this.Load += new System.EventHandler(this.TA_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TA_KeyUp);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

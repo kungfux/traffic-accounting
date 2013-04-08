@@ -172,7 +172,7 @@ namespace Traffic_Accounting
         // load cache from fs
         public void loadCache()
         {
-            Log.Trace.addTrace("Loading cache for FS");
+            Log.Trace.addTrace("Loading cache from FS");
             List<TrafficHistory> loaded = DeserializeClass<List<TrafficHistory>>(CacheFileName);
             if (loaded != null)
             {
