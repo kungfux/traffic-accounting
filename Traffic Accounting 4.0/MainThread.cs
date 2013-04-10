@@ -37,7 +37,7 @@ namespace Traffic_Accounting
 
         private Traffic t = new Traffic();
         private int dtLastChecked = 0;
-        private TA StatForm = new TA();
+        private TA StatForm;
         private WebBrowserSetup WebBrowserSetup = new WebBrowserSetup();
         private bool forceRefresh = false;
         private ToolStripMenuItem menuImages = new ToolStripMenuItem("");
@@ -261,7 +261,9 @@ namespace Traffic_Accounting
             {
                 StatForm = new TA();
             }
-            return StatForm.getNotifyText();
+            string result = StatForm.getNotifyText();
+            StatForm.Close();
+            return result;
         }
     }
 }

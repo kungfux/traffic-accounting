@@ -109,18 +109,6 @@ namespace Traffic_Accounting
         // disable/enable existing days
         private void toolStripDay_DropDownOpening(object sender, EventArgs e)
         {
-            //int b = GetDays();
-            /*for (int a = 0; a < 7; a++)
-            {
-                if (b > a)
-                {
-                    toolStripDropDownDay.DropDownItems[a].Enabled = true;
-                }
-                else
-                {
-                    toolStripDropDownDay.DropDownItems[a].Enabled = false;
-                }
-            }*/
             for (int a = 0; a < 7; a++)
             {
                 toolStripDropDownDay.DropDownItems[a].Enabled = false;
@@ -248,7 +236,6 @@ namespace Traffic_Accounting
             }
             if (ClientParams.Parameters.TOPenabled)
             {
-                //int f = t.getFortuneTelling();
                 int f = h.TOP.Position;
                 if (f == 0)
                 {

@@ -272,12 +272,13 @@ namespace Traffic_Accounting
         }
 
         /// <summary>
-        /// clear runtime cache
+        /// clear runtime and stored cache
         /// </summary>
-        public void ClearRuntimeCache()
+        public void ClearCache()
         {
             Log.Trace.addTrace("Runtime cache is cleared");
             TrafficHistoryCache.Clear();
+            saveCache();
         }
     }
 }

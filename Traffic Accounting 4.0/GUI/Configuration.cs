@@ -270,7 +270,7 @@ namespace Traffic_Accounting
                 ClientParams.Parameters.DisplayNotify = checkBox6.Checked;
 
                 // check if user uncheck traffic cache
-                // then we need to clear runtime cache
+                // then we need to clear cache
                 if (sender is CheckBox)
                 {
                     CheckBox checkbox = (CheckBox)sender;
@@ -279,7 +279,7 @@ namespace Traffic_Accounting
                         if (!checkbox.Checked)
                         {
                             CachedTrafficHistory cache = new CachedTrafficHistory();
-                            cache.ClearRuntimeCache();
+                            cache.ClearCache();
                         }
                     }
                 }
@@ -287,16 +287,6 @@ namespace Traffic_Accounting
                 ConfigChanged();
             }
         }
-
-        //private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        //{
-        //    int a = (e.OldValue - e.NewValue) * this.Height;
-        //    int b = a / 100;
-        //    foreach (Control c in this.Controls)
-        //    {
-        //        c.Top += b;
-        //    }
-        //}
 
         private void numericUpDown_ValueChanged(object sender, EventArgs e)
         {
@@ -333,14 +323,14 @@ namespace Traffic_Accounting
                 ClientParams.Parameters.Location = (FwServers.FwServer)comboBox6.SelectedIndex + 1;
 
                 // check if user change location
-                // then we need to clear runtime cache
+                // then we need to clear cache
                 if (sender is ComboBox)
                 {
                     ComboBox combobox = (ComboBox)sender;
                     if (combobox.Name == comboBox6.Name)
                     {
                         CachedTrafficHistory cache = new CachedTrafficHistory();
-                        cache.ClearRuntimeCache();
+                        cache.ClearCache();
                     }
                 }
 
@@ -388,8 +378,7 @@ namespace Traffic_Accounting
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(new string[] { 
                 l.GetMessage("CONF021"), l.GetMessage("CONF017"), 
-                l.GetMessage("CONF018"), l.GetMessage("CONF019"),
-                /*l.GetMessage("CONF020")*/});
+                l.GetMessage("CONF018"), l.GetMessage("CONF019")});
             checkBox5.Text = l.GetMessage("CONF023");
             linkLabel1.Text = l.GetMessage("CONF024");
             checkBox6.Text = l.GetMessage("CONF028");

@@ -34,9 +34,9 @@ namespace Traffic_Accounting
             Unknown = 0,
             Berdyansk = 1,
             Zaporogie = 2,
-            Lviv = 4,
-            Sevastopol = 8,
-            Yalta = 16            
+            Lviv = 3,
+            Sevastopol = 4,
+            Yalta = 5            
         }
 
         // return url for local statistics server
