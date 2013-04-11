@@ -30,6 +30,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using Traffic_Accounting.GUI;
 
 namespace Traffic_Accounting
 {
@@ -73,8 +74,8 @@ namespace Traffic_Accounting
             this.LanguageChanged += new LangChanged(Configuration_LanguageChanged);
             Translate();
 
-            comboBox3.Items.Clear();
-            comboBox3.Items.AddRange(new string[] {
+            cmbDigitsColor.Items.Clear();
+            cmbDigitsColor.Items.AddRange(new string[] {
                 KnownColor.AliceBlue.ToString(), 
                 KnownColor.AntiqueWhite.ToString(), 
                 KnownColor.Aqua.ToString(),
@@ -220,32 +221,33 @@ namespace Traffic_Accounting
                 new System.Drawing.Text.InstalledFontCollection();
             foreach (FontFamily ff in installedFonts.Families)
             {
-                comboBox5.Items.Add(ff.Name);
+                cmbFont.Items.Add(ff.Name);
             }
 
             // display current setup
-            checkBoxAutoStart.Checked = ClientParams.Parameters.AutoStart;
-            comboBox2.SelectedItem = ClientParams.Parameters.Language;
-            numericUpDown2.Value = ClientParams.Parameters.TrafficLimitForWeek;
-            checkBox2.Checked = ClientParams.Parameters.TrafficRoundUp;
-            checkBox4.Checked = ClientParams.Parameters.TOPenabled;
-            numericUpDown3.Value = ClientParams.Parameters.TrayTrafficRanges[0];
-            numericUpDown4.Value = ClientParams.Parameters.TrayTrafficRanges[1];
-            numericUpDown5.Value = ClientParams.Parameters.TrayTrafficRanges[2];
-            numericUpDown4.Maximum = numericUpDown5.Value;
-            numericUpDown3.Maximum = numericUpDown4.Value;
-            checkBox3.Checked = ClientParams.Parameters.TrayDisplayDigits;
-            comboBox1.SelectedIndex = ClientParams.Parameters.IconFashion;
-            checkBox1.Checked = ClientParams.Parameters.TrafficCacheEnabled;
-            checkBox5.Checked = ClientParams.Parameters.TrafficFilterEnabled;
-            checkBox6.Checked = ClientParams.Parameters.DisplayNotify;
-            comboBox4.Text = ClientParams.Parameters.TrayFontSize.ToString();
-            comboBox5.Text = ClientParams.Parameters.TrayFontName;
+            chAutoStart.Checked = ClientParams.Parameters.AutoStart;
+            chTrace.Checked = ClientParams.Parameters.TraceEnabled;
+            cmbLanguage.SelectedItem = ClientParams.Parameters.Language;
+            updTrafficLimit.Value = ClientParams.Parameters.TrafficLimitForWeek;
+            chRoundUp.Checked = ClientParams.Parameters.TrafficRoundUp;
+            chTop10.Checked = ClientParams.Parameters.TOPenabled;
+            updTrafficExceed.Value = ClientParams.Parameters.TrayTrafficRanges[0];
+            updTrafficCritical.Value = ClientParams.Parameters.TrayTrafficRanges[1];
+            updTrafficWarning.Value = ClientParams.Parameters.TrayTrafficRanges[2];
+            updTrafficCritical.Maximum = updTrafficWarning.Value;
+            updTrafficExceed.Maximum = updTrafficCritical.Value;
+            chDigits.Checked = ClientParams.Parameters.TrayDisplayDigits;
+            cmbIconFashion.SelectedIndex = ClientParams.Parameters.IconFashion;
+            chCache.Checked = ClientParams.Parameters.TrafficCacheEnabled;
+            chFilter.Checked = ClientParams.Parameters.TrafficFilterEnabled;
+            chNotify.Checked = ClientParams.Parameters.DisplayNotify;
+            cmbDigitsSize.Text = ClientParams.Parameters.TrayFontSize.ToString();
+            cmbFont.Text = ClientParams.Parameters.TrayFontName;
 
-            comboBox3.SelectedItem = (object)ClientParams.Parameters.TrayIconFontColor;
-            comboBox3.Enabled = checkBox3.Checked;
+            cmbDigitsColor.SelectedItem = (object)ClientParams.Parameters.TrayIconFontColor;
+            cmbDigitsColor.Enabled = chDigits.Checked;
 
-            comboBox6.SelectedIndex = (int)ClientParams.Parameters.Location - 1;
+            cmbLocation.SelectedIndex = (int)ClientParams.Parameters.Location - 1;
             loaded = true;
         }
 
@@ -260,26 +262,40 @@ namespace Traffic_Accounting
         {
             if (loaded)
             {
-                comboBox3.Enabled = checkBox3.Checked;
-                ClientParams.Parameters.AutoStart = checkBoxAutoStart.Checked;
-                ClientParams.Parameters.TrafficRoundUp = checkBox2.Checked;
-                ClientParams.Parameters.TOPenabled = checkBox4.Checked;
-                ClientParams.Parameters.TrayDisplayDigits = checkBox3.Checked;
-                ClientParams.Parameters.TrafficCacheEnabled = checkBox1.Checked;
-                ClientParams.Parameters.TrafficFilterEnabled = checkBox5.Checked;
-                ClientParams.Parameters.DisplayNotify = checkBox6.Checked;
+                cmbDigitsColor.Enabled = chDigits.Checked;
+                ClientParams.Parameters.AutoStart = chAutoStart.Checked;
+                ClientParams.Parameters.TrafficRoundUp = chRoundUp.Checked;
+                ClientParams.Parameters.TOPenabled = chTop10.Checked;
+                ClientParams.Parameters.TrayDisplayDigits = chDigits.Checked;
+                ClientParams.Parameters.TrafficCacheEnabled = chCache.Checked;
+                ClientParams.Parameters.TrafficFilterEnabled = chFilter.Checked;
+                ClientParams.Parameters.DisplayNotify = chNotify.Checked;
+                ClientParams.Parameters.TraceEnabled = chTrace.Checked;
 
-                // check if user uncheck traffic cache
-                // then we need to clear cache
                 if (sender is CheckBox)
                 {
                     CheckBox checkbox = (CheckBox)sender;
-                    if (checkbox.Name == checkBox1.Name)
+                    // check if user uncheck traffic cache
+                    // then we need to clear cache
+                    if (checkbox.Name == chCache.Name)
                     {
                         if (!checkbox.Checked)
                         {
                             CachedTrafficHistory cache = new CachedTrafficHistory();
                             cache.ClearCache();
+                        }
+                    }
+                    // check if user uncheck log
+                    // then we need to open/close writer
+                    if (checkbox.Name == chTrace.Name)
+                    {
+                        if (!checkbox.Checked)
+                        {
+                            Log.Trace.closeTrace();
+                        }
+                        else
+                        {
+                            Log.Trace.resumeTrace();
                         }
                     }
                 }
@@ -292,10 +308,10 @@ namespace Traffic_Accounting
         {
             if (loaded)
             {
-                ClientParams.Parameters.TrafficLimitForWeek = (int)numericUpDown2.Value;
-                ClientParams.Parameters.TrayTrafficRanges[0] = (byte)numericUpDown3.Value;
-                ClientParams.Parameters.TrayTrafficRanges[1] = (byte)numericUpDown4.Value;
-                ClientParams.Parameters.TrayTrafficRanges[2] = (byte)numericUpDown5.Value;
+                ClientParams.Parameters.TrafficLimitForWeek = (int)updTrafficLimit.Value;
+                ClientParams.Parameters.TrayTrafficRanges[0] = (byte)updTrafficExceed.Value;
+                ClientParams.Parameters.TrayTrafficRanges[1] = (byte)updTrafficCritical.Value;
+                ClientParams.Parameters.TrayTrafficRanges[2] = (byte)updTrafficWarning.Value;
                 ConfigChanged();
             }
         }
@@ -304,30 +320,30 @@ namespace Traffic_Accounting
         {
             if (loaded)
             {
-                if (comboBox1.SelectedIndex == 0)
+                if (cmbIconFashion.SelectedIndex == 0)
                 {
-                    checkBox3.Checked = true;
-                    checkBox3.Enabled = false;
+                    chDigits.Checked = true;
+                    chDigits.Enabled = false;
                 }
                 else
                 {
-                    checkBox3.Enabled = true;
+                    chDigits.Enabled = true;
                 }
-                ClientParams.Parameters.IconFashion = comboBox1.SelectedIndex;
-                if (comboBox3.SelectedItem != null) // just check for an error
+                ClientParams.Parameters.IconFashion = cmbIconFashion.SelectedIndex;
+                if (cmbDigitsColor.SelectedItem != null) // just check for an error
                 {
-                    ClientParams.Parameters.TrayIconFontColor = comboBox3.SelectedItem.ToString();
+                    ClientParams.Parameters.TrayIconFontColor = cmbDigitsColor.SelectedItem.ToString();
                 }
-                int.TryParse(comboBox4.Text, out ClientParams.Parameters.TrayFontSize);
-                ClientParams.Parameters.TrayFontName = comboBox5.Text;
-                ClientParams.Parameters.Location = (FwServers.FwServer)comboBox6.SelectedIndex + 1;
+                int.TryParse(cmbDigitsSize.Text, out ClientParams.Parameters.TrayFontSize);
+                ClientParams.Parameters.TrayFontName = cmbFont.Text;
+                ClientParams.Parameters.Location = (FwServers.FwServer)cmbLocation.SelectedIndex + 1;
 
                 // check if user change location
                 // then we need to clear cache
                 if (sender is ComboBox)
                 {
                     ComboBox combobox = (ComboBox)sender;
-                    if (combobox.Name == comboBox6.Name)
+                    if (combobox.Name == cmbLocation.Name)
                     {
                         CachedTrafficHistory cache = new CachedTrafficHistory();
                         cache.ClearCache();
@@ -342,7 +358,7 @@ namespace Traffic_Accounting
         {
             if (loaded)
             {
-                ClientParams.Parameters.Language = (string)comboBox2.SelectedItem;
+                ClientParams.Parameters.Language = (string)cmbLanguage.SelectedItem;
                 LanguageIsChanged();
                 ConfigChanged();
             }
@@ -350,44 +366,45 @@ namespace Traffic_Accounting
 
         private void numericUpDown5_Leave(object sender, EventArgs e)
         {
-            numericUpDown4.Maximum = numericUpDown5.Value;
+            updTrafficCritical.Maximum = updTrafficWarning.Value;
         }
 
         private void numericUpDown4_Leave(object sender, EventArgs e)
         {
-            numericUpDown3.Maximum = numericUpDown4.Value;
+            updTrafficExceed.Maximum = updTrafficCritical.Value;
         }
 
         private void Translate()
         {
-            groupBox1.Text = l.GetMessage("CONF002");
-            checkBoxAutoStart.Text = l.GetMessage("CONF003");
-            groupBox5.Text = l.GetMessage("CONF004");
-            label5.Text = l.GetMessage("CONF005");
-            groupBox3.Text = l.GetMessage("CONF006");
-            label2.Text = l.GetMessage("CONF007");
-            checkBox2.Text = l.GetMessage("CONF008");
-            checkBox4.Text = l.GetMessage("CONF009");
-            groupBox4.Text = l.GetMessage("CONF010");
-            label3.Text = l.GetMessage("CONF011");
-            checkBox3.Text = l.GetMessage("CONF012");
-            label4.Text = l.GetMessage("CONF013");
-            groupBox2.Text = l.GetMessage("CONF014");
-            checkBox1.Text = l.GetMessage("CONF015");
-            label6.Text = l.GetMessage("CONF022");
-            comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(new string[] { 
+            groupGeneral.Text = l.GetMessage("CONF002");
+            chAutoStart.Text = l.GetMessage("CONF003");
+            lLanguage.Text = l.GetMessage("CONF005");
+            groupTraffic.Text = l.GetMessage("CONF006");
+            lTrafficLimit.Text = l.GetMessage("CONF007");
+            chRoundUp.Text = l.GetMessage("CONF008");
+            chTop10.Text = l.GetMessage("CONF009");
+            groupSystemTray.Text = l.GetMessage("CONF010");
+            lTrafficRanges.Text = l.GetMessage("CONF011");
+            chDigits.Text = l.GetMessage("CONF012");
+            lIconFashion.Text = l.GetMessage("CONF013");
+            chCache.Text = l.GetMessage("CONF015");
+            lDigitsColor.Text = l.GetMessage("CONF022");
+            cmbIconFashion.Items.Clear();
+            cmbIconFashion.Items.AddRange(new string[] { 
                 l.GetMessage("CONF021"), l.GetMessage("CONF017"), 
                 l.GetMessage("CONF018"), l.GetMessage("CONF019")});
-            checkBox5.Text = l.GetMessage("CONF023");
+            chFilter.Text = l.GetMessage("CONF023");
             linkLabel1.Text = l.GetMessage("CONF024");
-            checkBox6.Text = l.GetMessage("CONF028");
-            label7.Text = l.GetMessage("CONF029");
-            label8.Text = l.GetMessage("CONF030");
-            label1.Text = l.GetMessage("CONF031");
-            comboBox6.Items.Clear();
-            comboBox6.Items.AddRange(l.GetMessage("CONF032").Split(','));
-            comboBox6.SelectedIndex = (int)ClientParams.Parameters.Location - 1;
+            chNotify.Text = l.GetMessage("CONF028");
+            lDigitsSize.Text = l.GetMessage("CONF029");
+            lFontName.Text = l.GetMessage("CONF030");
+            lLocation.Text = l.GetMessage("CONF031");
+            cmbLocation.Items.Clear();
+            cmbLocation.Items.AddRange(l.GetMessage("CONF032").Split(','));
+            cmbLocation.SelectedIndex = (int)ClientParams.Parameters.Location - 1;
+            groupSystem.Text = l.GetMessage("CONF014");
+            chTrace.Text = l.GetMessage("CONF033");
+            btnAdditional.Text = l.GetMessage("CONF034");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -416,6 +433,22 @@ namespace Traffic_Accounting
                 MessageBox.Show(l.GetMessage("CONF025"), l.GetMessage("CONF024"),
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btnAdditional_Click(object sender, EventArgs e)
+        {
+            AdditionalConfiguration addConf = new AdditionalConfiguration();
+            addConf.ConfigurationChanged += new AdditionalConfiguration.ConfChanged(addConf_ConfigurationChanged);
+            addConf.Dock = DockStyle.Fill;
+            this.Parent.Controls.Add(addConf);
+            addConf.BringToFront();
+        }
+
+        void addConf_ConfigurationChanged()
+        {
+            ConfigChanged();
+            CachedTrafficHistory cache = new CachedTrafficHistory();
+            cache.ClearCache();
         }
     }
 }

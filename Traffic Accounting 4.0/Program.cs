@@ -35,10 +35,6 @@ namespace Traffic_Accounting
 {
     public class Program
     {
-        [DllImport("kernel32.dll")]
-        static extern bool AttachConsole(int dwProcessId);
-        private const int ATTACH_PARENT_PROCESS = -1;
-
         // Application mutex
         private const string AppMutexName = "Traffic Accounting 4.0";
 
@@ -71,8 +67,6 @@ namespace Traffic_Accounting
             }
             else
             {
-                Log.Trace.addTrace("Running main thread");
-
                 using (Mutex mutex = new Mutex(false, AppMutexName))
                 {
                     string ta = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Traffic Accounting";
@@ -84,9 +78,20 @@ namespace Traffic_Accounting
                     bool Running = !mutex.WaitOne(0, false);
                     if (!Running)
                     {
-                        Application.EnableVisualStyles();
-                        Application.SetCompatibleTextRenderingDefault(false);
-                        Application.Run(new MainThread());
+                        if (ClientParams.Parameters.Welcome)
+                        {
+                            Log.Trace.addTrace("Running welcome form");
+                            Application.EnableVisualStyles();
+                            Application.SetCompatibleTextRenderingDefault(false);
+                            Application.Run(new Traffic_Accounting.GUI.Welcome());
+                        }
+                        else
+                        {
+                            Log.Trace.addTrace("Running main thread");
+                            Application.EnableVisualStyles();
+                            Application.SetCompatibleTextRenderingDefault(false);
+                            Application.Run(new MainThread());
+                        }
                     }
                     else
                     {

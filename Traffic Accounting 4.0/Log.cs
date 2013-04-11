@@ -76,7 +76,7 @@ namespace Traffic_Accounting
 
         ~Log()
         {
-            if (writer != null && writer.BaseStream.CanWrite)
+            if (writer != null && writer.BaseStream != null && writer.BaseStream.CanWrite)
             {
                 writer.Close();
             }
@@ -100,6 +100,20 @@ namespace Traffic_Accounting
                 stackTrace.GetFrame(1).GetMethod().Name,
                 message
                 ));
+        }
+
+        public void closeTrace()
+        {
+            addTrace("Stop traces");
+            if (writer != null)
+            {
+                writer.Close();
+            }
+        }
+
+        public void resumeTrace()
+        {
+            _log = new Log();
         }
     }
 }

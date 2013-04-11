@@ -60,7 +60,6 @@ namespace Traffic_Accounting
                 return StatCache.getDay(date);
             }
             string url = prepareStatUrl(date,
-                fwservers.getHttpAddress(ClientParams.Parameters.Location) +
                 ClientParams.Parameters.TrafficStatDailyUrl);
             string html = HttpRequest.readUrl(url);
             if (HttpRequest.LastOperationCompletedSuccessfully)
@@ -174,7 +173,6 @@ namespace Traffic_Accounting
                 return StatCache.getWeek(dayInWeek);
             }
             string url = prepareStatUrl(dayInWeek,
-                fwservers.getHttpAddress(ClientParams.Parameters.Location) +
                 ClientParams.Parameters.TrafficStatWeeklyUrl);
             string html = HttpRequest.readUrl(url);
             if (HttpRequest.LastOperationCompletedSuccessfully)
@@ -252,13 +250,20 @@ namespace Traffic_Accounting
         /// </summary>
         private string prepareStatUrl(DateTime date, string Url)
         {
-            string dateInUrl = Url.Substring(Url.IndexOf('[') + 1, Url.LastIndexOf(']') - Url.IndexOf('[') - 1);
-            string insertedDate = date.ToString(dateInUrl);
-            if (insertedDate.Contains("WW"))
+            // insert server based on [SERVER]
+            string result = Url.Replace("[SERVER]",
+                fwservers.getHttpAddress(ClientParams.Parameters.Location));
+            // insert date based on standard DateTime elements
+            string dateInUrl = result.Substring(result.IndexOf('[') + 1, 
+                result.LastIndexOf(']') - result.IndexOf('[') - 1);
+            string dateToInsert = date.ToString(dateInUrl);
+            // insert week number based on WW
+            if (dateToInsert.Contains("WW"))
             {
-                insertedDate = insertedDate.Replace("WW", getWeek(date));
+                dateToInsert = dateToInsert.Replace("WW", getWeek(date));
             }
-            return Url.Replace("[" + dateInUrl + "]", insertedDate);
+            result = result.Replace("[" + dateInUrl + "]", dateToInsert);
+            return result;
         }
 
         /// <summary>

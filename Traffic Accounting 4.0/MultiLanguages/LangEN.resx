@@ -123,9 +123,6 @@
   <data name="CONF003" xml:space="preserve">
     <value>Start automatically at Windows startup</value>
   </data>
-  <data name="CONF004" xml:space="preserve">
-    <value>Interface</value>
-  </data>
   <data name="CONF005" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -152,9 +149,6 @@
   </data>
   <data name="CONF013" xml:space="preserve">
     <value>Icon fashion</value>
-  </data>
-  <data name="CONF014" xml:space="preserve">
-    <value>System</value>
   </data>
   <data name="CONF015" xml:space="preserve">
     <value>Use local cache to increase performance (recommended)</value>
@@ -256,9 +250,9 @@
     <value>&amp;Wednesday</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 build 37
+    <value>Traffic Accounting 4.0 build 38
 built on
-April 10, 2013
+April 11, 2013
 
 Copyright © 2008-2013 Fuks Alexander</value>
   </data>
@@ -307,9 +301,6 @@ Copyright © 2008-2013 Fuks Alexander</value>
   <data name="CONF026" xml:space="preserve">
     <value>Following websites are present in the filter's list:
 {0}</value>
-  </data>
-  <data name="CONF027_removed" xml:space="preserve">
-    <value>Filter is turned off now.</value>
   </data>
   <data name="PROGRAMNAME" xml:space="preserve">
     <value>Traffic Accounting 4.0</value>
@@ -370,5 +361,48 @@ written by Alexander Fuks.</value>
   </data>
   <data name="TAMENUHELP" xml:space="preserve">
     <value>&amp;Help</value>
+  </data>
+  <data name="WELCOME" xml:space="preserve">
+    <value>Welcome to {0}</value>
+  </data>
+  <data name="WELCOMESTART" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="WELCOMETEXT" xml:space="preserve">
+    <value>Welcome to Traffic Accounting 4.0. This program allows you to easily control the traffic charges. You can view detailed statistics, receive notifications and keep informed.
+To start using program just set a few settings and click Start!</value>
+  </data>
+  <data name="CONF014" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="CONF033" xml:space="preserve">
+    <value>Write traces into file</value>
+  </data>
+  <data name="CONF034" xml:space="preserve">
+    <value>Additional</value>
+  </data>
+  <data name="CONFA001" xml:space="preserve">
+    <value>Specify machine name:</value>
+  </data>
+  <data name="CONFA002" xml:space="preserve">
+    <value>Specify url to get daily traffic statistics:</value>
+  </data>
+  <data name="CONFA003" xml:space="preserve">
+    <value>Specify url to get weekly traffic statistics:</value>
+  </data>
+  <data name="CONFA004" xml:space="preserve">
+    <value>Specify cutting options to skip parsing not needed html data:</value>
+  </data>
+  <data name="CONFA005" xml:space="preserve">
+    <value>Specify traffic statistics pattern:</value>
+  </data>
+  <data name="CONFA006" xml:space="preserve">
+    <value>Specify "TOP10" pattern:</value>
+  </data>
+  <data name="CONFA007" xml:space="preserve">
+    <value>Apply settings</value>
+  </data>
+  <data name="CONFA008" xml:space="preserve">
+    <value>Cancel</value>
   </data>
 </root>

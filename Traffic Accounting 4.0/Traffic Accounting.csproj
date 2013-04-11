@@ -59,6 +59,12 @@
       <DependentUpon>AboutControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientParams.cs" />
+    <Compile Include="GUI\AdditionalConfiguration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\AdditionalConfiguration.Designer.cs">
+      <DependentUpon>AdditionalConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Configuration.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -70,6 +76,12 @@
     </Compile>
     <Compile Include="GUI\NotifyForm.Designer.cs">
       <DependentUpon>NotifyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Welcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Welcome.Designer.cs">
+      <DependentUpon>Welcome.cs</DependentUpon>
     </Compile>
     <Compile Include="Log.cs" />
     <Compile Include="MultiLanguages\LangEN.Designer.cs">
@@ -125,12 +137,20 @@
       <DependentUpon>AboutControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AdditionalConfiguration.resx">
+      <DependentUpon>AdditionalConfiguration.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Configuration.resx">
       <DependentUpon>Configuration.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\NotifyForm.resx">
       <DependentUpon>NotifyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Welcome.resx">
+      <DependentUpon>Welcome.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiLanguages\LangEN.resx">

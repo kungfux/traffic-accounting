@@ -45,6 +45,7 @@ namespace Traffic_Accounting
         }
 
         // list of parameters
+        public bool Welcome = true;
         //
         public bool TraceEnabled = false;
         //
@@ -72,8 +73,8 @@ namespace Traffic_Accounting
         public bool TOPenabled = true;
         public bool TrafficFilterEnabled = false;
         public string TrafficSeparatedFilterList = "";
-        public string TrafficStatDailyUrl = "/squid/daily/[yyyy_MM_dd].html";
-        public string TrafficStatWeeklyUrl = "/squid/weekly/[yyyy_WW].html";
+        public string TrafficStatDailyUrl = "[SERVER]/squid/daily/[yyyy_MM_dd].html";
+        public string TrafficStatWeeklyUrl = "[SERVER]/squid/weekly/[yyyy_WW].html";
         public string TrafficStatPattern = @"<TR><TD ALIGN=LEFT>([\S.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
         public string TrafficTopPattern = @"<TR><TD ALIGN=LEFT><A HREF=#([\S.]*)>([\S.]*) (([\S.]*))</A>"; // TODO: Add to registry
         public bool TrafficRoundUp = true;
@@ -114,7 +115,7 @@ namespace Traffic_Accounting
                 if (httpcut.Contains("|"))
                 {
                     string[] cutted = httpcut.Split('|');
-                    if (cutted.Length >= 2)
+                    if (cutted.Length == 2)
                     {
                         Parameters.HttpCut1 = cutted[0];
                         Parameters.HttpCut2 = cutted[1];
@@ -154,7 +155,7 @@ namespace Traffic_Accounting
                 Parameters.TrafficStatDailyUrl = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficStatDailyUrl", TrafficStatDailyUrl);
                 Parameters.TrafficStatWeeklyUrl = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
-                    RegPath, "TrafficStatDailyUrl", TrafficStatWeeklyUrl);
+                    RegPath, "TrafficStatWeeklyUrl", TrafficStatWeeklyUrl);
                 Parameters.TrafficStatPattern = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrafficStatPattern", TrafficStatPattern);
                 Parameters.TrafficRoundUp = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -172,11 +173,18 @@ namespace Traffic_Accounting
                 // Location
                 Parameters.Location = (FwServers.FwServer)Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "Location", (int)Location);
+                // Welcome
+                Parameters.Welcome = Registry.ReadKey<bool>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "Welcome", Welcome);
             }
         }
 
         public void saveParams()
         {
+            Log.Trace.addTrace("Client parameters are being saved");
+
+            // Language
+            Log.Trace.addTrace("Language is " + Parameters.Language);
             if (Parameters.Language != Language)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -188,6 +196,7 @@ namespace Traffic_Accounting
                     RegPath, "Language");
             }
             // auto start
+            Log.Trace.addTrace("AutoStart is " + Parameters.AutoStart);
             if (Parameters.AutoStart)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -200,6 +209,7 @@ namespace Traffic_Accounting
                     "Software\\Microsoft\\Windows\\CurrentVersion\\Run", "Traffic Accounting 4.0");
             }
             // traffic limit
+            Log.Trace.addTrace("TrafficLimitForWeek is " + Parameters.TrafficLimitForWeek);
             if (Parameters.TrafficLimitForWeek != TrafficLimitForWeek)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -211,6 +221,7 @@ namespace Traffic_Accounting
                     RegPath, "TrafficLimitForWeek");
             }
             // traffic round up
+            Log.Trace.addTrace("TrafficRoundUp is " + Parameters.TrafficRoundUp);
             if (Parameters.TrafficRoundUp != TrafficRoundUp)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -222,6 +233,7 @@ namespace Traffic_Accounting
                     RegPath, "TrafficRoundUp");
             }
             // top enabled
+            Log.Trace.addTrace("TOPenabled is " + Parameters.TOPenabled);
             if (Parameters.TOPenabled != TOPenabled)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -233,6 +245,12 @@ namespace Traffic_Accounting
                     RegPath, "TOPenabled");
             }
             // traffic ranges
+            Log.Trace.addTrace("TrayTrafficRanges is " + 
+                string.Concat(Parameters.TrayTrafficRanges[0],
+                "|",
+                Parameters.TrayTrafficRanges[1],
+                "|",
+                Parameters.TrayTrafficRanges[2]));
             if (!Parameters.TrayTrafficRanges[0].Equals(TrayTrafficRanges[0]) ||
                 !Parameters.TrayTrafficRanges[1].Equals(TrayTrafficRanges[1]) ||
                 !Parameters.TrayTrafficRanges[2].Equals(TrayTrafficRanges[2]))
@@ -246,6 +264,7 @@ namespace Traffic_Accounting
                     RegPath, "TrayTrafficRanges");
             }
             // tray display digits ?
+            Log.Trace.addTrace("TrayDisplayDigits is " + Parameters.TrayDisplayDigits);
             if (Parameters.TrayDisplayDigits != TrayDisplayDigits)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -257,6 +276,7 @@ namespace Traffic_Accounting
                     RegPath, "TrayDisplayDigits");
             }
             // display circle instead of square
+            Log.Trace.addTrace("IconFashion is " + Parameters.IconFashion);
             if (Parameters.IconFashion != IconFashion)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -268,6 +288,7 @@ namespace Traffic_Accounting
                     RegPath, "IconFashion");
             }
             // icon font color
+            Log.Trace.addTrace("TrayIconFontColor is " + Parameters.TrayIconFontColor);
             if (Parameters.TrayIconFontColor != TrayIconFontColor)
             {
                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -278,6 +299,7 @@ namespace Traffic_Accounting
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                    RegPath, "TrayIconFontColor");
             }
+            Log.Trace.addTrace("TrayFontSize is " + Parameters.TrayFontSize);
             if (Parameters.TrayFontSize != TrayFontSize)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -288,6 +310,7 @@ namespace Traffic_Accounting
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                    RegPath, "TrayFontSize");
             }
+            Log.Trace.addTrace("TrayFontName is " + Parameters.TrayFontName);
             if (Parameters.TrayFontName != TrayFontName)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -298,6 +321,7 @@ namespace Traffic_Accounting
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                    RegPath, "TrayFontName");
             }
+            Log.Trace.addTrace("DisplayNotify is " + Parameters.DisplayNotify);
             if (!Parameters.DisplayNotify)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -309,6 +333,7 @@ namespace Traffic_Accounting
                    RegPath, "DisplayNotify");
             }
             // cache
+            Log.Trace.addTrace("TrafficCacheEnabled is " + Parameters.TrafficCacheEnabled);
             if (Parameters.TrafficCacheEnabled != TrafficCacheEnabled)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -320,6 +345,7 @@ namespace Traffic_Accounting
                     RegPath, "TrafficCacheEnabled");
             }
             //
+            Log.Trace.addTrace("TrafficSeparatedFilterList is " + Parameters.TrafficSeparatedFilterList);
             if (Parameters.TrafficSeparatedFilterList != TrafficSeparatedFilterList)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -331,6 +357,7 @@ namespace Traffic_Accounting
                     RegPath, "TrafficSeparatedFilterList");
             }
             //
+            Log.Trace.addTrace("TrafficFilterEnabled is " + Parameters.TrafficFilterEnabled);
             if (Parameters.TrafficFilterEnabled != TrafficFilterEnabled)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -342,6 +369,7 @@ namespace Traffic_Accounting
                     RegPath, "TrafficFilterEnabled");
             }
             //
+            Log.Trace.addTrace("TraceEnabled is " + Parameters.TraceEnabled);
             if (Parameters.TraceEnabled != TraceEnabled)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -353,6 +381,7 @@ namespace Traffic_Accounting
                     RegPath, "TraceEnabled");
             }
             //
+            Log.Trace.addTrace("Location is " + Parameters.Location);
             if (Parameters.Location != Location)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -364,6 +393,7 @@ namespace Traffic_Accounting
                     RegPath, "Location");
             }
             //
+            Log.Trace.addTrace("HttpCut is " + Parameters.HttpCut1 + "|" + Parameters.HttpCut2);
             if (Parameters.HttpCut1 != HttpCut1 || Parameters.HttpCut2 != HttpCut2)
             {
                 Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
@@ -373,6 +403,78 @@ namespace Traffic_Accounting
             {
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "HttpCut");
+            }
+            //
+            Log.Trace.addTrace("Welcome is " + Parameters.Welcome);
+            if (Parameters.Welcome != Welcome)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "Welcome", Parameters.Welcome);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "Welcome");
+            }
+            //
+            Log.Trace.addTrace("TrafficStatDailyUrl is " + Parameters.TrafficStatDailyUrl);
+            if (Parameters.TrafficStatDailyUrl != TrafficStatDailyUrl)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficStatDailyUrl", Parameters.TrafficStatDailyUrl);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficStatDailyUrl");
+            }
+            //
+            Log.Trace.addTrace("TrafficStatWeeklyUrl is " + Parameters.TrafficStatWeeklyUrl);
+            if (Parameters.TrafficStatWeeklyUrl != TrafficStatWeeklyUrl)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficStatWeeklyUrl", Parameters.TrafficStatWeeklyUrl);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficStatWeeklyUrl");
+            }
+            //
+            Log.Trace.addTrace("TrafficStatPattern is " + Parameters.TrafficStatPattern);
+            if (Parameters.TrafficStatPattern != TrafficStatPattern)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficStatPattern", Parameters.TrafficStatPattern);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficStatPattern");
+            }
+            //
+            Log.Trace.addTrace("TrafficTopPattern is " + Parameters.TrafficTopPattern);
+            if (Parameters.TrafficTopPattern != TrafficTopPattern)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficTopPattern", Parameters.TrafficTopPattern);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "TrafficTopPattern");
+            }
+            //
+            Log.Trace.addTrace("MachineName is " + Parameters.MachineName);
+            if (Parameters.MachineName != MachineName)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "MachineName", Parameters.MachineName);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "MachineName");
             }
         }
     }

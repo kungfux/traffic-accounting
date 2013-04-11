@@ -61,9 +61,9 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 37
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 38
         ///built on
-        ///April 10, 2013
+        ///April 11, 2013
         ///
         ///Copyright © 2008-2013 Fuks Alexander.
         /// </summary>
@@ -97,15 +97,6 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string CONF003 {
             get {
                 return ResourceManager.GetString("CONF003", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Interface.
-        /// </summary>
-        internal static string CONF004 {
-            get {
-                return ResourceManager.GetString("CONF004", resourceCulture);
             }
         }
         
@@ -300,15 +291,6 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter is turned off now..
-        /// </summary>
-        internal static string CONF027_removed {
-            get {
-                return ResourceManager.GetString("CONF027_removed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Display everyday notification.
         /// </summary>
         internal static string CONF028 {
@@ -350,6 +332,96 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string CONF032 {
             get {
                 return ResourceManager.GetString("CONF032", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write traces into file.
+        /// </summary>
+        internal static string CONF033 {
+            get {
+                return ResourceManager.GetString("CONF033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional.
+        /// </summary>
+        internal static string CONF034 {
+            get {
+                return ResourceManager.GetString("CONF034", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify machine name:.
+        /// </summary>
+        internal static string CONFA001 {
+            get {
+                return ResourceManager.GetString("CONFA001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify url to get daily traffic statistics:.
+        /// </summary>
+        internal static string CONFA002 {
+            get {
+                return ResourceManager.GetString("CONFA002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify url to get weekly traffic statistics:.
+        /// </summary>
+        internal static string CONFA003 {
+            get {
+                return ResourceManager.GetString("CONFA003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify cutting options to skip parsing not needed html data:.
+        /// </summary>
+        internal static string CONFA004 {
+            get {
+                return ResourceManager.GetString("CONFA004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify traffic statistics pattern:.
+        /// </summary>
+        internal static string CONFA005 {
+            get {
+                return ResourceManager.GetString("CONFA005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify &quot;TOP10&quot; pattern:.
+        /// </summary>
+        internal static string CONFA006 {
+            get {
+                return ResourceManager.GetString("CONFA006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply settings.
+        /// </summary>
+        internal static string CONFA007 {
+            get {
+                return ResourceManager.GetString("CONFA007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string CONFA008 {
+            get {
+                return ResourceManager.GetString("CONFA008", resourceCulture);
             }
         }
         
@@ -786,6 +858,34 @@ namespace Traffic_Accounting.MultiLanguages {
         internal static string WednesdayR {
             get {
                 return ResourceManager.GetString("WednesdayR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to {0}.
+        /// </summary>
+        internal static string WELCOME {
+            get {
+                return ResourceManager.GetString("WELCOME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string WELCOMESTART {
+            get {
+                return ResourceManager.GetString("WELCOMESTART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to Traffic Accounting 4.0. This program allows you to easily control the traffic charges. You can view detailed statistics, receive notifications and keep informed.
+        ///To start using program just set a few settings and click Start!.
+        /// </summary>
+        internal static string WELCOMETEXT {
+            get {
+                return ResourceManager.GetString("WELCOMETEXT", resourceCulture);
             }
         }
     }

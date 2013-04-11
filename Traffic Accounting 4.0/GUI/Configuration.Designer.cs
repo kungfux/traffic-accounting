@@ -28,270 +28,284 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBoxAutoStart = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chAutoStart = new System.Windows.Forms.CheckBox();
+            this.groupGeneral = new System.Windows.Forms.GroupBox();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.cmbLocation = new System.Windows.Forms.ComboBox();
+            this.lLanguage = new System.Windows.Forms.Label();
+            this.lLocation = new System.Windows.Forms.Label();
+            this.chCache = new System.Windows.Forms.CheckBox();
+            this.groupTraffic = new System.Windows.Forms.GroupBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            this.groupBox5.SuspendLayout();
+            this.chFilter = new System.Windows.Forms.CheckBox();
+            this.chTop10 = new System.Windows.Forms.CheckBox();
+            this.chRoundUp = new System.Windows.Forms.CheckBox();
+            this.lTrafficLimit = new System.Windows.Forms.Label();
+            this.updTrafficLimit = new System.Windows.Forms.NumericUpDown();
+            this.groupSystemTray = new System.Windows.Forms.GroupBox();
+            this.cmbFont = new System.Windows.Forms.ComboBox();
+            this.lFontName = new System.Windows.Forms.Label();
+            this.cmbDigitsSize = new System.Windows.Forms.ComboBox();
+            this.lDigitsSize = new System.Windows.Forms.Label();
+            this.chNotify = new System.Windows.Forms.CheckBox();
+            this.cmbDigitsColor = new System.Windows.Forms.ComboBox();
+            this.lDigitsColor = new System.Windows.Forms.Label();
+            this.cmbIconFashion = new System.Windows.Forms.ComboBox();
+            this.lIconFashion = new System.Windows.Forms.Label();
+            this.chDigits = new System.Windows.Forms.CheckBox();
+            this.updTrafficWarning = new System.Windows.Forms.NumericUpDown();
+            this.updTrafficCritical = new System.Windows.Forms.NumericUpDown();
+            this.updTrafficExceed = new System.Windows.Forms.NumericUpDown();
+            this.lTrafficRanges = new System.Windows.Forms.Label();
+            this.groupSystem = new System.Windows.Forms.GroupBox();
+            this.btnAdditional = new System.Windows.Forms.Button();
+            this.chTrace = new System.Windows.Forms.CheckBox();
+            this.groupGeneral.SuspendLayout();
+            this.groupTraffic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.updTrafficLimit)).BeginInit();
+            this.groupSystemTray.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.updTrafficWarning)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.updTrafficCritical)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.updTrafficExceed)).BeginInit();
+            this.groupSystem.SuspendLayout();
             this.SuspendLayout();
             // 
-            // checkBoxAutoStart
+            // chAutoStart
             // 
-            this.checkBoxAutoStart.AutoSize = true;
-            this.checkBoxAutoStart.Location = new System.Drawing.Point(13, 17);
-            this.checkBoxAutoStart.Name = "checkBoxAutoStart";
-            this.checkBoxAutoStart.Size = new System.Drawing.Size(206, 17);
-            this.checkBoxAutoStart.TabIndex = 2;
-            this.checkBoxAutoStart.Text = "Start automatically at Windows startup";
-            this.checkBoxAutoStart.UseVisualStyleBackColor = true;
-            this.checkBoxAutoStart.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.chAutoStart.AutoSize = true;
+            this.chAutoStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chAutoStart.Location = new System.Drawing.Point(13, 20);
+            this.chAutoStart.Name = "chAutoStart";
+            this.chAutoStart.Size = new System.Drawing.Size(213, 17);
+            this.chAutoStart.TabIndex = 2;
+            this.chAutoStart.Text = "Start automatically at Windows startup";
+            this.chAutoStart.UseVisualStyleBackColor = true;
+            this.chAutoStart.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
-            // groupBox1
+            // groupGeneral
             // 
-            this.groupBox1.Controls.Add(this.comboBox6);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.checkBoxAutoStart);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 73);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = " General ";
+            this.groupGeneral.Controls.Add(this.cmbLanguage);
+            this.groupGeneral.Controls.Add(this.cmbLocation);
+            this.groupGeneral.Controls.Add(this.lLanguage);
+            this.groupGeneral.Controls.Add(this.lLocation);
+            this.groupGeneral.Controls.Add(this.chAutoStart);
+            this.groupGeneral.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupGeneral.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupGeneral.Location = new System.Drawing.Point(0, 0);
+            this.groupGeneral.Name = "groupGeneral";
+            this.groupGeneral.Size = new System.Drawing.Size(278, 106);
+            this.groupGeneral.TabIndex = 1;
+            this.groupGeneral.TabStop = false;
+            this.groupGeneral.Text = " General ";
             // 
-            // comboBox6
+            // cmbLanguage
             // 
-            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(129, 44);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(121, 21);
-            this.comboBox6.TabIndex = 4;
-            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Your location";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Items.AddRange(new object[] {
             "English",
             "Русский"});
-            this.comboBox2.Location = new System.Drawing.Point(129, 22);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 4;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.cmbLanguage.Location = new System.Drawing.Point(129, 71);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
+            this.cmbLanguage.TabIndex = 4;
+            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
-            // label5
+            // cmbLocation
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 25);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Language";
+            this.cmbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLocation.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbLocation.FormattingEnabled = true;
+            this.cmbLocation.Location = new System.Drawing.Point(129, 44);
+            this.cmbLocation.Name = "cmbLocation";
+            this.cmbLocation.Size = new System.Drawing.Size(121, 21);
+            this.cmbLocation.TabIndex = 4;
+            this.cmbLocation.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
-            // groupBox2
+            // lLanguage
             // 
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Location = new System.Drawing.Point(3, 505);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(256, 60);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = " System ";
+            this.lLanguage.AutoSize = true;
+            this.lLanguage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lLanguage.Location = new System.Drawing.Point(6, 74);
+            this.lLanguage.Name = "lLanguage";
+            this.lLanguage.Size = new System.Drawing.Size(54, 13);
+            this.lLanguage.TabIndex = 0;
+            this.lLanguage.Text = "Language";
             // 
-            // checkBox1
+            // lLocation
             // 
-            this.checkBox1.Location = new System.Drawing.Point(13, 18);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(234, 36);
-            this.checkBox1.TabIndex = 17;
-            this.checkBox1.Text = "Use local cache to increase performance";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.lLocation.AutoSize = true;
+            this.lLocation.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lLocation.Location = new System.Drawing.Point(6, 47);
+            this.lLocation.Name = "lLocation";
+            this.lLocation.Size = new System.Drawing.Size(69, 13);
+            this.lLocation.TabIndex = 3;
+            this.lLocation.Text = "Your location";
             // 
-            // groupBox3
+            // chCache
             // 
-            this.groupBox3.Controls.Add(this.linkLabel1);
-            this.groupBox3.Controls.Add(this.checkBox5);
-            this.groupBox3.Controls.Add(this.checkBox4);
-            this.groupBox3.Controls.Add(this.checkBox2);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.numericUpDown2);
-            this.groupBox3.Location = new System.Drawing.Point(3, 131);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(256, 133);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Traffic ";
+            this.chCache.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chCache.Location = new System.Drawing.Point(13, 127);
+            this.chCache.Name = "chCache";
+            this.chCache.Size = new System.Drawing.Size(234, 36);
+            this.chCache.TabIndex = 17;
+            this.chCache.Text = "Use local cache to increase performance";
+            this.chCache.UseVisualStyleBackColor = true;
+            this.chCache.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // groupTraffic
+            // 
+            this.groupTraffic.Controls.Add(this.chCache);
+            this.groupTraffic.Controls.Add(this.linkLabel1);
+            this.groupTraffic.Controls.Add(this.chFilter);
+            this.groupTraffic.Controls.Add(this.chTop10);
+            this.groupTraffic.Controls.Add(this.chRoundUp);
+            this.groupTraffic.Controls.Add(this.lTrafficLimit);
+            this.groupTraffic.Controls.Add(this.updTrafficLimit);
+            this.groupTraffic.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupTraffic.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupTraffic.Location = new System.Drawing.Point(0, 106);
+            this.groupTraffic.Name = "groupTraffic";
+            this.groupTraffic.Size = new System.Drawing.Size(278, 173);
+            this.groupTraffic.TabIndex = 5;
+            this.groupTraffic.TabStop = false;
+            this.groupTraffic.Text = "Traffic ";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.linkLabel1.Location = new System.Drawing.Point(28, 111);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(175, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(182, 13);
             this.linkLabel1.TabIndex = 10;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "What websites are already is in filter";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // checkBox5
+            // chFilter
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(13, 91);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(96, 17);
-            this.checkBox5.TabIndex = 9;
-            this.checkBox5.Text = "Use traffic filter";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.chFilter.AutoSize = true;
+            this.chFilter.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chFilter.Location = new System.Drawing.Point(13, 91);
+            this.chFilter.Name = "chFilter";
+            this.chFilter.Size = new System.Drawing.Size(101, 17);
+            this.chFilter.TabIndex = 9;
+            this.chFilter.Text = "Use traffic filter";
+            this.chFilter.UseVisualStyleBackColor = true;
+            this.chFilter.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
-            // checkBox4
+            // chTop10
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(13, 68);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(148, 17);
-            this.checkBox4.TabIndex = 8;
-            this.checkBox4.Text = "Check your position in top";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.chTop10.AutoSize = true;
+            this.chTop10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chTop10.Location = new System.Drawing.Point(13, 68);
+            this.chTop10.Name = "chTop10";
+            this.chTop10.Size = new System.Drawing.Size(150, 17);
+            this.chTop10.TabIndex = 8;
+            this.chTop10.Text = "Check your position in top";
+            this.chTop10.UseVisualStyleBackColor = true;
+            this.chTop10.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
-            // checkBox2
+            // chRoundUp
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(13, 45);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(136, 17);
-            this.checkBox2.TabIndex = 7;
-            this.checkBox2.Text = "Round up traffic values";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.chRoundUp.AutoSize = true;
+            this.chRoundUp.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chRoundUp.Location = new System.Drawing.Point(13, 45);
+            this.chRoundUp.Name = "chRoundUp";
+            this.chRoundUp.Size = new System.Drawing.Size(138, 17);
+            this.chRoundUp.TabIndex = 7;
+            this.chRoundUp.Text = "Round up traffic values";
+            this.chRoundUp.UseVisualStyleBackColor = true;
+            this.chRoundUp.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
-            // label2
+            // lTrafficLimit
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(93, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Traffic limit for one week";
+            this.lTrafficLimit.AutoSize = true;
+            this.lTrafficLimit.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lTrafficLimit.Location = new System.Drawing.Point(93, 21);
+            this.lTrafficLimit.Name = "lTrafficLimit";
+            this.lTrafficLimit.Size = new System.Drawing.Size(125, 13);
+            this.lTrafficLimit.TabIndex = 0;
+            this.lTrafficLimit.Text = "Traffic limit for one week";
             // 
-            // numericUpDown2
+            // updTrafficLimit
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(13, 19);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.updTrafficLimit.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updTrafficLimit.Location = new System.Drawing.Point(13, 19);
+            this.updTrafficLimit.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.updTrafficLimit.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown2.TabIndex = 6;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.updTrafficLimit.Name = "updTrafficLimit";
+            this.updTrafficLimit.Size = new System.Drawing.Size(74, 21);
+            this.updTrafficLimit.TabIndex = 6;
+            this.updTrafficLimit.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            this.updTrafficLimit.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
-            // groupBox4
+            // groupSystemTray
             // 
-            this.groupBox4.Controls.Add(this.comboBox5);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.comboBox4);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.checkBox6);
-            this.groupBox4.Controls.Add(this.comboBox3);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.comboBox1);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.checkBox3);
-            this.groupBox4.Controls.Add(this.numericUpDown5);
-            this.groupBox4.Controls.Add(this.numericUpDown4);
-            this.groupBox4.Controls.Add(this.numericUpDown3);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Location = new System.Drawing.Point(3, 270);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(256, 229);
-            this.groupBox4.TabIndex = 9;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "System Tray ";
+            this.groupSystemTray.Controls.Add(this.cmbFont);
+            this.groupSystemTray.Controls.Add(this.lFontName);
+            this.groupSystemTray.Controls.Add(this.cmbDigitsSize);
+            this.groupSystemTray.Controls.Add(this.lDigitsSize);
+            this.groupSystemTray.Controls.Add(this.chNotify);
+            this.groupSystemTray.Controls.Add(this.cmbDigitsColor);
+            this.groupSystemTray.Controls.Add(this.lDigitsColor);
+            this.groupSystemTray.Controls.Add(this.cmbIconFashion);
+            this.groupSystemTray.Controls.Add(this.lIconFashion);
+            this.groupSystemTray.Controls.Add(this.chDigits);
+            this.groupSystemTray.Controls.Add(this.updTrafficWarning);
+            this.groupSystemTray.Controls.Add(this.updTrafficCritical);
+            this.groupSystemTray.Controls.Add(this.updTrafficExceed);
+            this.groupSystemTray.Controls.Add(this.lTrafficRanges);
+            this.groupSystemTray.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupSystemTray.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupSystemTray.Location = new System.Drawing.Point(0, 279);
+            this.groupSystemTray.Name = "groupSystemTray";
+            this.groupSystemTray.Size = new System.Drawing.Size(278, 229);
+            this.groupSystemTray.TabIndex = 9;
+            this.groupSystemTray.TabStop = false;
+            this.groupSystemTray.Text = "System Tray ";
             // 
-            // comboBox5
+            // cmbFont
             // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(129, 149);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
-            this.comboBox5.TabIndex = 20;
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            this.cmbFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFont.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbFont.FormattingEnabled = true;
+            this.cmbFont.Location = new System.Drawing.Point(129, 149);
+            this.cmbFont.Name = "cmbFont";
+            this.cmbFont.Size = new System.Drawing.Size(121, 21);
+            this.cmbFont.TabIndex = 20;
+            this.cmbFont.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
-            // label8
+            // lFontName
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 152);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Font name";
+            this.lFontName.AutoSize = true;
+            this.lFontName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lFontName.Location = new System.Drawing.Point(10, 152);
+            this.lFontName.Name = "lFontName";
+            this.lFontName.Size = new System.Drawing.Size(58, 13);
+            this.lFontName.TabIndex = 19;
+            this.lFontName.Text = "Font name";
             // 
-            // comboBox4
+            // cmbDigitsSize
             // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.cmbDigitsSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDigitsSize.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbDigitsSize.FormattingEnabled = true;
+            this.cmbDigitsSize.Items.AddRange(new object[] {
             "10",
             "11",
             "12",
@@ -303,221 +317,254 @@
             "18",
             "19",
             "20"});
-            this.comboBox4.Location = new System.Drawing.Point(129, 122);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 18;
-            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            this.cmbDigitsSize.Location = new System.Drawing.Point(129, 122);
+            this.cmbDigitsSize.Name = "cmbDigitsSize";
+            this.cmbDigitsSize.Size = new System.Drawing.Size(121, 21);
+            this.cmbDigitsSize.TabIndex = 18;
+            this.cmbDigitsSize.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
-            // label7
+            // lDigitsSize
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 125);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Digits size";
+            this.lDigitsSize.AutoSize = true;
+            this.lDigitsSize.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lDigitsSize.Location = new System.Drawing.Point(10, 125);
+            this.lDigitsSize.Name = "lDigitsSize";
+            this.lDigitsSize.Size = new System.Drawing.Size(54, 13);
+            this.lDigitsSize.TabIndex = 17;
+            this.lDigitsSize.Text = "Digits size";
             // 
-            // checkBox6
+            // chNotify
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(13, 206);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(157, 17);
-            this.checkBox6.TabIndex = 16;
-            this.checkBox6.Text = "Display notify every morning";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.chNotify.AutoSize = true;
+            this.chNotify.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chNotify.Location = new System.Drawing.Point(13, 206);
+            this.chNotify.Name = "chNotify";
+            this.chNotify.Size = new System.Drawing.Size(163, 17);
+            this.chNotify.TabIndex = 16;
+            this.chNotify.Text = "Display notify every morning";
+            this.chNotify.UseVisualStyleBackColor = true;
+            this.chNotify.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
-            // comboBox3
+            // cmbDigitsColor
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(129, 96);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 14;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            this.cmbDigitsColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDigitsColor.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbDigitsColor.FormattingEnabled = true;
+            this.cmbDigitsColor.Location = new System.Drawing.Point(129, 96);
+            this.cmbDigitsColor.Name = "cmbDigitsColor";
+            this.cmbDigitsColor.Size = new System.Drawing.Size(121, 21);
+            this.cmbDigitsColor.TabIndex = 14;
+            this.cmbDigitsColor.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
-            // label6
+            // lDigitsColor
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 99);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Digits color";
+            this.lDigitsColor.AutoSize = true;
+            this.lDigitsColor.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lDigitsColor.Location = new System.Drawing.Point(11, 99);
+            this.lDigitsColor.Name = "lDigitsColor";
+            this.lDigitsColor.Size = new System.Drawing.Size(59, 13);
+            this.lDigitsColor.TabIndex = 12;
+            this.lDigitsColor.Text = "Digits color";
             // 
-            // comboBox1
+            // cmbIconFashion
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbIconFashion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbIconFashion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbIconFashion.FormattingEnabled = true;
+            this.cmbIconFashion.Items.AddRange(new object[] {
             "Square",
             "Circle"});
-            this.comboBox1.Location = new System.Drawing.Point(129, 177);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 15;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            this.cmbIconFashion.Location = new System.Drawing.Point(129, 177);
+            this.cmbIconFashion.Name = "cmbIconFashion";
+            this.cmbIconFashion.Size = new System.Drawing.Size(121, 21);
+            this.cmbIconFashion.TabIndex = 15;
+            this.cmbIconFashion.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
-            // label4
+            // lIconFashion
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 180);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Icon fashion";
+            this.lIconFashion.AutoSize = true;
+            this.lIconFashion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lIconFashion.Location = new System.Drawing.Point(10, 180);
+            this.lIconFashion.Name = "lIconFashion";
+            this.lIconFashion.Size = new System.Drawing.Size(66, 13);
+            this.lIconFashion.TabIndex = 10;
+            this.lIconFashion.Text = "Icon fashion";
             // 
-            // checkBox3
+            // chDigits
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(13, 73);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(134, 17);
-            this.checkBox3.TabIndex = 13;
-            this.checkBox3.Text = "Draw digits on the icon";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.chDigits.AutoSize = true;
+            this.chDigits.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chDigits.Location = new System.Drawing.Point(13, 73);
+            this.chDigits.Name = "chDigits";
+            this.chDigits.Size = new System.Drawing.Size(135, 17);
+            this.chDigits.TabIndex = 13;
+            this.chDigits.Text = "Draw digits on the icon";
+            this.chDigits.UseVisualStyleBackColor = true;
+            this.chDigits.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
-            // numericUpDown5
+            // updTrafficWarning
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(173, 47);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
+            this.updTrafficWarning.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updTrafficWarning.Location = new System.Drawing.Point(173, 47);
+            this.updTrafficWarning.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown5.TabIndex = 12;
-            this.numericUpDown5.Value = new decimal(new int[] {
+            this.updTrafficWarning.Name = "updTrafficWarning";
+            this.updTrafficWarning.Size = new System.Drawing.Size(74, 21);
+            this.updTrafficWarning.TabIndex = 12;
+            this.updTrafficWarning.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
-            this.numericUpDown5.Leave += new System.EventHandler(this.numericUpDown5_Leave);
+            this.updTrafficWarning.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            this.updTrafficWarning.Leave += new System.EventHandler(this.numericUpDown5_Leave);
             // 
-            // numericUpDown4
+            // updTrafficCritical
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(93, 47);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
+            this.updTrafficCritical.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updTrafficCritical.Location = new System.Drawing.Point(93, 47);
+            this.updTrafficCritical.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown4.TabIndex = 11;
-            this.numericUpDown4.Value = new decimal(new int[] {
+            this.updTrafficCritical.Name = "updTrafficCritical";
+            this.updTrafficCritical.Size = new System.Drawing.Size(74, 21);
+            this.updTrafficCritical.TabIndex = 11;
+            this.updTrafficCritical.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
-            this.numericUpDown4.Leave += new System.EventHandler(this.numericUpDown4_Leave);
+            this.updTrafficCritical.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            this.updTrafficCritical.Leave += new System.EventHandler(this.numericUpDown4_Leave);
             // 
-            // numericUpDown3
+            // updTrafficExceed
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(13, 47);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.updTrafficExceed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updTrafficExceed.Location = new System.Drawing.Point(13, 47);
+            this.updTrafficExceed.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown3.TabIndex = 10;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.updTrafficExceed.Name = "updTrafficExceed";
+            this.updTrafficExceed.Size = new System.Drawing.Size(74, 21);
+            this.updTrafficExceed.TabIndex = 10;
+            this.updTrafficExceed.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            this.updTrafficExceed.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
-            // label3
+            // lTrafficRanges
             // 
-            this.label3.Location = new System.Drawing.Point(10, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(237, 26);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Traffic Ranges: Exceed, Critical, Warning";
+            this.lTrafficRanges.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lTrafficRanges.Location = new System.Drawing.Point(10, 18);
+            this.lTrafficRanges.Name = "lTrafficRanges";
+            this.lTrafficRanges.Size = new System.Drawing.Size(237, 26);
+            this.lTrafficRanges.TabIndex = 0;
+            this.lTrafficRanges.Text = "Traffic Ranges: Exceed, Critical, Warning";
             // 
-            // groupBox5
+            // groupSystem
             // 
-            this.groupBox5.Controls.Add(this.comboBox2);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Location = new System.Drawing.Point(3, 76);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(256, 55);
-            this.groupBox5.TabIndex = 3;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = " Interface ";
+            this.groupSystem.Controls.Add(this.btnAdditional);
+            this.groupSystem.Controls.Add(this.chTrace);
+            this.groupSystem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupSystem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupSystem.Location = new System.Drawing.Point(0, 508);
+            this.groupSystem.Name = "groupSystem";
+            this.groupSystem.Size = new System.Drawing.Size(278, 55);
+            this.groupSystem.TabIndex = 10;
+            this.groupSystem.TabStop = false;
+            this.groupSystem.Text = " System ";
+            // 
+            // btnAdditional
+            // 
+            this.btnAdditional.Location = new System.Drawing.Point(129, 16);
+            this.btnAdditional.Name = "btnAdditional";
+            this.btnAdditional.Size = new System.Drawing.Size(121, 23);
+            this.btnAdditional.TabIndex = 1;
+            this.btnAdditional.Text = "Additional";
+            this.btnAdditional.UseVisualStyleBackColor = true;
+            this.btnAdditional.Click += new System.EventHandler(this.btnAdditional_Click);
+            // 
+            // chTrace
+            // 
+            this.chTrace.AutoSize = true;
+            this.chTrace.Location = new System.Drawing.Point(13, 20);
+            this.chTrace.Name = "chTrace";
+            this.chTrace.Size = new System.Drawing.Size(94, 17);
+            this.chTrace.TabIndex = 0;
+            this.chTrace.Text = "Trace Enabled";
+            this.chTrace.UseVisualStyleBackColor = true;
+            this.chTrace.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // Configuration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupSystem);
+            this.Controls.Add(this.groupSystemTray);
+            this.Controls.Add(this.groupTraffic);
+            this.Controls.Add(this.groupGeneral);
             this.Name = "Configuration";
-            this.Size = new System.Drawing.Size(267, 574);
+            this.Size = new System.Drawing.Size(278, 569);
             this.Load += new System.EventHandler(this.Configuration_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.groupGeneral.ResumeLayout(false);
+            this.groupGeneral.PerformLayout();
+            this.groupTraffic.ResumeLayout(false);
+            this.groupTraffic.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.updTrafficLimit)).EndInit();
+            this.groupSystemTray.ResumeLayout(false);
+            this.groupSystemTray.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.updTrafficWarning)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.updTrafficCritical)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.updTrafficExceed)).EndInit();
+            this.groupSystem.ResumeLayout(false);
+            this.groupSystem.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBoxAutoStart;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox chAutoStart;
+        private System.Windows.Forms.GroupBox groupGeneral;
+        private System.Windows.Forms.CheckBox chCache;
+        private System.Windows.Forms.GroupBox groupTraffic;
+        private System.Windows.Forms.Label lTrafficLimit;
+        private System.Windows.Forms.NumericUpDown updTrafficLimit;
+        private System.Windows.Forms.CheckBox chRoundUp;
+        private System.Windows.Forms.GroupBox groupSystemTray;
+        private System.Windows.Forms.Label lTrafficRanges;
+        private System.Windows.Forms.NumericUpDown updTrafficWarning;
+        private System.Windows.Forms.NumericUpDown updTrafficCritical;
+        private System.Windows.Forms.NumericUpDown updTrafficExceed;
+        private System.Windows.Forms.CheckBox chDigits;
+        private System.Windows.Forms.ComboBox cmbIconFashion;
+        private System.Windows.Forms.Label lIconFashion;
+        private System.Windows.Forms.CheckBox chTop10;
+        private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.Label lLanguage;
+        private System.Windows.Forms.ComboBox cmbDigitsColor;
+        private System.Windows.Forms.Label lDigitsColor;
+        private System.Windows.Forms.CheckBox chFilter;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chNotify;
+        private System.Windows.Forms.ComboBox cmbDigitsSize;
+        private System.Windows.Forms.Label lDigitsSize;
+        private System.Windows.Forms.ComboBox cmbFont;
+        private System.Windows.Forms.Label lFontName;
+        private System.Windows.Forms.ComboBox cmbLocation;
+        private System.Windows.Forms.Label lLocation;
+        private System.Windows.Forms.GroupBox groupSystem;
+        private System.Windows.Forms.CheckBox chTrace;
+        private System.Windows.Forms.Button btnAdditional;
     }
 }

@@ -123,9 +123,6 @@
   <data name="CONF003" xml:space="preserve">
     <value>Запускать вместе с Windows</value>
   </data>
-  <data name="CONF004" xml:space="preserve">
-    <value>Интерфейс</value>
-  </data>
   <data name="CONF005" xml:space="preserve">
     <value>Язык</value>
   </data>
@@ -152,9 +149,6 @@
   </data>
   <data name="CONF013" xml:space="preserve">
     <value>Стиль иконки</value>
-  </data>
-  <data name="CONF014" xml:space="preserve">
-    <value>Система</value>
   </data>
   <data name="CONF015" xml:space="preserve">
     <value>Использовать кэш для повышения производительности (рекомендуется)</value>
@@ -256,9 +250,9 @@
     <value>&amp;Среда</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 сборка 37
+    <value>Traffic Accounting 4.0 сборка 38
 собрано
-10 апреля, 2013
+11 апреля, 2013
 
 Все права защищены © 2008-2013 Фукс Александр</value>
   </data>
@@ -307,9 +301,6 @@
   <data name="CONF026" xml:space="preserve">
     <value>Следующие вебсайты присутствуют в списке фильтра:
 {0}</value>
-  </data>
-  <data name="CONF027_removed" xml:space="preserve">
-    <value>Фильтр отключён.</value>
   </data>
   <data name="PROGRAMNAME" xml:space="preserve">
     <value>Traffic Accounting 4.0</value>
@@ -370,5 +361,48 @@
   </data>
   <data name="TAMENUHELP" xml:space="preserve">
     <value>&amp;Справка</value>
+  </data>
+  <data name="WELCOME" xml:space="preserve">
+    <value>Добро пожаловать в {0}</value>
+  </data>
+  <data name="WELCOMESTART" xml:space="preserve">
+    <value>Старт</value>
+  </data>
+  <data name="WELCOMETEXT" xml:space="preserve">
+    <value>Добро пожаловать в Traffic Accounting 4.0. С помощью этой программы вы сможете легко контролировать расход траффика. Она позволяет просматривать детальную статистику, получать уведомления и держать вас в курсе.
+Чтобы начать пользоваться ею просто задайте пару настроек ниже и жмите Старт!</value>
+  </data>
+  <data name="CONF014" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="CONF033" xml:space="preserve">
+    <value>Писать лог в файл</value>
+  </data>
+  <data name="CONF034" xml:space="preserve">
+    <value>Дополнительные</value>
+  </data>
+  <data name="CONFA001" xml:space="preserve">
+    <value>Укажите имя машины:</value>
+  </data>
+  <data name="CONFA002" xml:space="preserve">
+    <value>Укажите путь для получения статистики за день:</value>
+  </data>
+  <data name="CONFA003" xml:space="preserve">
+    <value>Укажите путь для получения статистики за неделю:</value>
+  </data>
+  <data name="CONFA004" xml:space="preserve">
+    <value>Укажите настройки обрезания для пропуска обработки излишних данных html:</value>
+  </data>
+  <data name="CONFA005" xml:space="preserve">
+    <value>Укажите паттерн статистики траффика:</value>
+  </data>
+  <data name="CONFA006" xml:space="preserve">
+    <value>Укажите паттерн для "TOP10":</value>
+  </data>
+  <data name="CONFA007" xml:space="preserve">
+    <value>Применить настройки</value>
+  </data>
+  <data name="CONFA008" xml:space="preserve">
+    <value>Отмена</value>
   </data>
 </root>
