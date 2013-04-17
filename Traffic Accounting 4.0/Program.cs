@@ -44,6 +44,8 @@ namespace Traffic_Accounting
             // Initialize configuration
             ClientParams p = new ClientParams();
             Assembly a = Assembly.GetExecutingAssembly();
+            // Remember location of assembly to have ability store
+            // correct path in registry for auto start setting
             ClientParams.Parameters.AssemblyFullName = a.Location.ToLower();
             // Load client parameters
             p.LoadClientParams();

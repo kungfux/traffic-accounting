@@ -318,7 +318,7 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your location.
+        ///   Looks up a localized string similar to Location.
         /// </summary>
         internal static string CONF031 {
             get {
@@ -880,8 +880,9 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to Traffic Accounting 4.0. This program allows you to easily control the traffic charges. You can view detailed statistics, receive notifications and keep informed.
-        ///To start using program just set a few settings and click Start!.
+        ///   Looks up a localized string similar to Welcome to Traffic Accounting 4.0.
+        ///
+        ///It allows to easily control your traffic charges and be in the know of current balance. You will be able to view detailed statistics and receive notifications. Just set a few settings and click &apos;Start&apos; to enjoy!.
         /// </summary>
         internal static string WELCOMETEXT {
             get {

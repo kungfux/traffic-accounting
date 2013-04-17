@@ -342,7 +342,7 @@ Copyright © 2008-2013 Fuks Alexander</value>
     <value>Font name</value>
   </data>
   <data name="CONF031" xml:space="preserve">
-    <value>Your location</value>
+    <value>Location</value>
   </data>
   <data name="CONF032" xml:space="preserve">
     <value>Berdyansk,Zaporozhye,Lviv,Sevastopol',Yalta</value>
@@ -369,8 +369,9 @@ written by Alexander Fuks.</value>
     <value>Start</value>
   </data>
   <data name="WELCOMETEXT" xml:space="preserve">
-    <value>Welcome to Traffic Accounting 4.0. This program allows you to easily control the traffic charges. You can view detailed statistics, receive notifications and keep informed.
-To start using program just set a few settings and click Start!</value>
+    <value>Welcome to Traffic Accounting 4.0.
+
+It allows to easily control your traffic charges and be in the know of current balance. You will be able to view detailed statistics and receive notifications. Just set a few settings and click 'Start' to enjoy!</value>
   </data>
   <data name="CONF014" xml:space="preserve">
     <value>System</value>

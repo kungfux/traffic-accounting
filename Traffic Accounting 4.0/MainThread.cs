@@ -77,7 +77,7 @@ namespace Traffic_Accounting
             notifyIcon.Icon = Resources._1336866323_traffic_lights;
             notifyIcon.Text = "Traffic Accounting 4.0";
             notifyIcon.Visible = true;
-            notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.openToolStripMenuItem_Click);
+            notifyIcon.MouseDoubleClick += new MouseEventHandler(notifyIcon_MouseDoubleClick);
             // timerCheckElapsed
             Timer timer = new Timer();
             timer.Enabled = true;
@@ -89,6 +89,14 @@ namespace Traffic_Accounting
             {
                 SystemEvents.SessionSwitch += new SessionSwitchEventHandler(SystemEvents_SessionSwitch);
                 DisplayNotify();
+            }
+        }
+
+        void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                openToolStripMenuItem_Click(this, null);
             }
         }
 
