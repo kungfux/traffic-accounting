@@ -417,6 +417,7 @@ namespace Traffic_Accounting
             c.LanguageChanged += new Configuration.LangChanged(c_LanguageChanged);
             c.Dock = DockStyle.Fill;
             groupBox1.Controls.Add(c);
+            c.Focus();
         }
 
         void c_LanguageChanged()

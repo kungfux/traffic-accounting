@@ -68,9 +68,9 @@ namespace Traffic_Accounting
                 myHttpWebResponse.Close();
                 return Response;
             }
-            catch (WebException)
+            catch (WebException ex)
             {
-                // TODO: Report about problem correcly
+                Log.Trace.addTrace("WebException: " + ex.Message);
                 LastOperationCompletedSuccessfully = false;
             }
 

@@ -61,9 +61,9 @@ namespace Traffic_Accounting.MultiLanguages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 38
+        ///   Looks up a localized string similar to Traffic Accounting 4.0 build 39
         ///built on
-        ///April 11, 2013
+        ///April 26, 2013
         ///
         ///Copyright © 2008-2013 Fuks Alexander.
         /// </summary>

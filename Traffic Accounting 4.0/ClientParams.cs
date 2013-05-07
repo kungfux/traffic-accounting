@@ -76,7 +76,7 @@ namespace Traffic_Accounting
         public string TrafficStatDailyUrl = "[SERVER]/squid/daily/[yyyy_MM_dd].html";
         public string TrafficStatWeeklyUrl = "[SERVER]/squid/weekly/[yyyy_WW].html";
         public string TrafficStatPattern = @"<TR><TD ALIGN=LEFT>([\S.]*)</TD><TD ALIGN=RIGHT>([0-9]*)</TD>";
-        public string TrafficTopPattern = @"<TR><TD ALIGN=LEFT><A HREF=#([\S.]*)>([\S.]*) (([\S.]*))</A>"; // TODO: Add to registry
+        public string TrafficTopPattern = @"<TR><TD ALIGN=LEFT><A HREF=#([\S.]*)>([\S.]*) (([\S.]*))</A>";
         public bool TrafficRoundUp = true;
         //
         public FwServers.FwServer Location = FwServers.FwServer.Berdyansk;
