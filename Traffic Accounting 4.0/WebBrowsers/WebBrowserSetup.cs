@@ -59,8 +59,8 @@ namespace Traffic_Accounting
 
         private ImageStatus getImageStatusInInternetExplorer()
         {
-            switch (registry.ReadKey<string>(Registry.BaseKeys.HKEY_USERS,
-                GetUniqueClassesKey() + @"\Software\Microsoft\Internet Explorer\Main", 
+            switch (registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                @"Software\Microsoft\Internet Explorer\Main", 
                 "Display Inline Images", "unknown"))
             {
                 case "yes":
@@ -84,32 +84,32 @@ namespace Traffic_Accounting
                     value = "yes";
                     break;
             }
-            registry.SaveKey(Registry.BaseKeys.HKEY_USERS,
-                GetUniqueClassesKey() + @"\Software\Microsoft\Internet Explorer\Main",
+            registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                @"Software\Microsoft\Internet Explorer\Main",
                 "Display Inline Images", value);
         }
 
         // this method returns unique
         // classes key name from registry
         // for Internet Explorer
-        private string GetUniqueClassesKey()
-        {
-            string RegPath = "";
-            foreach (string keyinusers in Microsoft.Win32.Registry.Users.GetSubKeyNames())
-            {
-                if (keyinusers.Contains("Classes"))
-                {
-                    RegPath = keyinusers;
-                }
-            }
-            if (RegPath != "")
-            {
-                return RegPath.Remove(RegPath.IndexOf("_Classes"), RegPath.Length - RegPath.IndexOf("_Classes"));
-            }
-            else
-            {
-                return "";
-            }
-        }
+        //private string GetUniqueClassesKey()
+        //{
+        //    string RegPath = "";
+        //    foreach (string keyinusers in Microsoft.Win32.Registry.Users.GetSubKeyNames())
+        //    {
+        //        if (keyinusers.Contains("Classes"))
+        //        {
+        //            RegPath = keyinusers;
+        //        }
+        //    }
+        //    if (RegPath != "")
+        //    {
+        //        return RegPath.Remove(RegPath.IndexOf("_Classes"), RegPath.Length - RegPath.IndexOf("_Classes"));
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
     }
 }
