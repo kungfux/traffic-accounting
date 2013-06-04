@@ -60,7 +60,7 @@ namespace Traffic_Accounting
 
             // check version compatibility
             Registry registry = new Registry();
-            int assemblyBuild = Assembly.GetExecutingAssembly().GetName().Version.Revision;
+            int assemblyBuild = Assembly.GetExecutingAssembly().GetName().Version.Build;
             int lastusedBuild = registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
                 "Software\\ItWorksTeam\\Traffic Accounting\\Version 4.0", "LastBuildRun", 0);
             
