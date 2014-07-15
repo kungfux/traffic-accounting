@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) Fuks Alexander 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2014
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@ namespace Traffic_Accounting
             {
                 byte[] buffer = Encoding.UTF8.GetBytes(url);
                 HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(url);
+                myRequest.Timeout = ClientParams.Parameters.HttpTimeout;
                 myRequest.Method = "POST";
                 myRequest.ContentType = "text/html";
                 myRequest.ContentLength = buffer.Length;

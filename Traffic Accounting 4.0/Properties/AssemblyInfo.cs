@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) Fuks Alexander 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2014
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fuks Alexander")]
 [assembly: AssemblyProduct("Traffic Accounting")]
-[assembly: AssemblyCopyright("Copyright © Fuks Alexander 2008-2013")]
+[assembly: AssemblyCopyright("Copyright © Fuks Alexander 2008-2014")]
 [assembly: AssemblyTrademark("Traffic Accounting")]
 [assembly: AssemblyCulture("")]
 
@@ -54,5 +54,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("4.0.40.0")]
-[assembly: AssemblyFileVersion("4.0.40.0")]
+[assembly: AssemblyVersion("4.0.41.0")]
+[assembly: AssemblyFileVersion("4.0.41.0")]

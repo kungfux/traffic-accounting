@@ -250,11 +250,11 @@
     <value>&amp;Wednesday</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 build 40
+    <value>Traffic Accounting 4.0 build 41
 built on
-May 16, 2013
+June 7, 2014
 
-Copyright © 2008-2013 Fuks Alexander</value>
+Copyright © 2008-2014 Fuks Alexander</value>
   </data>
   <data name="B" xml:space="preserve">
     <value>B</value>
@@ -345,7 +345,7 @@ Copyright © 2008-2013 Fuks Alexander</value>
     <value>Location</value>
   </data>
   <data name="CONF032" xml:space="preserve">
-    <value>Berdyansk,Zaporozhye,Lviv,Sevastopol',Yalta</value>
+    <value>Berdyansk,Dnepropetrovsk,Zaporozhye,Lviv,Sevastopol',Yalta</value>
   </data>
   <data name="COPYRIGHTTEXT" xml:space="preserve">
     <value>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
@@ -405,5 +405,8 @@ It allows to easily control your traffic charges and be in the know of current b
   </data>
   <data name="CONFA008" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="ERR002" xml:space="preserve">
+    <value>Unable to retrieve statistics. Do you want to retry?</value>
   </data>
 </root>

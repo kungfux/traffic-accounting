@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) Fuks Alexander 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2014
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 
 using System;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Traffic_Accounting
 {
@@ -89,6 +90,12 @@ namespace Traffic_Accounting
             }
             else
             {
+                if (MessageBox.Show(l.GetMessage("ERR002"), l.GetMessage("PROGRAMNAME"), // Uanble to retrieve statistics. Do you want to retry?
+                    MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation) == DialogResult.Retry)
+                {
+                    getByDay(date);
+                }
+
                 LastOperationCompletedSuccessfully = false;
                 return new TrafficHistory();
             }

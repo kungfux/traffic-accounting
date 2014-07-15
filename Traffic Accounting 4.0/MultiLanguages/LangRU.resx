@@ -250,11 +250,11 @@
     <value>&amp;Среда</value>
   </data>
   <data name="ABOUT" xml:space="preserve">
-    <value>Traffic Accounting 4.0 сборка 40
+    <value>Traffic Accounting 4.0 сборка 41
 собрано
-16 мая, 2013
+7 июня 2014
 
-Все права защищены © 2008-2013 Фукс Александр</value>
+Все права защищены © 2008-2014 Фукс Александр</value>
   </data>
   <data name="B" xml:space="preserve">
     <value>Б</value>
@@ -345,7 +345,7 @@
     <value>Местоположение</value>
   </data>
   <data name="CONF032" xml:space="preserve">
-    <value>Бердянск,Запорожье,Львов,Севастополь,Ялта</value>
+    <value>Бердянск,Днепропетровск,Запорожье,Львов,Севастополь,Ялта</value>
   </data>
   <data name="COPYRIGHTTEXT" xml:space="preserve">
     <value>Эта программа является бесплатной; вы можете распрастранять её и/или изменять согласно с условиями лицензии GNU General Public Licanse, опубликованной фондом Free Software Foundation; лицензии версии 2 или (по вашему усмотрению) любой более поздней версии.
@@ -405,5 +405,8 @@
   </data>
   <data name="CONFA008" xml:space="preserve">
     <value>Отмена</value>
+  </data>
+  <data name="ERR002" xml:space="preserve">
+    <value>Не удалось прочесть статистику. Попробовать еще раз?</value>
   </data>
 </root>

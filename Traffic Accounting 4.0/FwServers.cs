@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) Fuks Alexander 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2014
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -33,10 +33,11 @@ namespace Traffic_Accounting
         {
             Unknown = 0,
             Berdyansk = 1,
-            Zaporogie = 2,
-            Lviv = 3,
-            Sevastopol = 4,
-            Yalta = 5            
+            Dnepropetrovsk = 2,
+            Zaporogie = 3,
+            Lviv = 4,
+            Sevastopol = 5,
+            Yalta = 6
         }
 
         // return url for local statistics server
@@ -54,6 +55,8 @@ namespace Traffic_Accounting
                     return "http://fw-zp.isd.dp.ua/";
                 case FwServer.Lviv:
                     return "http://fw-lv.isd.dp.ua/";
+                case FwServer.Dnepropetrovsk:
+                    return "http://fw.isd.dp.ua/";
             }
             // if unknown
             return "";
@@ -81,6 +84,10 @@ namespace Traffic_Accounting
                     return FwServer.Lviv;
                 case 74:
                     return FwServer.Zaporogie;
+                case 1:
+                case 2:
+                case 3:
+                    return FwServer.Dnepropetrovsk;
             }
             return FwServer.Unknown;
         }

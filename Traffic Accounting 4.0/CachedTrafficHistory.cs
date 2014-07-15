@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) Fuks Alexander 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2014
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -126,6 +126,10 @@ namespace Traffic_Accounting
             {
                 h.IsLoaded = true;
             }
+            else
+            {
+                Log.Trace.addTrace("Cache is not available for that day");
+            }
             return h;
         }
 
@@ -140,6 +144,10 @@ namespace Traffic_Accounting
             {
                 h.IsLoaded = true;
             }
+            else
+            {
+                Log.Trace.addTrace("Cache is not available for that day");
+            }
             return h;
         }
 
@@ -153,11 +161,13 @@ namespace Traffic_Accounting
             {
                 // add new cache item
                 TrafficHistoryCache.Add(StatDay);
+                Log.Trace.addTrace("New cache entry is added");
             }
             else
             {
                 // update existing
                 TrafficHistoryCache[index] = StatDay;
+                Log.Trace.addTrace("Existing cache entry is updated");
             }
             // sort stat by day
             TrafficHistoryCache.Sort(
@@ -177,6 +187,11 @@ namespace Traffic_Accounting
             if (loaded != null)
             {
                 TrafficHistoryCache = loaded;
+                Log.Trace.addTrace("Cache is loaded from FS");
+            }
+            else
+            {
+                Log.Trace.addTrace("Cache is empty on FS");
             }
         }
 

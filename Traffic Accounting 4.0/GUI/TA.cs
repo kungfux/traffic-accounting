@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) Fuks Alexander 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2014
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -521,12 +521,14 @@ namespace Traffic_Accounting
 
             if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
             {
+                // get info for previous week
                 DateTime prev = GetMonday().AddDays(-7);
                 h = t.getByWeek(prev, false);
             }
             else
             {
-                h = t.getByWeek(DateTime.Now); // retrive info for current week
+                // get info for current week
+                h = t.getByWeek(DateTime.Now);
             }
 
             if (!h.IsLoaded)

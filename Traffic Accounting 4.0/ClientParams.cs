@@ -1,7 +1,7 @@
 ﻿/*   
  *  Traffic Accounting 4.0
  *  Traffic reporting system
- *  Copyright (C) Fuks Alexander 2008-2013
+ *  Copyright (C) Fuks Alexander 2008-2014
  *  
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -56,6 +56,7 @@ namespace Traffic_Accounting
         public string HttpCut1 = "<A NAME=[IP]><H2><A HREF=#TOC>[MACHINE] ([IP])</A></H2>";
         public string HttpCut2 = "</TABLE>";
         public string MachineName = Environment.MachineName.ToLower();
+        public short HttpTimeout = 5000;
         // SystemTray
         public int TrayIconBackColor = Color.Transparent.ToArgb();
         public string TrayIconFontColor = "White";
@@ -123,6 +124,8 @@ namespace Traffic_Accounting
                 }
                 Parameters.MachineName = Registry.ReadKey<string>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "MachineName", MachineName);
+                Parameters.HttpTimeout = Registry.ReadKey<short>(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "HttpTimeout", HttpTimeout);
                 // SystemTray
                 Parameters.TrayIconBackColor = Registry.ReadKey<int>(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "TrayIconBackColor", TrayIconBackColor);
@@ -403,6 +406,18 @@ namespace Traffic_Accounting
             {
                 Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
                     RegPath, "HttpCut");
+            }
+            //
+            Log.Trace.addTrace("HttpTimeout is " + Parameters.HttpTimeout);
+            if (Parameters.HttpTimeout != HttpTimeout)
+            {
+                Registry.SaveKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "HttpTimeout", Parameters.HttpTimeout);
+            }
+            else
+            {
+                Registry.DeleteKey(Registry.BaseKeys.HKEY_CURRENT_USER,
+                    RegPath, "HttpTimeout");
             }
             //
             Log.Trace.addTrace("Welcome is " + Parameters.Welcome);
